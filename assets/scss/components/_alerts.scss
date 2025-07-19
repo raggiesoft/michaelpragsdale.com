@@ -1,0 +1,78 @@
+// assets/scss/components/_alerts.scss
+
+@use "sass:map";
+@use '../abstracts/variables';
+
+//--------------------------------------------------------------------------
+// Base Alert Style
+//--------------------------------------------------------------------------
+.alert {
+  position: relative;
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--border-radius);
+  color: var(--text-color); 
+}
+
+.alert-title {
+  color: inherit;
+  font-weight: 700;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+//--------------------------------------------------------------------------
+// Contextual Alert Variants (Generated via SCSS Loop)
+//--------------------------------------------------------------------------
+@each $color-name, $color-map in variables.$theme-colors {
+  .alert-#{$color-name} {
+    background-color: map.get($color-map, "bg");
+    border-color: map.get($color-map, "border", map.get($color-map, "bg")); // fallback to bg if no border
+    color: map.get($color-map, "text");
+
+    a, .alert-link {
+      color: map.get($color-map, "link", map.get($color-map, "text")); // fallback to text if no link
+      font-weight: 700;
+      text-decoration: underline;
+      &:hover,
+      &:focus {
+        opacity: 0.8;
+      }
+    }
+
+    hr {
+      border-top-color: map.get($color-map, "border", map.get($color-map, "bg"));
+      opacity: 0.5;
+    }
+  }
+}
+
+//--------------------------------------------------------------------------
+// Alert Close Button
+//--------------------------------------------------------------------------
+.alert-dismissible {
+  padding-right: calc(var(--spacing-lg) * 2.5);
+}
+
+.alert-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: none;
+  border: 0;
+  color: inherit;
+  opacity: 0.7;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity 0.15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}

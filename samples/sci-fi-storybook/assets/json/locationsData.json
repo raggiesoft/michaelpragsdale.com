@@ -1,0 +1,20 @@
+{
+    "aethelburg": {
+        "name": "Aethelburg Station",
+        "type": "Space Station Colony",
+        "description": "A once-sprawling, self-sustaining habitat that was home to thousands before the attack. Featured advanced facilities, including extensive greenhouses and accessible living quarters. Simulated Earth-standard gravity and day/night cycles.",
+        "imageUrl": "" 
+    },
+    "lifeboat_c7": {
+        "name": "Class-7 Lifeboat",
+        "type": "Emergency Evacuation Craft",
+        "description": "Designed for 3 occupants in cramped conditions, lacking any defensive capabilities beyond basic evasion. Its facilities are minimal and not designed for accessibility or long-term use.",
+        "imageUrl": ""
+    },
+    "haven_moon": {
+        "name": "Uncharted Moon (Haven)",
+        "type": "Rocky Celestial Body",
+        "description": "An uncharted moon with a thin but breathable atmosphere. Site of a hidden supply cache within a cave system that provided temporary refuge. Experiences very long day/night cycles.",
+        "imageUrl": ""
+    }
+}

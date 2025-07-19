@@ -1,0 +1,181 @@
+// assets/scss/components/_history-list.scss
+@use '../abstracts/mixins' as *; // For our responsive media query mixin
+
+//==========================================================================
+// Mobile-First Default Styles
+//==========================================================================
+// These styles apply to all screen sizes by default, unless overridden
+// in the desktop media query at the bottom.
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  // On mobile, the timeline bar is simpler, closer to the content
+  border-left: 2px solid var(--border-color);
+}
+
+.history-item {
+  position: relative;
+  display: flex;
+  flex-direction: column; // Stack content vertically on mobile
+  gap: var(--spacing-xs);
+  padding-left: var(--spacing-lg); // Space content away from the timeline bar
+
+  // Animation properties for the filtering effect
+  transition: 
+    opacity 0.3s ease-in-out,
+    max-height 0.4s ease-in-out,
+    margin-bottom 0.4s ease-in-out,
+    padding-bottom 0.4s ease-in-out;
+  
+  max-height: 1000px;
+  overflow: hidden;
+
+  &:not(:last-child) {
+    padding-bottom: var(--spacing-xl);
+  }
+
+  // State when an item is filtered out by JavaScript
+  &.is-hidden {
+    opacity: 0;
+    max-height: 0;
+    padding-bottom: 0;
+    margin-bottom: -1px;
+    pointer-events: none;
+  }
+
+  // The circular marker on the timeline
+  &::before {
+    content: '';
+    position: absolute;
+    left: -9px; // Positioned over the mobile timeline bar
+    top: 0.5rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--text-color-muted); // Default neutral color
+    border: 2px solid var(--background-color);
+    z-index: 1;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+
+  // --- Priority State Overrides ---
+  &.is-current {
+    &::before {
+      background-color: var(--primary-accent-color);
+      transform: scale(1.25);
+    }
+  }
+  &.is-highlighted {
+    &::before {
+      background-color: var(--color-success);
+    }
+  }
+}
+
+// --- Content Sections (Mobile-First) ---
+
+.history-item__period {
+  order: -1; // Display the period before the content in the flex column
+  text-align: left;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-color-muted);
+  width: auto;
+  position: static;
+  left: auto;
+}
+
+.history-item__content {
+  flex-grow: 1;
+}
+
+.history-item__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.history-item__logo {
+  display: block;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.history-item__header-text {
+  flex-grow: 1;
+}
+
+.history-item__title {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.history-item__subtitle {
+  font-weight: 600;
+  color: var(--text-color-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.history-item__tags {
+  padding-left: 0; // No special padding needed on mobile
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  font-size: 0.9rem;
+  color: var(--text-color-muted);
+}
+
+
+.role-description {
+  li {
+    margin-bottom: var(--spacing-xs);
+  }
+}
+
+
+//==========================================================================
+// Desktop Overrides
+//==========================================================================
+// On screens 768px ('md' breakpoint) and wider, apply the two-column timeline layout.
+@include media-breakpoint-up(md) {
+  
+  .history-list {
+    border-left: calc(var(--border-width) * 2) solid var(--border-color-strong);
+    padding-left: var(--spacing-xl);
+    margin-left: var(--spacing-lg);
+  }
+
+  .history-item {
+    flex-direction: row; // Go back to a side-by-side layout
+    gap: var(--spacing-lg);
+    padding-left: 0;
+  }
+
+  .history-item::before {
+    // Reposition the dot for the wider desktop layout
+    left: calc(var(--spacing-xl) * -1 - 8px);
+  }
+
+  .history-item__period {
+    order: 0; // Reset flexbox order
+    flex-shrink: 0;
+    width: 100px;
+    font-weight: 600;
+    text-align: right;
+    position: relative;
+    font-style: normal;
+    // The large negative left position that creates the two-column effect
+    left: calc(var(--spacing-xl) * -1 - 100px - var(--spacing-lg));
+  }
+  
+  .history-item__tags {
+    // Re-apply the desktop padding to align with text, not the logo
+    padding-left: calc(64px + var(--spacing-md));
+  }
+}

@@ -1,0 +1,14 @@
+// assets/scss/layout/_main.scss
+
+.site-content {
+  flex-grow: 1; // Allows the main content area to grow and take up the remaining space
+                  // in the .site-body-wrapper (after accounting for the sidebar's fixed width).
+  padding: var(--spacing-lg); // Give the content area some breathing room
+}
+// When a page has the .full-width class on the body, 
+// the .site-content area will not have a max-width, allowing sections
+// within it (like the hero) to span the full viewport width.
+.full-width .site-content {
+  width: 100%;
+  max-width: none;
+}

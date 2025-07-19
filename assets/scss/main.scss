@@ -1,0 +1,42 @@
+// assets/scss/main.scss
+
+// 1. Abstracts (Variables, Mixins, Functions, Custom Properties)
+@use 'abstracts/custom-properties'; 
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+
+// 2. Base Styles (Reset, Element Defaults, Typography)
+@use 'base/reset';                 
+@use 'base/accessibility';
+@use 'base/base';                 
+@use 'base/typography';
+@use 'base/print';
+
+// 3. Layout (Site structure: header, footer, main, grid, containers)
+@use 'layout/page'; 
+@use 'layout/grid';       
+@use 'layout/header';
+@use 'layout/navigation';
+@use 'layout/main';
+@use 'layout/sidebar';   
+@use 'layout/footer';
+
+// 4. Components (Reusable UI elements: buttons, cards, forms, etc.)
+@use 'components/buttons';
+@use 'components/accordion'; 
+@use 'components/alerts';
+@use 'components/card';
+@use 'components/history-list';
+@use 'components/filter-tabs';
+@use 'components/icons';
+@use 'components/forms';
+
+// 5. Page-Specific Styles (if any)
+@use 'pages/home';
+@use 'pages/resume';
+
+// 6. Themes (Dark mode)
+@use 'theme/dark-mode';
+
+// 7. Utilities (if any)
+// @use 'utils/text';

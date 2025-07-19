@@ -1,0 +1,74 @@
+// assets/scss/layout/_grid.scss
+@use '../abstracts/variables';
+@use '../abstracts/mixins' as *;
+
+// --- Grid System ---
+// Inspired by Bootstrap's flexbox grid. It's mobile-first.
+
+// 1. Container
+// Provides a centered, max-width wrapper for your layout.
+.container {
+  width: 100%;
+  max-width: 1200px; // Default max-width, can be overridden
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}
+
+// 2. Row
+// The flex container for columns. It uses a negative margin to counteract
+// the padding on columns, ensuring content aligns perfectly.
+.row {
+  --grid-gutter-x: var(--spacing-lg); // Gutter (horizontal spacing)
+  --grid-gutter-y: 0;                // Vertical spacing (can be overridden)
+
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--grid-gutter-y) * -1); // Vertical negative margin
+  margin-right: calc(var(--grid-gutter-x) * -0.5); // Horizontal negative margin
+  margin-left: calc(var(--grid-gutter-x) * -0.5);
+
+  > * { // Target all direct children (the columns)
+    margin-top: var(--grid-gutter-y);
+    padding-right: calc(var(--grid-gutter-x) * 0.5);
+    padding-left: calc(var(--grid-gutter-x) * 0.5);
+  }
+}
+
+// 3. Columns
+// The grid is based on 12 columns.
+
+// Base .col class for auto-width columns
+.col {
+  flex: 1 0 0%; // Grow, shrink, and basis of 0
+}
+
+// Generate non-responsive .col-1 through .col-12 classes
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 auto;
+    width: percentage($i / 12);
+  }
+}
+
+// Generate responsive column classes for each breakpoint using our mixin
+// This creates .col-sm-1, .col-md-6, .col-lg-4, etc.
+@each $breakpoint-name, $breakpoint-value in variables.$breakpoints {
+  // We don't need to generate for 'xs' as it's the default mobile-first state
+  @if $breakpoint-name != 'xs' {
+    @include media-breakpoint-up($breakpoint-name) {
+      @for $i from 1 through 12 {
+        .col-#{$breakpoint-name}-#{$i} {
+          flex: 0 0 auto;
+          width: percentage($i / 12);
+        }
+      }
+      // Also generate auto-width columns for each breakpoint
+      .col-#{$breakpoint-name}-auto {
+        flex: 0 0 auto;
+        width: auto;
+      }
+    }
+  }
+}

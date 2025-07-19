@@ -1,0 +1,16 @@
+// assets/scss/layout/_page.scss
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Guarantees the container is at least the full height of the viewport
+}
+
+// This is the new wrapper that holds both the main content and the sidebar
+.site-body-wrapper {
+  display: flex;        // This is what will put the content and sidebar side-by-side
+  flex-grow: 1;         // Crucial: Allows this wrapper to expand and fill all available vertical space
+                          // This is what pushes the footer down on pages with short content.
+  width: 100%;
+}
+

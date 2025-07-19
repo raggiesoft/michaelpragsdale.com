@@ -1,0 +1,112 @@
+/* assets/css/base/_base_layout.css */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif; /* Basic font stack, Tailwind handles specifics via class */
+    background-color: var(--color-bg-primary); 
+    color: var(--color-text-primary); 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+}
+
+header#app-header {
+    background-color: var(--color-bg-header);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border);
+    height: var(--header-height); /* From _variables.css */
+    padding: 1rem; /* Equivalent to p-4 if base font is 16px */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+    position: sticky; 
+    top: 0;
+    left: 0; /* Added for sticky positioning completeness */
+    right: 0; /* Added for sticky positioning completeness */
+    z-index: 30; /* Ensure it's above most content but below modals/overlay sidebars */
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+div#main-body-container {
+    display: flex; 
+    flex-grow: 1;  /* This makes it take available vertical space between header and footer */
+    overflow: hidden; /* Important for child elements with their own scrolling */
+}
+
+/* Sidebar styles related to overall page layout */
+aside#sidebar {
+    /* Base styles for mobile (fixed, off-screen). 
+       Tailwind classes in index.html handle 'fixed', 'top-0', 'left-0', 'h-full', 'z-40', 'transform -translate-x-full'.
+       JS toggles transform to bring it on-screen. */
+    background-color: var(--color-bg-sidebar); 
+    border-right: 1px solid var(--color-border); 
+    width: 18rem; /* Default for w-72 */
+    /* Transition is applied by Tailwind's 'transition-transform duration-300 ease-in-out' */
+    overflow-y: auto; /* Scrollbar for sidebar content */
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+    aside#sidebar {
+        width: 20rem; /* md:w-80 */
+    }
+}
+
+@media (min-width: 1024px) { /* lg breakpoint - persistent sidebar */
+    aside#sidebar {
+        position: sticky !important; /* Overrides 'fixed' from mobile */
+        top: var(--header-height) !important; /* Stick below the header */
+        transform: translateX(0) !important; /* Ensure it's visible */
+        height: calc(100vh - var(--header-height)) !important; /* Full height minus header */
+        flex-shrink: 0 !important; /* Prevent sidebar from shrinking in flex layout */
+        z-index: 20 !important; /* Below header but above scrolling content if necessary */
+    }
+    /* Mobile-specific controls are hidden by Tailwind's lg:hidden in index.html */
+}
+
+
+main#page-content {
+    flex-grow: 1; /* Takes remaining horizontal space within #main-body-container */
+    overflow-y: auto; /* Allows this main content area to scroll if its content overflows */
+    padding: 1rem; /* Default p-4 */
+    position: relative; /* For any absolutely positioned children, like modals if they were scoped here */
+}
+@media (min-width: 640px) { /* sm breakpoint */
+    main#page-content {
+        padding: 2rem; /* sm:p-8 */
+    }
+}
+
+
+footer#app-footer {
+    background-color: var(--color-bg-footer);
+    color: var(--color-text-secondary);
+    border-top: 1px solid var(--color-border);
+    padding: 0.75rem; /* p-3 */
+    text-align: center;
+    font-size: 0.75rem; /* text-xs */
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+/* General scrollbar styling for elements with class 'content-area' */
+.content-area::-webkit-scrollbar { 
+    width: 8px; 
+}
+.content-area::-webkit-scrollbar-track { 
+    background: var(--color-scrollbar-track); 
+}
+.content-area::-webkit-scrollbar-thumb { 
+    background-color: var(--color-scrollbar-thumb); 
+    border-radius: 4px; 
+}
+
+/* Error message styling */
+.error-message {
+    color: var(--color-error);
+    font-weight: bold;
+    padding: 1rem;
+    text-align: center;
+}

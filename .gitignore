@@ -1,0 +1,15 @@
+# Dependencies
+/node_modules
+/vendor
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor specific
+.vscode/
+.idea/
+
+# Log files
+npm-debug.log*
+yarn-error.log*

@@ -1,0 +1,25 @@
+# Set default behavior for all files to handle line endings automatically.
+* text=auto
+
+# Explicitly force LF (Unix-style) line endings in the repository for common text files.
+# This is the modern standard for cross-platform projects.
+*.php text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.svg text eol=lf
+*.webmanifest text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Declare specific file types as binary so Git won't try to change their line endings.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.docx binary

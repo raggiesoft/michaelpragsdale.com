@@ -1,0 +1,108 @@
+:root {
+  --background-color: #d4f1ff;
+  --text-color: #003366;
+  --primary-accent-color: #77dd77;
+  --border-color: rgba(0, 51, 102, 0.2);
+  --border-color-strong: rgba(0, 51, 102, 0.4);
+}
+
+.site-header {
+  background: transparent;
+  color: var(--text-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.site-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+.site-header .site-branding a,
+.site-header .nav-link {
+  color: var(--text-color);
+}
+.site-header .site-branding a:hover, .site-header .site-branding a:focus,
+.site-header .nav-link:hover,
+.site-header .nav-link:focus {
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.site-footer {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  color: var(--text-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.site-sidebar {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
+}
+
+.button-primary {
+  background-color: var(--primary-accent-color);
+  border-color: var(--primary-accent-color);
+  color: var(--text-color);
+  font-weight: 700;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  transition: filter 0.15s ease-in-out;
+}
+.button-primary:hover, .button-primary:focus-visible {
+  filter: brightness(90%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #001f3f;
+    --text-color: #ffffff;
+    --primary-accent-color: #00ffdd;
+    --border-color: rgba(0, 255, 221, 0.3);
+    --border-color-strong: rgba(0, 255, 221, 0.5);
+  }
+  .site-header {
+    border-color: var(--border-color);
+    text-shadow: 0 0 5px var(--primary-accent-color);
+  }
+  .site-header::before {
+    background: rgba(0, 10, 20, 0.6);
+  }
+  .site-footer {
+    background: rgba(0, 10, 20, 0.6);
+    border-color: var(--border-color);
+    color: var(--text-color);
+    text-shadow: 0 0 5px var(--primary-accent-color);
+  }
+  .site-sidebar {
+    background-color: rgba(0, 10, 20, 0.4);
+  }
+  .card {
+    background-color: rgba(0, 31, 63, 0.7);
+    box-shadow: 0 0 15px rgba(0, 255, 221, 0.1);
+  }
+  .button-primary {
+    background-color: var(--primary-accent-color);
+    border-color: var(--primary-accent-color);
+    color: #001f3f;
+    text-shadow: none;
+    box-shadow: 0 0 10px var(--primary-accent-color);
+  }
+  .button-primary:hover, .button-primary:focus-visible {
+    filter: brightness(90%);
+  }
+}
+
+/*# sourceMappingURL=frutiger-aero.css.map */

@@ -1,0 +1,77 @@
+/* assets/css/components/_hud.css */
+
+/*
+    HUD Structure in index.html (for reference):
+    <div id="hud-status-display" class="hidden p-3 my-4 border rounded-md text-xs flex-shrink-0">
+        <h4 class="font-semibold mb-1 text-[var(--color-text-primary)] border-b pb-1 mb-2">Status:</h4>
+        <div id="hud-stats-container">
+            </div>
+        <div id="hud-alert-text" class="hidden mt-2 pt-2 border-t text-sm font-semibold">
+            </div>
+    </div>
+*/
+
+#hud-status-display {
+    /* Tailwind classes: hidden p-3 my-4 border rounded-md text-xs flex-shrink-0 */
+    /* Inline styles in HTML set border-color and background-color via CSS variables */
+    border-color: var(--color-border-darker);
+    background-color: var(--color-bg-button); /* Or a specific HUD background variable */
+    font-size: 0.75rem; /* text-xs */
+    line-height: 1.5; /* Increased line-height for readability */
+}
+
+#hud-status-display h4 {
+    /* Tailwind classes: font-semibold mb-1 border-b pb-1 mb-2 */
+    /* Inline style in HTML sets text-color via var(--color-text-primary) */
+    /* Inline style in HTML sets border-color via var(--color-border) */
+    font-weight: 600;
+    margin-bottom: 0.25rem; /* mb-1 */
+    border-bottom: 1px solid var(--color-border); /* Ensure border is from CSS var */
+    padding-bottom: 0.25rem; /* pb-1 */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+#hud-stats-container {
+    /* No specific styles needed here if children are styled */
+}
+
+#hud-stats-container div { /* Each individual stat line, e.g., "Hull Integrity: <span>Value</span>" */
+    color: var(--color-text-secondary); /* For the label part like "Hull Integrity:" */
+    margin-bottom: 0.125rem; /* Tiny space between lines */
+}
+
+#hud-stats-container div span { /* The actual value part of the stat line */
+    font-weight: 500; /* Tailwind: font-medium */
+    /* Color for the value span is set dynamically by JavaScript based on keywords */
+}
+
+#hud-alert-text {
+    /* Tailwind classes: hidden mt-2 pt-2 border-t text-sm font-semibold */
+    /* Inline style in HTML sets border-color and color via CSS variables */
+    margin-top: 0.5rem; /* mt-2 */
+    padding-top: 0.5rem; /* pt-2 */
+    border-top: 1px solid var(--color-border-darker);
+    color: var(--color-error); /* Default color for alerts */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600; /* font-semibold */
+    line-height: 1.4; /* Better readability for alerts */
+}
+
+/* Optional: Different alert severities if you plan to use them */
+#hud-alert-text.hud-alert-warning {
+    color: orange; /* Or a CSS variable for warning color */
+}
+
+#hud-alert-text.hud-alert-info {
+    color: var(--color-accent); /* Or a CSS variable for info color */
+}
+
+/* Class for the invisible trigger spans injected by JS from Markdown comments */
+.hud-trigger {
+    display: block; 
+    height: 1px;    
+    width: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none; 
+}

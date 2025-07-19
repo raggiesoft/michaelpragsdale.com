@@ -1,0 +1,31 @@
+// assets/scss/components/_icons.scss
+
+//--------------------------------------------------------------------------
+// Icon Spacing for Prefixes and Suffixes
+//--------------------------------------------------------------------------
+// This provides automatic spacing for Font Awesome icons when placed inside
+// elements like .button or .card-link.
+
+// Target any element that might contain an icon
+.button,
+.card-link,
+.nav-link { // We can add more parent selectors here as needed
+
+  // --- Prefix Icon ---
+  // Select an icon (.fa-fw) that is the FIRST child, but NOT the ONLY child.
+  // This means it's an icon with text after it.
+  > .fa-fw:first-child:not(:last-child) {
+    margin-right: var(--spacing-sm);
+  }
+
+  // --- Suffix Icon ---
+  // Select an icon (.fa-fw) that is the LAST child, but NOT the ONLY child.
+  // This means it's an icon with text before it.
+  > .fa-fw:last-child:not(:first-child) {
+    margin-left: var(--spacing-sm);
+  }
+
+  // We target .fa-fw specifically because you mentioned using it,
+  // and it's good practice for alignment. We use the direct child selector (>)
+  // to avoid accidentally styling nested icons.
+}

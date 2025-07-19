@@ -1,0 +1,405 @@
+:root
+{
+    --ai-hero-image: url("../images/hero/hero-1-min.png");
+    --rs-heading-color: #c2e3f3;
+	--rs-heading-background-color: #c2e3f3;
+	--rs-heading-modal-color: #070707;
+
+	--rs-box-shadow-color: #222222;
+	
+	--rs-a-color: #333337;
+	--rs-a-hover-color: #080809;
+	--rs-card-p-color: #070707;
+
+	--rs-opacity-container: 0.75;
+	--rs-opacity-blockquote: 0.85;
+	--rs-opacity-background-image: 0.3;
+}
+@media (prefers-color-scheme: dark)
+{
+	:root
+	{
+		--rs-heading-color: #c2e3f3;
+		--rs-heading-background-color: #191926;
+		--rs-heading-modal-color: #fbe8e8;
+
+		--rs-a-color: #b1b1ca;
+		--rs-a-hover-color: #a6a8cb;
+		--rs-card-p-color: #ebe4e4;
+
+		--rs-opacity-background-image: 0.6;
+	}
+}
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--ai-hero-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    filter: brightness(60%);
+}
+.hero-content {
+    position: relative;
+}
+a
+{
+	color: var(--rs-card-a-color);
+}
+a:hover, .card a:focus
+{
+	color: var(--rs-card-a-hover-color);
+}
+h1
+{
+	font-size: 3em;
+}
+h1,h2,h3,h4,h5,h6,caption
+{
+	color: var(--rs-heading-color);
+	text-align: center;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-weight: bold;
+}
+.modal-header, .modal-footer
+{
+	background-color: var(--rs-heading-background-color);
+}
+h2.modal-title
+{
+	color: var(--rs-heading-modal-color);
+}
+caption
+{
+	background-color: var(--rs-heading-background-color);
+	font-size: 2em;
+}
+
+
+/* Title Page */
+#ai-apa-cover-page-data p
+{
+    line-height: 2;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+}
+#ai-abstract-data p
+{
+    line-height: 2;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+}
+#ai-abstract-data p.abstract-keywords
+{
+    line-height: 2;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    font-style: italic;
+    text-indent: 48px;
+}
+blockquote {
+	display: block;
+	background: var(--rs-heading-background-color);
+	padding: 15px 20px 15px 45px;
+	margin: 5px auto 10px;
+	position: relative;
+	font-family: Georgia,  serif;
+	font-size: 16px;
+	line-height: 1.2;
+	color: var(--rs-card-p-color);
+	opacity: var(--rs-opacity-blockquote);
+	text-align: justify;
+	border-left: 15px solid var(--rs-heading-color);
+	border-right: 2px solid var(--rs-heading-background-color);/* Don't want a border-right color */
+	box-shadow: 2px 2px 15px var(--rs-box-shadow-color);
+}
+blockquote::before {
+	content: "\201C";
+	font-family: Georgia,  serif;
+	font-size: 60px;
+	font-weight: bold;
+	color: var(--rs-heading-color);
+	position: absolute;
+	left: 10px;
+	top: 5px;
+}
+blockquote::after {
+	content: ""
+}
+blockquote em {
+	font-style: italic;
+}
+cite
+{
+	color: var(--rs-card-p-color);
+}
+cite::before
+{
+	content: "-";
+}
+
+#apa-references
+{
+	container-type: inline-size;
+	display: table;
+	margin-bottom: 3px;
+	margin-inline: auto;
+	margin-top: 0;
+	max-width: 540px;
+	padding: 5px 3px 3px;
+}
+
+/*
+ * APA Requires a hanging indent with 0.5 inches
+ * Formula: 1 inch = ~96 pixels so 96 / 2 = 48
+ * The first line (text-indent) gets moved 0.5 inches (48 pixels) to the left
+ * Subsequent lines respect the padding and therefore appear to be hanging-indented by 0.5 inches
+ * Finally, use line-height to mimic double-spaced text
+*/
+.apa-references p
+{
+	padding-left: 48px;
+	text-indent: -48px;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	line-height: 2;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 16px; /* 12 point = 16 pixels. Formula: Pixel = (96/72) * Point, so 16 = (96/72) * 12 */
+}
+
+th, thead
+{
+	text-align: center;
+	font-weight: bold;
+}
+
+.list-group-item:first-of-type
+{
+	background-color: var(--rs-heading-background-color);
+	color: var(--rs-heading-color);
+	font-weight: bold;
+	font-size: 1.25em;
+}
+ul, table
+{
+	box-shadow: 2px 2px 15px var(--rs-box-shadow-color);
+	position: relative;
+	opacity: var(--rs-opacity-blockquote);
+}
+table ul
+{
+	box-shadow: 0px 0px 0px;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width:  768px)
+{
+	#apa-references
+	{
+		max-width: 720px;
+	}
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width:  992px) 
+{
+	#apa-references
+	{
+		max-width: 960px;
+	}
+}
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width:  1200px)
+{
+	#apa-references
+	{
+		max-width: 1140px;
+	}
+}
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width:  1400px)
+{
+	#apa-references
+	{
+		max-width: 1320px;
+	}
+}
+
+/* This controls what is sent to the printer */
+@media print
+{
+	/* We are going to hide the Background Image from the printer */
+	:root
+	{
+		--rs-background-image: "";
+	}
+
+	/* Default colors to Black on White */
+	* {
+		color: #000;    
+		background-color: #fff;
+	}
+	
+
+	/* Turn OFF the Flexbox when sending to the printer otherwise
+	Gecko won't do the page break (Chromium doesn't care) */
+	body
+	{
+		display: block;
+	}
+	/* APA References always must be at the start of a new page */
+	#apa-references
+	{
+		break-before: page;
+		display: block;
+	}
+
+	/* Forces the footer to be printed at the bottom of every page */
+	footer
+	{
+		position: fixed;
+		bottom: 20px;
+	}
+
+	/* Remove the Box Shadow and Center the Text */
+	.heading
+	{
+		box-shadow: 0px 0px 0px;
+		text-align: center;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+	}
+	.heading h1
+	{
+		margin-bottom: 0px;
+	}
+
+	/* For anything that should not be sent to the printer */
+	.print-hide
+	{
+		display: none;
+	}
+
+	/* Font Awesome Icons Hidden */
+	i.fa-duotone
+	{
+		display: none;
+	}
+
+	/* Remove the Underlined text */
+	a
+	{
+		text-decoration: none;
+	}
+
+	/* Print out link URLs */
+	a::after
+	{
+		content: " ("attr(href)")";
+	}
+
+	/* Except for Sources */
+	#apa-references a::after
+	{
+		content: "";
+	}
+
+	/* Make Borders for the Table */
+	table
+	{
+		border-collapse: collapse;
+		font-size: 10px; /* Adjust the font size so that it fits on the printed page */
+		overflow-x: hidden;
+	}
+	  
+	th, td
+	{
+		border: 1px solid #000;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	/* Experimental: should avoid page breaks inside table cells */
+	tr
+	{
+		break-inside: avoid;
+	}
+
+	/* Move the UL bullet points */
+ 	ul
+	{
+		padding-left: 12px;
+	}
+	li.list-group-item
+	{
+		display: inline;
+		margin-right: 5px;
+		padding-right: 5px;
+	}
+
+	/* Change space between bullet points and accompanying text */
+	li::before
+	{
+		content: "";
+    	margin-left: -0.5rem;
+	}
+	li.list-group-item:first-of-type::after
+	{
+		content: ": ";
+	}
+	li.list-group-item:not(:first-of-type)::after
+	{
+		content: ", ";
+	}
+	li.list-group-item:last-of-type::after
+	{
+		content: "";
+	}
+	li.list-group-item:last-of-type::before
+	{
+		content: " and ";
+	}
+
+	/* Remove the coloring and shadowing from the Blockquote */
+	blockquote, .blockquote
+	{
+		box-shadow: 0px 0px 0px;
+		border-left: 0px;
+		border-right: 0px;
+		margin-top: 0px;
+		padding-top: 0px;
+		text-align: center;
+		font-size: 16px;
+		font-family: Georgia,  serif;
+	}
+	blockquote::before
+	{
+		content: "";
+		font-family: Georgia,  serif;
+		font-size: 0px;
+		font-weight: bold;
+		left: 0px;
+		top: 0px;
+	}
+	ul, table
+	{
+		box-shadow: 0px 0px 0px;
+		position: relative;
+		opacity: 1;
+	}
+
+}

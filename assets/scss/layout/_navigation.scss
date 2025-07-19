@@ -1,0 +1,167 @@
+// assets/scss/layout/_navigation.scss
+@use '../abstracts/mixins' as *;
+
+//==========================================================================
+// Mobile Navigation Styles (Default)
+//==========================================================================
+.site-navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  z-index: 1050;
+  padding-top: var(--spacing-xxl);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.nav-is-open .site-navigation {
+  transform: translateX(0);
+}
+
+.nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.nav-link {
+  display: block;
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+
+  &:hover,
+  &:focus {
+    background-color: var(--background-color-alt);
+    color: var(--primary-accent-color);
+  }
+}
+
+// --- Mobile Sub-Menu Styles ---
+.sub-menu {
+  list-style: none;
+  margin: 0;
+  padding-left: var(--spacing-lg); // Indent sub-menu items
+  background-color: var(--background-color-alt);
+
+  .nav-link {
+    font-size: 1rem; // Make sub-menu links slightly smaller
+    padding-left: var(--spacing-xl); // Extra indent for visual hierarchy
+  }
+}
+
+//==========================================================================
+// Desktop Navigation Styles
+//==========================================================================
+@include media-breakpoint-up(lg) {
+  // --- Reset Mobile Styles ---
+  .site-navigation {
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    padding-top: 0;
+    transform: none;
+    transition: none;
+    overflow-y: visible;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-item {
+    border-bottom: none;
+    margin-left: var(--spacing-sm);
+    position: relative; // CRUCIAL: Establishes positioning context for the dropdown
+  }
+
+  .nav-link {
+    color: inherit;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+
+    &:hover,
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  // --- Active State Styling for Desktop ---
+  .nav-item.active > .nav-link { // Use > to only target the top-level link
+    background-color: var(--mpr-color-raggiesoft-blue);
+    color: #ffffff;
+  }
+
+  // --- Desktop Sub-Menu (Dropdown) Styles ---
+  .sub-menu {
+    // Hide the dropdown by default
+    display: block;
+    position: absolute;
+    top: 100%; // Position it right below the parent item
+    left: 0;
+    z-index: 1070;
+
+    // Visual styling for the dropdown
+    background-color: var(--background-color);
+    min-width: 200px;
+    padding: var(--spacing-sm) 0;
+    margin-top: var(--spacing-xs); // Small gap from parent
+    border-radius: var(--border-radius);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border: var(--border-width) solid var(--border-color);
+
+    // Animate it
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+
+    // Sub-menu items on desktop
+    .nav-item {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    // Sub-menu links on desktop
+    .nav-link {
+      color: var(--text-color);
+      border-radius: 0;
+      padding: var(--spacing-sm) var(--spacing-lg);
+
+      &:hover,
+      &:focus {
+        background-color: var(--background-color-alt);
+      }
+    }
+  }
+
+  // --- Show Dropdown on Hover/Focus ---
+  // :focus-within is key for keyboard accessibility!
+  .nav-item.has-children:hover > .sub-menu,
+  .nav-item.has-children:focus-within > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  // Add a small arrow indicator for items with sub-menus
+  .nav-item.has-children > .nav-link::after {
+    content: '\25BC'; // Downward-pointing triangle
+    font-size: 0.6em;
+    margin-left: var(--spacing-sm);
+    vertical-align: middle;
+  }
+}

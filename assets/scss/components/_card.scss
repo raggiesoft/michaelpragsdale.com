@@ -1,0 +1,107 @@
+// assets/scss/components/_cards.scss
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; // Prevent flexbox bugs
+  word-wrap: break-word;
+  background-color: var(--background-color);
+  background-clip: border-box;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  height: 100%; // Make cards in the same row equal height by default
+}
+
+.card-body {
+  flex: 1 1 auto; // Allow body to grow and shrink
+  padding: var(--spacing-lg);
+}
+
+.card-title {
+  margin-bottom: var(--spacing-sm);
+}
+
+.card-subtitle {
+  margin-top: calc(var(--spacing-sm) * -1);
+  margin-bottom: 0;
+  color: var(--text-color-muted);
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+}
+
+
+.card-header,
+.card-footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--background-color-alt);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.card-footer {
+  border-bottom: 0;
+  border-top: var(--border-width) solid var(--border-color);
+}
+
+.card-img,
+.card-img-top {
+  width: 100%;
+  // Round the corners of the top image to match the card
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+//--------------------------------------------------------------------------
+// Card Link
+//--------------------------------------------------------------------------
+// For styling links inside a card body, often for providing space
+// when you have multiple links next to each other.
+.card-link {
+  // Add horizontal margin to space out multiple links.
+  // The :not(:first-child) selector ensures the first link doesn't get extra margin.
+  &:not(:first-child) {
+    margin-left: var(--spacing-md);
+  }
+}
+
+//--------------------------------------------------------------------------
+// Stretched Link (for Clickable Cards)
+//--------------------------------------------------------------------------
+// Add this class to a link inside a .card to make the entire card clickable.
+// The parent .card MUST have position: relative for this to work.
+// We already added position: relative to our .card base style.
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1; // Positioned above the card content but below other interactive elements
+  content: "";
+  background-color: rgba(0, 0, 0, 0); // Ensures it's transparent
+}
+
+// A modifier class for cards that feature a large icon at the top
+.card-icon-link {
+  text-align: center;
+
+  .card-icon {
+    color: var(--primary-accent-color);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .card-text {
+    // Make card text a bit smaller to fit more content
+    font-size: 0.9rem;
+    min-height: 5em; // Helps align buttons in adjacent cards
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .button {
+    // The stretched link will cover the card, so this is just for show,
+    // but we can ensure it's not a stretched element itself.
+  }
+}

@@ -1,0 +1,22 @@
+// assets/scss/abstracts/_mixins.scss
+@use 'sass:map'; // Import the Sass map module to work with maps
+@use 'variables'; // Use our variables file to access the $breakpoints map
+
+// A mixin for creating mobile-first media queries (min-width)
+// It takes a breakpoint name (like 'lg') and applies the styles inside it
+// for that screen size and up.
+@mixin media-breakpoint-up($name) {
+  // Check if the name exists in our map
+  @if map-has-key(variables.$breakpoints, $name) {
+    // Get the pixel value from the map
+    $breakpoint-value: map.get(variables.$breakpoints, $name);
+
+    // Output the media query
+    @media (min-width: $breakpoint-value) {
+      @content; // The '@content' directive places our CSS rules here
+    }
+  } @else {
+    // Show a warning in the terminal if we use a breakpoint name that doesn't exist
+    @warn "Breakpoint `#{$name}` not found in $breakpoints map. Available breakpoints: #{map-keys(variables.$breakpoints)}";
+  }
+}

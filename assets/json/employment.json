@@ -1,0 +1,135 @@
+[
+  {
+    "company": "Virginia Beach Parks & Recreation",
+    "location": "Virginia Beach, VA",
+    "period": "May 2023 – Present",
+    "logo": "assets/images/employment/vb.jpg",
+    "categories": "customer-service current-employer",
+    "roles": [
+      {
+        "title": "Clerk-Cashier",
+        "period": "",
+        "description": {
+          "it": [
+            "Supervised weekend front desk operations, making policy-aligned decisions, guiding new hires on ActiveNet, and creating accessible Section 508 compliant documents."
+          ],
+          "cs": [
+            "Supervise front desk operations during weekends, making independent, policy-aligned decisions to ensure smooth service delivery and patron satisfaction.",
+            "Provide peer guidance and support to new hires on the use of the ActiveNet customer database.",
+            "Proactively solve patron issues, such as fixing corrupted membership cards and offering grace periods to recently expired members to maintain positive community relations.",
+            "Create accessible documents and reference sheets compliant with Section 508 standards."
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "company": "ODU Online, Old Dominion University",
+    "location": "Norfolk, VA",
+    "period": "Nov 2019 – Jul 2022",
+    "logo": "assets/images/employment/odu.png",
+    "categories": "information-technology behind-the-scenes",
+    "roles": [
+      {
+        "title": "Section 508 Compliance Specialist",
+        "period": "",
+        "description": {
+          "it": [
+            "Ensured WCAG 2.1 AA & Section 508 compliance for online courses; remediated pages, verified student code, used Deque axe for reporting, and migrated content to Canvas."
+          ],
+          "cs": [
+            "Provided critical support to internal customers (university instructional designers) during a large-scale migration to the Canvas LMS.",
+            "Designed and developed a universal, accessible template for the University Policies section of the syllabus, streamlining workflow for faculty and ensuring consistency across all online courses.",
+            "Verified documents and web content submitted by student employees for quality and compliance."
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "company": "University Village Bookstore (Follett)",
+    "location": "Norfolk, VA",
+    "period": "Jan 2019 – Aug 2020",
+    "logo": "assets/images/employment/follett.png",
+    "categories": "customer-service retail",
+    "roles": [
+      {
+        "title": "Retail Sales Associate",
+        "period": "",
+        "description": {
+          "it": [
+            "Assisted customers in the technology department, answering product questions and performing sales transactions."
+          ],
+          "cs": [
+            "Assisted hundreds of customers in the technology department, answering complex product questions, performing sales transactions, and restocking shelves."
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "company": "Monarch Dining (Aramark)",
+    "location": "Norfolk, VA",
+    "period": "Jul 2017 – Dec 2019",
+    "logo": "assets/images/employment/aramark.png",
+    "categories": "customer-service data-entry",
+    "roles": [
+      {
+        "title": "Data Entry Clerk & Meal Plan Ambassador",
+        "period": "",
+        "description": {
+          "it": [
+            "Pitched and sold university meal plans to students and performed data entry of post-cost information."
+          ],
+          "cs": [
+            "Successfully pitched and sold university meal plans to students and parents, consistently providing clear information and excellent service.",
+            "Performed detailed data entry of post-cost information in a fast-paced office environment."
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "company": "Residence Hall Association, ODU",
+    "location": "Norfolk, VA",
+    "period": "Sep 2015 – May 2017",
+    "logo": "assets/images/employment/odu.png",
+    "categories": "leadership behind-the-scenes",
+    "roles": [
+      {
+        "title": "Director of Administration",
+        "period": "",
+        "description": {
+          "it": [
+            "Elected to a paid leadership role; managed organizational administration, prepared official minutes, and created presentations."
+          ],
+          "cs": [
+            "Elected by the student body to a paid leadership position responsible for all administrative functions of the association.",
+            "Prepared and maintained official minutes, presentations, and organizational documents for the RHA President, Advisor, and student members."
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "company": "Dominion Enterprises",
+    "location": "Norfolk, VA",
+    "period": "Sep 2012 – Dec 2012",
+    "logo": "assets/images/employment/de.png",
+    "categories": "developer internship",
+    "roles": [
+      {
+        "title": "Mobile Applications Developer Intern",
+        "period": "",
+        "description": {
+          "it": [
+            "Gained hands-on experience in cross-platform mobile development for Android & iOS using Titanium SDK."
+          ],
+          "cs": [
+            "Gained hands-on experience in cross-platform mobile development for Android & iOS using Titanium SDK."
+          ]
+        }
+      }
+    ]
+  }
+]

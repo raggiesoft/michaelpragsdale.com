@@ -1,0 +1,64 @@
+// assets/scss/abstracts/_variables.scss
+
+//--------------------------------------------------------------------------
+// Z-INDEX MAP
+//--------------------------------------------------------------------------
+// Helps manage stacking order of elements like modals, sticky headers, dropdowns.
+// We can add to this as needed.
+$z-layers: (
+  'deep-background': -10,
+  'default': 1,
+  'below-sticky': 900, // Example: for elements that should scroll under a sticky header
+  'sticky-header': 1000,
+  'navigation-dropdown': 1010,
+  'mobile-navigation': 1050,
+  'modal-backdrop': 1100,
+  'modal': 1110,
+  'tooltip': 1200,
+  'site-notice': 1300
+);
+
+//--------------------------------------------------------------------------
+// BREAKPOINTS MAP
+//--------------------------------------------------------------------------
+// Define common device breakpoints.
+// These values are often the *minimum width* for that screen size.
+// We'll use these later for creating responsive media queries.
+// Feel free to adjust these based on your design needs.
+$breakpoints: (
+  'xs': 0,        // Extra small devices (phones, portrait) - often not explicitly used as it's the default
+  'sm': 576px,    // Small devices (phones, landscape)
+  'md': 768px,    // Medium devices (tablets)
+  'lg': 992px,    // Large devices (desktops)
+  'xl': 1200px,   // Extra large devices (large desktops)
+  'xxl': 1400px   // Extra extra large devices (larger desktops)
+);
+
+$theme-colors: (
+  // "name": (bg: CSS_VARIABLE_FOR_BACKGROUND, text: STATIC_TEXT_COLOR)
+  "primary":   (bg: var(--primary-accent-color), text: #ffffff),
+  "secondary": (bg: var(--gray-600),             text: #ffffff),
+  "success":   (bg: var(--color-success),        text: #ffffff),
+  "info":      (bg: var(--color-info),           text: var(--gray-900)), // Light cyan bg needs dark text
+  "warning":   (bg: var(--color-warning),        text: var(--gray-900)), // Yellow bg needs dark text
+  "danger":    (bg: var(--color-danger),         text: #ffffff),
+  "light":     (bg: var(--color-light),          text: var(--gray-900)), // Light bg needs dark text
+  "dark":      (bg: var(--color-dark),           text: #ffffff)
+);
+
+//--------------------------------------------------------------------------
+// FONT STACKS (Example if not using CSS Custom Properties for everything)
+//--------------------------------------------------------------------------
+// While we have --font-family-sans-serif in custom properties,
+// you *could* define SCSS font stacks here if needed for some specific compile-time reason,
+// or if you wanted to build up the custom property value from SCSS variables.
+// For now, our CSS custom property approach is primary for fonts.
+// $font-stack-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+// $font-stack-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+
+
+//--------------------------------------------------------------------------
+// SCSS THEME CONFIGURATION (Placeholder for advanced theming logic)
+//--------------------------------------------------------------------------
+// Example: If you had complex SCSS-based theming (less common now with CSS vars)
+// $enable-rounded-corners: true; 

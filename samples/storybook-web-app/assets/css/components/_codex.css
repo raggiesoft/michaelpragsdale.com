@@ -1,0 +1,132 @@
+/* assets/css/components/_codex.css */
+
+/* Codex Modal Overall Structure */
+#codex-content {
+    /* Tailwind classes define base: w-full h-full md:max-w-4xl md:h-[85vh] p-4 md:p-6 etc. */
+    background-color: var(--color-bg-codex-pane); 
+    border-color: var(--color-border);
+}
+
+/* Codex Header */
+#codex-header {
+    /* Tailwind classes: flex justify-between items-center border-b pb-3 mb-4 flex-shrink-0 */
+    border-bottom-color: var(--color-border); /* Ensure theme color */
+}
+#codex-title { 
+    color: var(--color-text-primary); 
+    /* Tailwind: text-xl font-bold */
+}
+/* #codex-close-button and #codex-back-to-list-button styling handled by general button styles or in _buttons.css */
+
+
+/* Codex Tabs Container */
+#codex-tabs-container {
+    /* Tailwind classes: flex border-b mb-4 flex-shrink-0 */
+    border-bottom-color: var(--color-border); /* Ensure theme color */
+}
+.codex-tab-button { 
+    color: var(--color-text-secondary); 
+    border-bottom: 2px solid transparent; 
+    margin-bottom: -1px; 
+    transition: color 0.2s ease, border-color 0.2s ease; 
+    padding: 0.5rem 1rem; /* py-2 px-4 */
+}
+.codex-tab-button:hover { 
+    color: var(--color-text-primary); 
+}
+.codex-tab-button.active { 
+    color: var(--color-accent); 
+    border-bottom-color: var(--color-accent); 
+    font-weight: 600; 
+}
+
+/* Codex Main Area Panes - Default is mobile (stacked, visibility controlled by JS) */
+/* Desktop layout (md:flex-row) is handled by Tailwind in index.html */
+
+/* List Wrapper Pane */
+#codex-list-wrapper {
+    /* Tailwind: w-full md:w-2/5 flex flex-col */
+    /* On md+ screens, it gets a right border and padding via md:border-r md:pr-4 */
+    /* border-color set by inline style in HTML using var(--color-border) */
+}
+
+#codex-search-input {
+    /* Tailwind: p-2 mb-3 rounded border flex-shrink-0 */
+    /* Inline styles in HTML set border-color, background-color, color via CSS variables */
+}
+#codex-search-input:focus {
+    outline: none;
+    border-color: var(--color-accent) !important; 
+    box-shadow: 0 0 0 2px var(--color-ring-focus) !important; 
+}
+
+#codex-items-container {
+    /* Tailwind: flex-grow overflow-y-auto */
+}
+#codex-items-container .codex-category-header {
+    color: var(--color-text-secondary);
+    /* Tailwind: text-xs uppercase font-semibold mt-4 mb-2 px-0 */
+    padding-left: 0.75rem; 
+    padding-right: 0.75rem;
+}
+#codex-items-container .codex-item-button {
+    display: block; width: 100%; text-align: left; 
+    padding: 0.5rem 0.75rem; border-radius: 0.25rem; 
+    color: var(--color-text-codex-item); 
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin-bottom: 0.125rem; border: none; background-color: transparent;
+    cursor: pointer;
+}
+#codex-items-container .codex-item-button:hover {
+    background-color: var(--color-bg-codex-item-hover);
+    color: var(--color-text-primary);
+}
+#codex-items-container .codex-item-button.active {
+    background-color: var(--color-bg-codex-item-active);
+    color: var(--color-text-codex-item-active);
+    font-weight: 500; 
+}
+
+#codex-list-pagination {
+    /* Tailwind: flex justify-center items-center space-x-1 p-2 border-t */
+    /* Border-color set by inline style in HTML via var(--color-border) */
+}
+#codex-list-pagination button {
+    padding: 0.25rem 0.5rem; margin: 0 0.125rem; border-radius: 0.25rem; 
+    background-color: var(--color-bg-button); color: var(--color-text-button); 
+    border: 1px solid var(--color-border-darker); font-size: 0.75rem; 
+    transition: background-color 0.2s ease; cursor: pointer;
+}
+#codex-list-pagination button:hover:not(:disabled) { background-color: var(--color-bg-button-hover); }
+#codex-list-pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
+#codex-list-pagination span { color: var(--color-text-secondary); padding: 0 0.5rem; font-size: 0.75rem; white-space: nowrap; }
+
+/* Detail Pane */
+#codex-detail-pane {
+    /* Tailwind: w-full md:w-3/5 overflow-y-auto hidden md:block md:pl-4 */
+    /* On mobile, JS will remove 'hidden' when this pane is active */
+}
+#codex-detail-pane img {
+    max-width: 128px; border-radius: 0.375rem; border: 1px solid var(--color-border);
+    margin-bottom: 0.5rem; float: left; margin-right: 1rem; 
+}
+#codex-detail-pane h4 { color: var(--color-text-primary); font-weight: bold; font-size: 1.125rem; margin-bottom: 0.5rem; }
+#codex-detail-pane p { color: var(--color-text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem; line-height: 1.6; }
+#codex-detail-pane ul { list-style-type: disc; padding-left: 1.25rem; color: var(--color-text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem; } /* Changed color to secondary for items */
+#codex-detail-pane ul li { margin-bottom: 0.25rem; }
+#codex-detail-pane .disability-info { color: var(--color-text-primary); margin-top: 0.75rem; font-weight: 600; font-size: 0.875rem; } /* Changed color for heading */
+
+/* Ensure scrollbars are themed if applied to these containers directly */
+#codex-items-container::-webkit-scrollbar,
+#codex-detail-pane::-webkit-scrollbar { 
+    width: 8px; 
+}
+#codex-items-container::-webkit-scrollbar-track,
+#codex-detail-pane::-webkit-scrollbar-track { 
+    background: var(--color-scrollbar-track); 
+}
+#codex-items-container::-webkit-scrollbar-thumb,
+#codex-detail-pane::-webkit-scrollbar-thumb { 
+    background-color: var(--color-scrollbar-thumb); 
+    border-radius: 4px; 
+}

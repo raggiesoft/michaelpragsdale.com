@@ -1,0 +1,18 @@
+[
+  {
+    "value": "remote-va",
+    "label": "Remote (Virginia Residents Only)"
+  },
+  {
+    "value": "norfolk-va",
+    "label": "In-Office: Norfolk, VA"
+  },
+  {
+    "value": "vb-va",
+    "label": "In-Office: Virginia Beach, VA"
+  },
+  {
+    "value": "chesapeake-va",
+    "label": "In-Office: Chesapeake, VA"
+  }
+]

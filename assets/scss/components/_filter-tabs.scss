@@ -1,0 +1,55 @@
+// assets/scss/components/_filter-tabs.scss
+
+.filter-tabs {
+  // This container acts as the top edge of the "pages" in the binder.
+  // The bottom border is the main line that the tabs will sit on top of.
+  border-bottom: var(--border-width) solid var(--border-color-strong);
+  margin-bottom: var(--spacing-xl);
+  padding-left: var(--spacing-md); // Give the tabs some space from the edge
+}
+
+.filter-tabs .button {
+  // We start by overriding some base button styles for the tab look.
+  background-color: var(--background-color-alt); // A slightly different bg for inactive tabs
+  color: var(--text-color-muted);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius) var(--border-radius) 0 0; // Round the TOP corners only
+  position: relative;
+  // This is a key trick: move the tab down by the width of the border
+  // so its bottom edge perfectly overlaps the container's bottom border.
+  top: var(--border-width);
+
+  // Remove the bottom border. This makes it look like it's part of the content below.
+  border-bottom: none;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--gray-200);
+    color: var(--text-color);
+  }
+}
+
+// The "active" tab needs to look like it's in front.
+.filter-tabs .button.active {
+  background-color: var(--background-color); // Match the page background to look seamless
+  color: var(--text-color);
+  border-color: var(--border-color-strong); // Match the container's border for continuity
+
+  // This is the second key trick: Make the bottom border of the active tab
+  // the same color as the background, effectively "erasing" that part of the line.
+  border-bottom-color: var(--background-color);
+
+  // Bring the active tab in front of the other tabs' borders
+  z-index: 2;
+}
+
+
+// --- Dark Mode Adjustments ---
+@media (prefers-color-scheme: dark) {
+  .filter-tabs .button {
+    &:hover,
+    &:focus-visible {
+      background-color: var(--gray-800);
+    }
+  }
+}

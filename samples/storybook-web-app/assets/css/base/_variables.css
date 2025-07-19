@@ -1,0 +1,79 @@
+/* assets/css/base/_variables.css */
+
+:root { 
+    /* Light Mode Colors */
+    --color-bg-primary: #f9fafb; /* Tailwind gray-50 */
+    --color-bg-secondary: #ffffff;  /* white */
+    --color-bg-header: #ffffff; 
+    --color-bg-footer: #ffffff; 
+    --color-bg-sidebar: #f3f4f6; /* gray-100 */
+    --color-bg-button: #e5e7eb; /* gray-200 */
+    --color-bg-button-hover: #d1d5db; /* gray-300 */
+    --color-bg-button-action: #3b82f6; /* Main action color for Next, Read Saga */
+    --color-bg-button-action-hover: #2563eb; 
+    --color-bg-codex-pane: #ffffff; 
+    --color-bg-codex-item-hover: #e2e8f0; 
+    --color-bg-codex-item-active: #3b82f6; 
+    --color-accent: #3b82f6; /* General accent */
+    --color-accent-hover: #2563eb; /* A slightly darker version of accent for hovers */
+    
+    --color-text-primary: #111827;  /* gray-900 */
+    --color-text-secondary: #4b5563;  /* gray-600 */
+    --color-text-button: #1f2937; /* gray-800 */
+    --color-text-white: #ffffff; 
+    --color-text-link: var(--mpr-color-raggiesoft-blue); /* For Markdown links, using brand color */
+    --color-text-codex-item: #374151; 
+    --color-text-codex-item-active: #ffffff; 
+    
+    --color-border: #e5e7eb;  /* gray-200 */
+    --color-border-darker: #cbd5e0; /* gray-300 */
+    
+    --color-scrollbar-track: #e2e8f0; 
+    --color-scrollbar-thumb: #a0aec0; 
+    
+    --color-error: #c53030; /* red-700 */
+    --color-ring-focus: #42aadb80; /* RaggieSoft blue with opacity */
+    
+    --header-height: 4rem; /* Define header height */
+
+    /* RaggieSoft Brand Colors */
+    --mpr-color-raggiesoft-blue: #42aadb; /* rgb(66 170 219) */
+    --mpr-color-raggiesoft-blue-light: #c2e3f3; /* rgb(194 227 243) */
+    --mpr-color-raggiesoft-blue-dark: #195f80; /* rgb(25, 95, 128) */
+}
+
+.dark { 
+    /* Dark Mode Colors */
+    --color-bg-primary: #111827;  
+    --color-bg-secondary: #1f2937;  
+    --color-bg-header: #030712; 
+    --color-bg-footer: #030712; 
+    --color-bg-sidebar: #030712; 
+    --color-bg-button: #374151; 
+    --color-bg-button-hover: #4b5563; 
+    --color-bg-button-action: var(--mpr-color-raggiesoft-blue); 
+    --color-bg-button-action-hover: #5cb9e0; /* Lighter blue for hover on dark */
+    --color-bg-codex-pane: #1f2937; 
+    --color-bg-codex-item-hover: #374151; 
+    --color-bg-codex-item-active: var(--mpr-color-raggiesoft-blue); 
+    
+    --color-accent: var(--mpr-color-raggiesoft-blue);  /* RaggieSoft Blue can work as accent in dark too */
+    --color-accent-hover: var(--mpr-color-raggiesoft-blue-light); /* Lighter for hover */
+
+    --color-text-primary: #f3f4f6;  
+    --color-text-secondary: #9ca3af;  
+    --color-text-button: #f3f4f6; 
+    --color-text-white: #ffffff; 
+    --color-text-link: var(--mpr-color-raggiesoft-blue-light); /* Lighter blue for links on dark */
+    --color-text-codex-item: #d1d5db; 
+    --color-text-codex-item-active: #ffffff; 
+    
+    --color-border: #374151;  
+    --color-border-darker: #4b5563; 
+    
+    --color-scrollbar-track: #2d3748; 
+    --color-scrollbar-thumb: #4a5568; 
+    
+    --color-error: #e53e3e; /* red-500 */
+    --color-ring-focus: #42aadb80; /* RaggieSoft blue with opacity, same as light can work */
+}

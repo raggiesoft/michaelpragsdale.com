@@ -1,0 +1,11 @@
+// assets/scss/layout/_sidebar.scss
+
+.site-sidebar {
+  flex-shrink: 0; // Prevents the sidebar from shrinking if the window gets narrow
+  width: 280px;   // A fixed width for our desktop sidebar. Adjust as you see fit.
+
+  background-color: var(--background-color-alt); // Using our neutral off-white/off-dark
+  border-right: var(--border-width) solid var(--border-color);
+
+  padding: var(--spacing-lg);
+}
