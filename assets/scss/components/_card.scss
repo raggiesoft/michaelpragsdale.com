@@ -117,3 +117,41 @@
     margin-bottom: var(--spacing-lg);
   }
 }
+
+// in assets/scss/components/_cards.scss
+
+// ... (at the end of the file) ...
+
+// --- Modifier for a "Featured" Card ---
+.card-featured {
+  // Add a prominent border using our primary accent color.
+  border-color: var(--primary-accent-color);
+  border-width: 2px;
+
+  // We need to keep the pseudo-element inside the card's rounded corners.
+  overflow: hidden;
+
+  // Create a corner ribbon using a pseudo-element.
+  &::before {
+    content: 'Featured';
+    position: absolute;
+    top: 18px;
+    right: -34px;
+    z-index: 1;
+
+    // Styling for the ribbon
+    display: block;
+    width: 120px;
+    padding: var(--spacing-xs) 0;
+    background-color: var(--primary-accent-color);
+    color: #ffffff;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    // The magic to rotate it into the corner
+    transform: rotate(45deg);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  }
+}

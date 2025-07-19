@@ -130,26 +130,26 @@
             <h2>Technical Projects</h2>
             <div class="row" style="--grid-gutter-y: var(--spacing-lg);">
                 <?php // --- Project 1: This Portfolio Website --- ?>
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Custom Portfolio Website (This Site)</h3>
-                    <p class="card-text">A fully responsive, accessible, and themeable portfolio website built from scratch to showcase my skills in modern web development practices.</p>
-                    <ul class="project-tech-list">
-                        <li><span class="tag">PHP</span></li>
-                        <li><span class="tag">SCSS</span></li>
-                        <li><span class="tag">JavaScript (ES6+)</span></li>
-                        <li><span class="tag">HTML5</span></li>
-                        <li><span class="tag">WCAG</span></li>
-                        <li><span class="tag">Mobile-First</span></li>
-                        <li><span class="tag">JSON</span></li>
-                    </ul>
-                    <a href="https://github.com/raggiesoft/michaelpragsdale.com" class="button button-outline-secondary" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-github fa-fw"></i> View on GitHub
-                    </a>
+                <div class="auto-grid">
+                    <div class="card card-featured">
+                        <div class="card-body">
+                            <h3 class="card-title">Custom Portfolio Website (This Site)</h3>
+                            <p class="card-text">A fully responsive, accessible, and themeable portfolio website built from scratch to showcase my skills in modern web development practices.</p>
+                            <ul class="project-tech-list">
+                                <li><span class="tag">PHP</span></li>
+                                <li><span class="tag">SCSS</span></li>
+                                <li><span class="tag">JavaScript (ES6+)</span></li>
+                                <li><span class="tag">HTML5</span></li>
+                                <li><span class="tag">WCAG</span></li>
+                                <li><span class="tag">Mobile-First</span></li>
+                                <li><span class="tag">JSON</span></li>
+                            </ul>
+                            <a href="https://github.com/raggiesoft/michaelpragsdale.com" class="button button-outline-secondary" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-github fa-fw"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
             </div>
         </section>
 

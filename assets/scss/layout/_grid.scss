@@ -36,17 +36,20 @@
 // 2. Row
 // The flex container for columns. It uses a negative margin to counteract
 // the padding on columns, ensuring content aligns perfectly.
-.row {
-  --grid-gutter-x: var(--spacing-lg); // Gutter (horizontal spacing)
-  --grid-gutter-y: 0;                // Vertical spacing (can be overridden)
+// in assets/scss/layout/_grid.scss
 
+.row {
+  --grid-gutter-x: var(--spacing-lg);
+  --grid-gutter-y: 0;                
+  
   display: flex;
   flex-wrap: wrap;
-  margin-top: calc(var(--grid-gutter-y) * -1); // Vertical negative margin
-  margin-right: calc(var(--grid-gutter-x) * -0.5); // Horizontal negative margin
+  justify-content: center; // <<< Add this line
+  margin-top: calc(var(--grid-gutter-y) * -1);
+  margin-right: calc(var(--grid-gutter-x) * -0.5);
   margin-left: calc(var(--grid-gutter-x) * -0.5);
 
-  > * { // Target all direct children (the columns)
+  > * {
     margin-top: var(--grid-gutter-y);
     padding-right: calc(var(--grid-gutter-x) * 0.5);
     padding-left: calc(var(--grid-gutter-x) * 0.5);
@@ -88,4 +91,18 @@
       }
     }
   }
+}
+
+
+
+// --- Automatic Responsive Grid (using CSS Grid) ---
+.auto-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+
+  // This tells the browser:
+  // - repeat(): Create as many columns as needed.
+  // - auto-fit: Fit as many columns as possible, and stretch them to fill the space.
+  // - minmax(): Each column must be at least 320px wide but can grow to fill space (1fr).
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
