@@ -1,4 +1,25 @@
 <?php // --- resume/index.php (Updated for Dynamic Views) ---
+/**
+ * My Portfolio Website
+ *
+ * This file is part of My Portfolio Website.
+ *
+ * My Portfolio Website is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @copyright Copyright (c) 2025 Michael Ragsdale
+ * @license   https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
+ */
 
     $page_title = "Interactive Resume - Michael Ragsdale"; 
     $body_class = "page-resume full-width";
@@ -21,7 +42,7 @@
                 <li><i class="fa-duotone fa-location-dot fa-fw"></i> Norfolk, VA (Open to Remote in VA)</li>
                 <!--<li><a href="/contact/"><i class="fa-duotone fa-calendar-days fa-fw"></i> Schedule Interview</a></li>-->
                 <li><a href="https://www.linkedin.com/in/michael-ragsdale-raggiesoft/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin fa-fw"></i> LinkedIn</a></li>
-                <!--<li><a href="https://github.com/your-username"><i class="fa-brands fa-github fa-fw"></i> GitHub</a></li>-->
+                <li><a href="https://github.com/raggiesoft" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github fa-fw"></i> GitHub</a></li>
             </ul>
         </section>
 
@@ -108,7 +129,27 @@
         <section class="resume-section resume-view-it">
             <h2>Technical Projects</h2>
             <div class="row" style="--grid-gutter-y: var(--spacing-lg);">
-                <?php /* Your project cards would go here */ ?>
+                <?php // --- Project 1: This Portfolio Website --- ?>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Custom Portfolio Website (This Site)</h3>
+                    <p class="card-text">A fully responsive, accessible, and themeable portfolio website built from scratch to showcase my skills in modern web development practices.</p>
+                    <ul class="project-tech-list">
+                        <li><span class="tag">PHP</span></li>
+                        <li><span class="tag">SCSS</span></li>
+                        <li><span class="tag">JavaScript (ES6+)</span></li>
+                        <li><span class="tag">HTML5</span></li>
+                        <li><span class="tag">WCAG</span></li>
+                        <li><span class="tag">Mobile-First</span></li>
+                        <li><span class="tag">JSON</span></li>
+                    </ul>
+                    <a href="https://github.com/raggiesoft/michaelpragsdale.com" class="button button-outline-secondary" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github fa-fw"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
             </div>
         </section>
 
