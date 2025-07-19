@@ -1,57 +1,57 @@
-<?php // --- resume/index.php (Updated for Dynamic Views) ---
-/**
- * My Portfolio Website
- *
- * This file is part of My Portfolio Website.
- *
- * My Portfolio Website is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
- *
- * @copyright Copyright (c) 2025 Michael Ragsdale
- * @license   https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
- */
+<?php
+    // --- PHP Error Reporting (for debugging) ---
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
+    // --- Page-Specific Variables ---
     $page_title = "Interactive Resume - Michael Ragsdale"; 
     $body_class = "page-resume full-width";
+    $page_script = "employment-filter resume-toggler";
     $page_description = "The interactive resume of Michael Ragsdale, with views tailored for both Information Technology and Customer Service roles.";
-    $page_script = "employment-filter resume-toggler"; 
+    $og_image_path = '/assets/images/social-share-resume.jpg';
 
+    // 1. Open the document
     include __DIR__ . '/../includes/document-open.php';
+    // 2. Add the site header
     include __DIR__ . '/../includes/header.php';
 
-    $jobs = json_decode(file_get_contents(__DIR__ . '/../assets/json/employment.json'), true) ?? [];
+    // --- Load ALL data and then FILTER employment data ---
+    $all_jobs = json_decode(file_get_contents(__DIR__ . '/../assets/json/employment.json'), true) ?? [];
     $education = json_decode(file_get_contents(__DIR__ . '/../assets/json/education.json'), true) ?? [];
+    $projects = json_decode(file_get_contents(__DIR__ . '/../assets/json/projects.json'), true) ?? [];
+
+    $jobs = array_filter($all_jobs, function($job) {
+        return $job['is_public'] ?? false;
+    });
+
+    if (!function_exists('get_history_item_priority_class')) {
+        function get_history_item_priority_class($categories_string) {
+            if (str_contains($categories_string, 'current-employer')) return 'is-current';
+            if (str_contains($categories_string, 'volunteer') || str_contains($categories_string, 'internship')) return 'is-highlighted';
+            return 'is-default';
+        }
+    }
 ?>
 
 <main class="site-content" id="content">
     <div class="container">
-        <?php // --- NEW: Résumé Contact Info Header --- ?>
+        
         <section class="resume-contact-info">
             <h1 class="resume-name">Michael Ragsdale</h1>
             <ul class="contact-links">
                 <li><i class="fa-duotone fa-location-dot fa-fw"></i> Norfolk, VA (Open to Remote in VA)</li>
-                <!--<li><a href="/contact/"><i class="fa-duotone fa-calendar-days fa-fw"></i> Schedule Interview</a></li>-->
+                <li><a href="/contact/"><i class="fa-duotone fa-calendar-days fa-fw"></i> Schedule Interview</a></li>
                 <li><a href="https://www.linkedin.com/in/michael-ragsdale-raggiesoft/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin fa-fw"></i> LinkedIn</a></li>
                 <li><a href="https://github.com/raggiesoft" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github fa-fw"></i> GitHub</a></li>
             </ul>
         </section>
 
         <header class="page-header">
-            <?php // We changed the H1 to be the name, so this can be an H2 or removed ?>
             <h2>Interactive Résumé</h2>
             <p class="lead">An overview of my professional background. Use the view toggles and filters to tailor the content.</p>
         </header>
-        
+
         <section class="resume-section download-links">
             <div class="download-group">
                 <h3 class="download-title">Information Technology Focus</h3>
@@ -76,14 +76,13 @@
                 </div>
             </div>
         </section>
-
+        
         <div class="view-toggle filter-tabs">
             <span>View:</span>
             <button class="button active" data-view="it">Information Technology</button>
             <button class="button" data-view="cs">Customer Service</button>
         </div>
 
-        <?php // --- Professional Summary (Will be shown/hidden by CSS) --- ?>
         <section class="resume-section resume-view-it">
             <h2>Professional Summary</h2>
             <p>A versatile professional with a proven background in customer-facing roles, team leadership, and operational management. Actively building on a practical foundation in web development and technical problem-solving while pursuing degrees in Information Technology and Leadership. Eager to apply a unique blend of strong communication skills and technical aptitude to an entry-level IT role.</p>
@@ -93,7 +92,6 @@
             <p>A versatile professional with a proven background in customer-facing roles, team leadership, and operational management. Actively building on a practical foundation in web development and technical problem-solving while pursuing degrees in Information Technology and Leadership. Eager to apply a unique blend of strong communication skills and technical aptitude to a customer service or entry-level IT role.</p>
         </section>
 
-        <?php // --- Skills vs Core Competencies --- ?>
         <section class="resume-section resume-view-it">
             <h2>Technical Skills</h2>
             <div class="skills-list">
@@ -125,80 +123,154 @@
             </div>
         </section>
 
-        <?php // --- Projects (Only shown in IT view) --- ?>
         <section class="resume-section resume-view-it">
             <h2>Technical Projects</h2>
-            <div class="row" style="--grid-gutter-y: var(--spacing-lg);">
-                <?php // --- Project 1: This Portfolio Website --- ?>
-                <div class="auto-grid">
-                    <div class="card card-featured">
-                        <div class="card-body">
-                            <h3 class="card-title">Custom Portfolio Website (This Site)</h3>
-                            <p class="card-text">A fully responsive, accessible, and themeable portfolio website built from scratch to showcase my skills in modern web development practices.</p>
-                            <ul class="project-tech-list">
-                                <li><span class="tag">PHP</span></li>
-                                <li><span class="tag">SCSS</span></li>
-                                <li><span class="tag">JavaScript (ES6+)</span></li>
-                                <li><span class="tag">HTML5</span></li>
-                                <li><span class="tag">WCAG</span></li>
-                                <li><span class="tag">Mobile-First</span></li>
-                                <li><span class="tag">JSON</span></li>
-                            </ul>
-                            <a href="https://github.com/raggiesoft/michaelpragsdale.com" class="button button-outline-secondary" target="_blank" rel="noopener noreferrer">
-                                <i class="fa-brands fa-github fa-fw"></i> View on GitHub
-                            </a>
+            <div class="auto-grid">
+                <?php if (!empty($projects)): ?>
+                    <?php foreach ($projects as $project): ?>
+                        <div class="card <?php if (!empty($project['is_featured'])) echo 'card-featured'; ?>">
+                            <div class="card-body">
+                                <h3 class="card-title"><?php echo htmlspecialchars($project['name']); ?></h3>
+                                <p class="card-text"><?php echo htmlspecialchars($project['short_description'] ?? $project['description']); ?></p>
+                                <ul class="project-tech-list">
+                                    <?php foreach ($project['tech_stack'] as $tech): ?>
+                                        <li><span class="tag"><?php echo htmlspecialchars($tech); ?></span></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                            <?php if (!empty($project['live_url']) || !empty($project['repo_url'])): ?>
+                                <div class="card-footer">
+                                    <?php if (!empty($project['live_url'])): ?>
+                                        <a href="<?php echo htmlspecialchars($project['live_url']); ?>" class="button button-outline-primary">View Project</a>
+                                    <?php endif; ?>
+                                    <?php if (!empty($project['repo_url'])): ?>
+                                        <a href="<?php echo htmlspecialchars($project['repo_url']); ?>" class="button button-outline-secondary">View Code</a>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                    </div>
-                </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </section>
 
-        <?php // --- Employment (Dynamically swaps descriptions) --- ?>
         <section class="resume-section" id="resume-employment">
             <h2>Professional Experience</h2>
-            <ul class="history-list" id="employment-list">
-                 <?php foreach ($jobs as $job): ?>
-                    <li class="history-item is-default" data-category="<?php echo htmlspecialchars($job['categories']); ?>">
-                        <div class="history-item__period"><?php echo $job['period']; ?></div>
-                        <div class="history-item__content">
-                            <div class="history-item__header">
-                                <img class="history-item__logo" src="/<?php echo htmlspecialchars($job['logo']); ?>" alt="<?php echo htmlspecialchars($job['company']); ?> logo">
-                                <div class="history-item__header-text">
-                                    <h3 class="history-item__title"><?php echo $job['company']; ?></h3>
-                                    <div class="history-item__subtitle"><?php echo $job['location']; ?></div>
-                                </div>
-                            </div>
-                            <?php foreach ($job['roles'] as $role): ?>
-                                <div class="role-list">
-                                    <div class="role-item">
-                                        <h4 class="role-title"><?php echo $role['title']; ?></h4>
-                                        <div class="role-period"><?php echo $role['period']; ?></div>
+            <?php
+                $unique_categories = [];
+                if (!empty($jobs)) {
+                    foreach ($jobs as $job) {
+                        if (!empty($job['categories'])) {
+                            $categories_for_job = explode(' ', $job['categories']);
+                            foreach ($categories_for_job as $category) {
+                                if (!empty($category)) $unique_categories[$category] = true;
+                            }
+                        }
+                    }
+                    $unique_categories = array_keys($unique_categories);
+                    sort($unique_categories);
+                }
+            ?>
+            <div id="employment-filter" class="filter-tabs">
+                <span>Filter by:</span>
+                <button class="button active" data-filter="all">All</button>
+                <?php foreach ($unique_categories as $category): ?>
+                    <button class="button" data-filter="<?php echo htmlspecialchars($category); ?>">
+                        <?php echo htmlspecialchars(ucwords(str_replace('-', ' ', $category))); ?>
+                    </button>
+                <?php endforeach; ?>
+            </div>
 
-                                        <?php // IT Description (visible by default) ?>
-                                        <ul class="role-description resume-view-it">
-                                            <?php foreach ($role['description']['it'] as $bullet): ?>
-                                                <li><?php echo $bullet; ?></li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                        <?php // CS Description (hidden by default) ?>
-                                        <ul class="role-description resume-view-cs is-hidden">
-                                            <?php foreach ($role['description']['cs'] as $bullet): ?>
-                                                <li><?php echo $bullet; ?></li>
-                                            <?php endforeach; ?>
-                                        </ul>
+            <ul class="history-list" id="employment-list">
+                <?php if (!empty($jobs)): ?>
+                    <?php foreach ($jobs as $job): ?>
+                        <?php $priority_class = get_history_item_priority_class($job['categories']); ?>
+                        <li class="history-item <?php echo $priority_class; ?>" data-category="<?php echo htmlspecialchars($job['categories']); ?>">
+                            <div class="history-item__period"><?php echo htmlspecialchars($job['period']); ?></div>
+                            <div class="history-item__content">
+                                <div class="history-item__header">
+                                    <img class="history-item__logo" src="/<?php echo htmlspecialchars($job['logo']); ?>" alt="<?php echo htmlspecialchars($job['company']); ?> logo">
+                                    <div class="history-item__header-text">
+                                        <h3 class="history-item__title"><?php echo htmlspecialchars($job['company']); ?></h3>
+                                        <div class="history-item__subtitle"><?php echo htmlspecialchars($job['location']); ?></div>
                                     </div>
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </li>
-                <?php endforeach; ?>
+                                <div class="history-item__tags">
+                                    <?php 
+                                        $tags = array_filter(explode(' ', $job['categories']));
+                                        $tag_count = count($tags);
+                                        if ($tag_count > 0):
+                                            $label = ($tag_count > 1) ? 'Categories:' : 'Category:';
+                                            echo '<span class="tags-label">' . $label . '</span>';
+                                            $html_tags = [];
+                                            foreach ($tags as $tag) {
+                                                $tag_text = htmlspecialchars(ucwords(str_replace('-', ' ', $tag)));
+                                                $html_tags[] = '<span class="tag tag-' . htmlspecialchars($tag) . '">' . $tag_text . '</span>';
+                                            }
+                                            echo implode(', ', $html_tags);
+                                        endif;
+                                    ?>
+                                </div>
+                                <ul class="role-list">
+                                    <?php foreach ($job['roles'] as $role): ?>
+                                        <li class="role-item">
+                                            <h4 class="role-title"><?php echo htmlspecialchars($role['title']); ?></h4>
+                                            <div class="role-period"><?php echo htmlspecialchars($role['period']); ?></div>
+                                            <ul class="role-description resume-view-it">
+                                                <?php foreach (($role['description']['it'] ?? []) as $bullet): ?>
+                                                    <li><?php echo htmlspecialchars($bullet); ?></li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                            <ul class="role-description resume-view-cs is-hidden">
+                                                <?php foreach (($role['description']['cs'] ?? []) as $bullet): ?>
+                                                    <li><?php echo htmlspecialchars($bullet); ?></li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </ul>
         </section>
 
-        <?php // --- Education (Same for both views) --- ?>
         <section id="resume-education" class="resume-section">
             <h2>Education & Certifications</h2>
-            <?php /* Your education loop goes here */ ?>
+            <ul class="history-list">
+                <?php if (!empty($education)): ?>
+                    <?php foreach ($education as $edu_item): ?>
+                        <li class="history-item is-default">
+                            <div class="history-item__period"><?php echo htmlspecialchars($edu_item['period']); ?></div>
+                            <div class="history-item__content">
+                                <div class="history-item__header">
+                                    <img class="history-item__logo" src="/<?php echo htmlspecialchars($edu_item['logo']); ?>" alt="<?php echo htmlspecialchars($edu_item['institution']); ?> logo">
+                                    <div class="history-item__header-text">
+                                        <h3 class="history-item__title"><?php echo htmlspecialchars($edu_item['institution']); ?></h3>
+                                        <div class="history-item__subtitle"><?php echo htmlspecialchars($edu_item['location']); ?></div>
+                                    </div>
+                                </div>
+                                <ul class="role-list">
+                                    <?php foreach ($edu_item['roles'] as $role): ?>
+                                        <li class="role-item">
+                                            <h4 class="role-title"><?php echo htmlspecialchars($role['title']); ?></h4>
+                                            <div class="role-period"><?php echo htmlspecialchars($role['period']); ?></div>
+                                            <?php if(!empty($role['description'])): ?>
+                                            <ul class="role-description">
+                                                <?php foreach (($role['description']['it'] ?? $role['description']['cs'] ?? []) as $bullet): ?>
+                                                    <li><?php echo htmlspecialchars($bullet); ?></li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                            <?php endif; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </ul>
         </section>
 
     </div>

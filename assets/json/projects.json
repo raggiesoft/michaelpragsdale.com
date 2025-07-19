@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Custom Portfolio Website (This Site)",
+    "tagline": "A data-driven portfolio built from scratch.",
+    "is_featured": true,
+    "short_description": "A fully responsive, accessible, and themeable portfolio website built to showcase my skills in modern web development practices.",
+    "tech_stack": ["PHP", "SCSS", "JavaScript (ES6+)", "WCAG", "JSON"],
+    "live_url": "https://michaelpragsdale.com/",
+    "repo_url": "https://github.com/raggiesoft/michaelpragsdale.com"
+  },
+  {
+    "name": "StoreTrainer",
+    "tagline": "A Utility for Launching PC Game Trainers",
+    "short_description": "A custom tool for creating shortcuts that launch two executables at once (e.g., a game and a trainer) and correctly sets the Working Directory.",
+    "tech_stack": ["Visual Basic 6", "Windows API"],
+    "live_url": "",
+    "repo_url": ""
+  },
+  {
+    "name": "RaggieSoft Presentation Software",
+    "tagline": "A custom web-based presentation tool.",
+    "description": "Engineered to overcome a mobility impairment during a university class, this web-based software featured separate presenter and audience views, enabling seamless presentation from an iPad before mainstream mobile solutions were common.",
+    "tech_stack": ["PHP", "HTML", "CSS"],
+    "live_url": "",
+    "repo_url": ""
+  },
+  {
+    "name": "Responsive Photo Gallery",
+    "tagline": "A JavaScript and CSS class project.",
+    "description": "Developed a responsive, web-based photo gallery for a class project, which included an intentionally broken element to demonstrate error handling and debugging skills.",
+    "tech_stack": ["HTML", "CSS", "JavaScript"],
+    "live_url": "",
+    "repo_url": ""
+  }
+]

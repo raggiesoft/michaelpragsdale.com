@@ -1,39 +1,29 @@
 // assets/scss/components/_cards.scss
-/**
- * My Portfolio Website
- * Copyright (c) 2025 Michael Ragsdale
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, see <https://www.gnu.org/licenses/>.
- */
 
 .card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0; // Prevent flexbox bugs
+  display: grid;
+  grid-template-rows: 1fr auto; // Row 1 (body) grows, Row 2 (footer) is auto-sized
+  min-width: 0;
   word-wrap: break-word;
   background-color: var(--background-color);
-  background-clip: border-box;
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  height: 100%; // Make cards in the same row equal height by default
+  height: 100%;
 }
 
 .card-body {
-  flex: 1 1 auto; // Allow body to grow and shrink
   padding: var(--spacing-lg);
+}
+
+.card-footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--background-color-alt);
+  border-top: var(--border-width) solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
 }
 
 .card-title {
@@ -50,96 +40,40 @@
   margin-bottom: 0;
 }
 
-
-.card-header,
-.card-footer {
-  padding: var(--spacing-md) var(--spacing-lg);
-  background-color: var(--background-color-alt);
-  border-bottom: var(--border-width) solid var(--border-color);
-}
-
-.card-footer {
-  border-bottom: 0;
-  border-top: var(--border-width) solid var(--border-color);
-}
-
-.card-img,
-.card-img-top {
-  width: 100%;
-  // Round the corners of the top image to match the card
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-}
-
-//--------------------------------------------------------------------------
-// Card Link
-//--------------------------------------------------------------------------
-// For styling links inside a card body, often for providing space
-// when you have multiple links next to each other.
 .card-link {
-  // Add horizontal margin to space out multiple links.
-  // The :not(:first-child) selector ensures the first link doesn't get extra margin.
   &:not(:first-child) {
     margin-left: var(--spacing-md);
   }
 }
 
-//--------------------------------------------------------------------------
-// Stretched Link (for Clickable Cards)
-//--------------------------------------------------------------------------
-// Add this class to a link inside a .card to make the entire card clickable.
-// The parent .card MUST have position: relative for this to work.
-// We already added position: relative to our .card base style.
 .stretched-link::after {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1; // Positioned above the card content but below other interactive elements
+  z-index: 1;
   content: "";
-  background-color: rgba(0, 0, 0, 0); // Ensures it's transparent
+  background-color: rgba(0, 0, 0, 0);
 }
 
-// A modifier class for cards that feature a large icon at the top
-.card-icon-link {
-  text-align: center;
-
-  .card-icon {
-    color: var(--primary-accent-color);
-    margin-bottom: var(--spacing-md);
-  }
-
-  .card-text {
-    // Make card text a bit smaller to fit more content
-    font-size: 0.9rem;
-    min-height: 5em; // Helps align buttons in adjacent cards
-    margin-bottom: var(--spacing-lg);
-  }
+.card-img,
+.card-img-top {
+  width: 100%;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
 }
 
-// in assets/scss/components/_cards.scss
-
-// ... (at the end of the file) ...
-
-// --- Modifier for a "Featured" Card ---
 .card-featured {
-  // Add a prominent border using our primary accent color.
   border-color: var(--primary-accent-color);
   border-width: 2px;
-
-  // We need to keep the pseudo-element inside the card's rounded corners.
   overflow: hidden;
-
-  // Create a corner ribbon using a pseudo-element.
   &::before {
     content: 'Featured';
     position: absolute;
     top: 18px;
     right: -34px;
     z-index: 1;
-
-    // Styling for the ribbon
     display: block;
     width: 120px;
     padding: var(--spacing-xs) 0;
@@ -149,9 +83,20 @@
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-
-    // The magic to rotate it into the corner
     transform: rotate(45deg);
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  }
+}
+
+.card-icon-link {
+  text-align: center;
+  .card-icon {
+    color: var(--primary-accent-color);
+    margin-bottom: var(--spacing-md);
+  }
+  .card-text {
+    font-size: 0.9rem;
+    min-height: 5em;
+    margin-bottom: var(--spacing-lg);
   }
 }
