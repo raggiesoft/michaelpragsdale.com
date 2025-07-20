@@ -73,19 +73,30 @@
                             </div>
 
                             <?php // We show EITHER a link to the code repo OR a link to the live version if it exists, but not both on this card. The detail page has both. ?>
-                            <?php if (!empty($project['repo_url'])): ?>
+                            <?php // This block replaces the existing card footer logic in your loop ?>
+
+                            <?php 
+                            // First, check if there are ANY links to show before creating the footer.
+                            if (!empty($project['live_url']) || !empty($project['repo_url'])): 
+                            ?>
                                 <div class="card-footer">
-                                    <a href="<?php echo htmlspecialchars($project['repo_url']); ?>" class="button button-outline-secondary">
-                                        <i class="fa-brands fa-github fa-fw"></i> View Code
-                                    </a>
+
+                                    <?php // Independent check for the live URL ?>
+                                    <?php if (!empty($project['live_url'])): ?>
+                                        <a href="<?php echo htmlspecialchars($project['live_url']); ?>" class="button button-outline-primary">
+                                            <i class="fa-duotone fa-browser fa-fw"></i> View Live
+                                        </a>
+                                    <?php endif; ?>
+
+                                    <?php // Independent check for the repository URL ?>
+                                    <?php if (!empty($project['repo_url'])): ?>
+                                        <a href="<?php echo htmlspecialchars($project['repo_url']); ?>" class="button button-outline-secondary">
+                                            <i class="fa-brands fa-github fa-fw"></i> View Code
+                                        </a>
+                                    <?php endif; ?>
+
                                 </div>
-                            <?php elseif (!empty($project['live_url'])): ?>
-                                <div class="card-footer">
-                                    <a href="<?php echo htmlspecialchars($project['live_url']); ?>" class="button button-outline-primary">
-                                        View Live
-                                    </a>
-                                </div>
-                            <?php endif; ?>
+                            <?php endif; // This closes the wrapper if statement ?>
                         </div>
 
                     <?php endforeach; ?>
