@@ -51,6 +51,7 @@
 // 5. Page-Specific Styles (if any)
 @use 'pages/home';
 @use 'pages/resume';
+@use 'pages/about';
 
 // 6. Themes (Dark mode)
 @use 'theme/dark-mode';

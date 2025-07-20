@@ -46,6 +46,10 @@
       color: #ffffff; // Brighten icon on hover/focus
       transform: translateY(-2px); // Add a subtle lift effect
     }
+
+    &::after {
+      display: none;
+    }
   }
 
   .footer-copyright p {

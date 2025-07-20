@@ -1,4 +1,4 @@
-<?php // --- about/index.php ---
+<?php // --- about-me/index.php ---
 /**
  * My Portfolio Website
  *
@@ -34,7 +34,7 @@
 
 <div class="site-body-wrapper">
 
-    <?php include __DIR__ . '/../includes/sidebars/sidebar-default.php'; ?>
+    <?php include __DIR__ . '/../includes/sidebars/about.php'; ?>
 
     <main class="site-content" id="content">
         <div class="container"> 
@@ -42,6 +42,39 @@
                 <h1>About Me</h1>
                 <p class="lead">An overview of my professional background and resources for recruiters.</p>
             </header>
+
+            <section class="about-intro resume-section">
+                <div class="about-intro__image">
+                    <img src="/assets/images/michael-ragsdale-profile.jpg" alt="A professional headshot of Michael Ragsdale.">
+                </div>
+                <div class="about-intro__text">
+                    <h2>Developer & Problem-Solver</h2>
+                    <p>Hello! I'm Michael Ragsdale, a web developer based in Norfolk, Virginia. My passion lies in building practical, user-friendly digital tools from the ground up. I enjoy the entire process, from structuring back-end logic with PHP to creating accessible, responsive front-end experiences with modern SCSS and JavaScript.</p>
+                    <p>This portfolio is a living document of my journey. Below, you'll find links to my interactive résumé, detailed work history, and other resources. Thank you for visiting.</p>
+                </div>
+            </section>
+            <?php // In about-me/index.php, after the .about-intro section ?>
+
+            <section class="resume-section">
+                <h2>My Guiding Principles</h2>
+                <div class="principles-list">
+                    <div class="principle-item">
+                        <i class="fa-duotone fa-universal-access fa-2x"></i>
+                        <h3>Accessibility First</h3>
+                        <p>I believe the web is for everyone. I prioritize building inclusive interfaces that meet WCAG standards to ensure a great experience for all users.</p>
+                    </div>
+                    <div class="principle-item">
+                        <i class="fa-duotone fa-code-commit fa-2x"></i>
+                        <h3>Clean & Maintainable Code</h3>
+                        <p>I write code that is not just functional but also readable and well-organized, making it easy for my future self and others to maintain and build upon.</p>
+                    </div>
+                    <div class="principle-item">
+                        <i class="fa-duotone fa-brain-circuit fa-2x"></i>
+                        <h3>Lifelong Learning</h3>
+                        <p>Technology is always evolving, and so am I. I am constantly exploring new tools and techniques to improve my craft and solve problems more effectively.</p>
+                    </div>
+                </div>
+            </section>
 
             <div class="row" style="--grid-gutter-y: var(--spacing-lg);">
 

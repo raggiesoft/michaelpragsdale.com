@@ -16,18 +16,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, see <https://www.gnu.org/licenses/>.
  */
+// assets/scss/layout/_page.scss
+@use '../abstracts/mixins' as *; // <<< THE FIX: Import the mixins
 
 .page-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; // Guarantees the container is at least the full height of the viewport
+  min-height: 100vh;
 }
 
-// This is the new wrapper that holds both the main content and the sidebar
 .site-body-wrapper {
-  display: flex;        // This is what will put the content and sidebar side-by-side
-  flex-grow: 1;         // Crucial: Allows this wrapper to expand and fill all available vertical space
-                          // This is what pushes the footer down on pages with short content.
+  // Mobile-First Default: Stack items vertically
+  display: flex;
+  flex-direction: column; 
+  flex: 1;
   width: 100%;
+
+  // Desktop Override: Switch to side-by-side layout on large screens
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+  }
 }
 
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}

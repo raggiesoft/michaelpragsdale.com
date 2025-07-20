@@ -90,9 +90,6 @@
                                             <div class="history-item__subtitle"><?php echo htmlspecialchars($job['location']); ?></div>
                                         </div>
                                     </div>
-                                    <div class="history-item__tags">
-                                        <?php /* tag rendering logic */ ?>
-                                    </div>
                                     <ul class="role-list">
                                         <?php foreach ($job['roles'] as $role): ?>
                                             <li class="role-item">
@@ -110,6 +107,22 @@
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
+                                    <div class="history-item__tags">
+                                    <?php 
+                                    // Get the list of categories, filtering out any empty values
+                                    $tags = array_filter(explode(' ', $job['categories']));
+
+                                    // Loop through and display each one as a styled tag
+                                    if (!empty($tags)):
+                                        foreach ($tags as $tag):
+                                            $tag_text = htmlspecialchars(ucwords(str_replace('-', ' ', $tag)));
+                                ?>
+                                    <span class="tag tag-<?php echo htmlspecialchars($tag); ?>"><?php echo $tag_text; ?></span>
+                                <?php
+                                        endforeach;
+                                    endif;
+                                ?>
+                            </div>
                                 </div>
                             </li>
                         <?php endforeach; ?>

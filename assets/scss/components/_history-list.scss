@@ -140,13 +140,20 @@
   margin-bottom: var(--spacing-md);
 }
 
+// In assets/scss/components/_history-list.scss
+
 .history-item__tags {
-  padding-left: 0; // No special padding needed on mobile
-  margin-top: var(--spacing-sm);
+  // Use Flexbox for a clean, wrapping row of tags
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm); // This creates a perfect space between each tag
+
+  // Indent to align with text, not the logo
+  padding-left: calc(64px + var(--spacing-md)); 
+  margin-top: var(--spacing-md);
   margin-bottom: var(--spacing-md);
-  font-size: 0.9rem;
-  color: var(--text-color-muted);
 }
+
 
 
 .role-description {
@@ -192,7 +199,31 @@
   }
   
   .history-item__tags {
-    // Re-apply the desktop padding to align with text, not the logo
-    padding-left: calc(64px + var(--spacing-md));
+  // This padding is now part of the base rule, so we can remove it from the media query
+  // to avoid duplication. Or just ensure it's set correctly.
+  padding-left: calc(64px + var(--spacing-md));
+}
+}
+
+// In assets/scss/components/_history-list.scss
+
+.role-period {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-color-muted);
+  margin-bottom: var(--spacing-sm);
+
+  // Use flexbox to align an icon with the text
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs); // Space between icon and text
+
+  // Add a calendar icon using a CSS pseudo-element
+  &::before {
+    content: '\f073'; // The Unicode character for 'calendar-days'
+    font-family: 'Font Awesome 6 Pro';
+    // Use the 'light' style for a more subtle look. Use 900 for solid.
+    font-weight: 300; 
+    font-style: normal; // Ensure the icon itself isn't italicized
   }
 }

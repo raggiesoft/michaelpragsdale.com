@@ -17,12 +17,92 @@
  * along with this program; if not, see <https://www.gnu.org/licenses/>.
  */
 
+// assets/scss/layout/_sidebar.scss
+@use '../abstracts/mixins' as *;
+
 .site-sidebar {
-  flex-shrink: 0; // Prevents the sidebar from shrinking if the window gets narrow
-  width: 280px;   // A fixed width for our desktop sidebar. Adjust as you see fit.
-
-  background-color: var(--background-color-alt); // Using our neutral off-white/off-dark
-  border-right: var(--border-width) solid var(--border-color);
-
+  // --- Mobile-First Styles (Default) ---
+  width: 100%;
+  // Use a border-top as a separator on mobile when it stacks.
+  border-top: calc(var(--border-width) * 2) solid var(--border-color);
   padding: var(--spacing-lg);
+
+  // --- Desktop Override Styles ---
+  // On large screens (992px and wider), switch to a fixed-width side column.
+  @include media-breakpoint-up(lg) {
+    flex-shrink: 0;
+    width: 280px;
+    border-top: none; // Remove the top border on desktop
+    border-left: var(--border-width) solid var(--border-color); // Add the side border
+  }
+}
+
+// --- Sidebar Widget Styles ---
+// These styles apply to both mobile and desktop.
+
+.widget {
+  // Add space between widgets if there are multiple
+  &:not(:last-child) {
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .widget-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-color-muted);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: calc(var(--border-width) * 2) solid var(--border-color-strong);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+// Styles for the "At a Glance" list on the About page sidebar
+// in assets/scss/layout/_sidebar.scss
+
+.quick-facts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .fa-duotone {
+    margin-top: 0.2em;
+    color: var(--primary-accent-color);
+  }
+
+  // --- NEW: Style for links inside the quick facts list ---
+  a {
+    color: var(--link-color); // Explicitly apply the site's defined link color
+    font-weight: 600; // Make it slightly bolder to stand out
+    text-decoration: underline; // Underline by default for maximum clarity
+    text-decoration-thickness: 1px; // A modern touch
+    text-underline-offset: 2px;     // Another modern touch for readability
+
+    &:hover,
+    &:focus {
+      color: var(--link-hover-color);
+      text-decoration-thickness: 2px; // Make the underline thicker on hover
+    }
+  }
+}
+
+// Styles for the "Core Technologies" tags
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
 }

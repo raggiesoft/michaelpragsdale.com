@@ -1,0 +1,52 @@
+// assets/scss/pages/_about.scss
+@use '../abstracts/mixins' as *;
+
+.page-about {
+  .about-intro {
+    display: flex;
+    flex-direction: column; // Mobile-first: stack vertically
+    align-items: center;
+    gap: var(--spacing-lg);
+    text-align: center;
+
+    // On larger screens, switch to a two-column layout
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+
+  .about-intro__image {
+    flex-shrink: 0;
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%; // Make the image circular
+      object-fit: cover; // Prevents the image from being squished
+      border: 4px solid var(--primary-accent-color);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+  }
+}
+
+// in assets/scss/pages/_about.scss
+
+.principles-list {
+  display: grid;
+  gap: var(--spacing-lg);
+  // On medium screens and up, create a 3-column layout
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.principle-item {
+  text-align: center;
+  
+  i {
+    color: var(--primary-accent-color);
+    margin-bottom: var(--spacing-sm);
+  }
+}

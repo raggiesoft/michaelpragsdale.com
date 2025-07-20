@@ -195,22 +195,6 @@
                                         <div class="history-item__subtitle"><?php echo htmlspecialchars($job['location']); ?></div>
                                     </div>
                                 </div>
-                                <div class="history-item__tags">
-                                    <?php 
-                                        $tags = array_filter(explode(' ', $job['categories']));
-                                        $tag_count = count($tags);
-                                        if ($tag_count > 0):
-                                            $label = ($tag_count > 1) ? 'Categories:' : 'Category:';
-                                            echo '<span class="tags-label">' . $label . '</span>';
-                                            $html_tags = [];
-                                            foreach ($tags as $tag) {
-                                                $tag_text = htmlspecialchars(ucwords(str_replace('-', ' ', $tag)));
-                                                $html_tags[] = '<span class="tag tag-' . htmlspecialchars($tag) . '">' . $tag_text . '</span>';
-                                            }
-                                            echo implode(', ', $html_tags);
-                                        endif;
-                                    ?>
-                                </div>
                                 <ul class="role-list">
                                     <?php foreach ($job['roles'] as $role): ?>
                                         <li class="role-item">
@@ -229,6 +213,22 @@
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
+                                <div class="history-item__tags">
+                                <?php 
+                                    // Get the list of categories, filtering out any empty values
+                                    $tags = array_filter(explode(' ', $job['categories']));
+
+                                    // Loop through and display each one as a styled tag
+                                    if (!empty($tags)):
+                                        foreach ($tags as $tag):
+                                            $tag_text = htmlspecialchars(ucwords(str_replace('-', ' ', $tag)));
+                                ?>
+                                    <span class="tag tag-<?php echo htmlspecialchars($tag); ?>"><?php echo $tag_text; ?></span>
+                                <?php
+                                        endforeach;
+                                    endif;
+                                ?>
+                            </div>
                             </div>
                         </li>
                     <?php endforeach; ?>
@@ -236,42 +236,68 @@
             </ul>
         </section>
 
-        <section id="resume-education" class="resume-section">
-            <h2>Education & Certifications</h2>
-            <ul class="history-list">
-                <?php if (!empty($education)): ?>
-                    <?php foreach ($education as $edu_item): ?>
-                        <li class="history-item is-default">
-                            <div class="history-item__period"><?php echo htmlspecialchars($edu_item['period']); ?></div>
-                            <div class="history-item__content">
-                                <div class="history-item__header">
-                                    <img class="history-item__logo" src="/<?php echo htmlspecialchars($edu_item['logo']); ?>" alt="<?php echo htmlspecialchars($edu_item['institution']); ?> logo">
-                                    <div class="history-item__header-text">
-                                        <h3 class="history-item__title"><?php echo htmlspecialchars($edu_item['institution']); ?></h3>
-                                        <div class="history-item__subtitle"><?php echo htmlspecialchars($edu_item['location']); ?></div>
-                                    </div>
-                                </div>
-                                <ul class="role-list">
-                                    <?php foreach ($edu_item['roles'] as $role): ?>
-                                        <li class="role-item">
-                                            <h4 class="role-title"><?php echo htmlspecialchars($role['title']); ?></h4>
-                                            <div class="role-period"><?php echo htmlspecialchars($role['period']); ?></div>
-                                            <?php if(!empty($role['description'])): ?>
-                                            <ul class="role-description">
-                                                <?php foreach (($role['description']['it'] ?? $role['description']['cs'] ?? []) as $bullet): ?>
-                                                    <li><?php echo htmlspecialchars($bullet); ?></li>
-                                                <?php endforeach; ?>
-                                            </ul>
-                                            <?php endif; ?>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
+        <?php // In resume/index.php, at the bottom of the <main> container ?>
+
+<section id="resume-education" class="resume-section">
+    <h2>Education & Certifications</h2>
+    <ul class="history-list">
+        <?php if (!empty($education)): ?>
+            <?php foreach ($education as $edu_item): ?>
+                <li class="history-item is-default" data-category="<?php echo htmlspecialchars($edu_item['categories']); ?>">
+
+                    <div class="history-item__period"><?php echo htmlspecialchars($edu_item['period']); ?></div>
+
+                    <div class="history-item__content">
+                        <div class="history-item__header">
+                            <img class="history-item__logo" src="/<?php echo htmlspecialchars($edu_item['logo']); ?>" alt="<?php echo htmlspecialchars($edu_item['institution']); ?> logo">
+                            <div class="history-item__header-text">
+                                <h3 class="history-item__title"><?php echo htmlspecialchars($edu_item['institution']); ?></h3>
+                                <div class="history-item__subtitle"><?php echo htmlspecialchars($edu_item['location']); ?></div>
                             </div>
-                        </li>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </ul>
-        </section>
+                        </div>
+
+                        <div class="history-item__tags">
+                            <?php 
+                                $tags = array_filter(explode(' ', $edu_item['categories']));
+                                if (!empty($tags)):
+                                    foreach ($tags as $tag):
+                                        $tag_text = htmlspecialchars(ucwords(str_replace('-', ' ', $tag)));
+                            ?>
+                                <span class="tag tag-<?php echo htmlspecialchars($tag); ?>"><?php echo $tag_text; ?></span>
+                            <?php
+                                    endforeach;
+                                endif;
+                            ?>
+                        </div>
+
+                        <ul class="role-list">
+                            <?php foreach ($edu_item['roles'] as $role): ?>
+                                <li class="role-item">
+                                    <h4 class="role-title"><?php echo htmlspecialchars($role['title']); ?></h4>
+                                    <div class="role-period"><?php echo htmlspecialchars($role['period']); ?></div>
+
+                                    <?php // This is the logic that correctly shows IT or CS descriptions ?>
+                                    <?php if(!empty($role['description'])): ?>
+                                        <ul class="role-description resume-view-it">
+                                            <?php foreach (($role['description']['it'] ?? []) as $bullet): ?>
+                                                <li><?php echo htmlspecialchars($bullet); ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                        <ul class="role-description resume-view-cs is-hidden">
+                                            <?php foreach (($role['description']['cs'] ?? []) as $bullet): ?>
+                                                <li><?php echo htmlspecialchars($bullet); ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </ul>
+</section>
 
     </div>
 </main>
