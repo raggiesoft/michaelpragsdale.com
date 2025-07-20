@@ -106,3 +106,39 @@
   flex-wrap: wrap;
   gap: var(--spacing-sm);
 }
+
+// in assets/scss/layout/_sidebar.scss
+
+// ... (at the end of the file) ...
+
+.widget-subtitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-color);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
+}
+
+.widget-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+
+  li {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
