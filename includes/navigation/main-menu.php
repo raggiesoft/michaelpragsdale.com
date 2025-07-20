@@ -14,7 +14,10 @@
         ],
         '/projects/'    => [
             'text' => 'Projects',
-            'icon' => 'laptop-code'
+            'icon' => 'laptop-code',
+            'sub-menu' => [
+                '/projects/docx-converter/'   => ['text' => 'DOCX Converter']                
+            ]
         ],
         '/about-me/'    => [
             'text' => 'About',
