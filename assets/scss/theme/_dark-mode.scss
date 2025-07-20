@@ -1,21 +1,5 @@
 // assets/scss/theme/_dark-mode.scss
-/**
- * My Portfolio Website
- * Copyright (c) 2025 Michael Ragsdale
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, see <https://www.gnu.org/licenses/>.
- */
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -70,6 +54,9 @@
     --tag-text-volunteer: var(--tag-text-seasonal);
     --tag-bg-internship: var(--tag-bg-seasonal);
     --tag-text-internship: var(--tag-text-seasonal);
+
+    --tech-tag-bg: var(--mpr-color-raggiesoft-blue-900);
+    --tech-tag-text: var(--mpr-color-raggiesoft-blue-100);
   }
 
   // Your image dimming styles for dark mode:
@@ -89,5 +76,5 @@
   //   filter: brightness(.85) contrast(1.1); // Subtle adjustment to make images less harsh
   // }
 
-  
+   
 }

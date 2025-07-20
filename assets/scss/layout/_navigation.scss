@@ -181,4 +181,12 @@
     margin-left: var(--spacing-sm);
     vertical-align: middle;
   }
+  // --- NEW: Dropdown Separator Style ---
+  .sub-menu .menu-separator {
+    height: 1px;
+    margin: var(--spacing-sm) 0;
+    background-color: var(--border-color);
+    // We can add padding/margin to the li instead if we need more control
+    // For example, padding: 0 var(--spacing-lg); to keep the line indented
+  }
 }

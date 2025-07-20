@@ -1,16 +1,11 @@
 <?php
-    // --- PHP Error Reporting (for debugging) ---
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
     // --- Page-Specific Variables ---
     $page_title = "Interactive Resume - Michael Ragsdale"; 
     $body_class = "page-resume full-width";
-    $page_script = "employment-filter resume-toggler";
+    // at the top of resume/index.php
+    $page_script = "employment-filter resume-toggler project-filter";
     $page_description = "The interactive resume of Michael Ragsdale, with views tailored for both Information Technology and Customer Service roles.";
-    $og_image_path = '/assets/images/social-share-resume.jpg';
-
+    
     // 1. Open the document
     include __DIR__ . '/../includes/document-open.php';
     // 2. Add the site header
@@ -53,26 +48,18 @@
         </header>
 
         <section class="resume-section download-links">
-            <div class="download-group">
+             <div class="download-group">
                 <h3 class="download-title">Information Technology Focus</h3>
                 <div class="download-buttons">
-                    <a href="https://michaelpragsdale.com/resume/mragsdale-info-tech.pdf" class="button button-primary" target="_blank" rel="noopener">
-                        <i class="fa-duotone fa-file-pdf fa-fw"></i> Download PDF
-                    </a>
-                    <a href="https://michaelpragsdale.com/resume/mragsdale-info-tech.docx" class="button button-outline-secondary" target="_blank" rel="noopener">
-                        <i class="fa-duotone fa-file-word fa-fw"></i> Download DOCX
-                    </a>
+                    <a href="https://michaelpragsdale.com/resume/mragsdale-info-tech.pdf" class="button button-primary" target="_blank" rel="noopener"><i class="fa-duotone fa-file-pdf fa-fw"></i> Download PDF</a>
+                    <a href="https://michaelpragsdale.com/resume/mragsdale-info-tech.docx" class="button button-outline-secondary" target="_blank" rel="noopener"><i class="fa-duotone fa-file-word fa-fw"></i> Download DOCX</a>
                 </div>
             </div>
             <div class="download-group">
                 <h3 class="download-title">Customer Service Focus</h3>
                 <div class="download-buttons">
-                    <a href="https://michaelpragsdale.com/resume/mragsdale-customer-service.pdf" class="button button-primary" target="_blank" rel="noopener">
-                        <i class="fa-duotone fa-file-pdf fa-fw"></i> Download PDF
-                    </a>
-                    <a href="https://michaelpragsdale.com/resume/mragsdale-customer-service.docx" class="button button-outline-secondary" target="_blank" rel="noopener">
-                        <i class="fa-duotone fa-file-word fa-fw"></i> Download DOCX
-                    </a>
+                    <a href="https://michaelpragsdale.com/resume/mragsdale-customer-service.pdf" class="button button-primary" target="_blank" rel="noopener"><i class="fa-duotone fa-file-pdf fa-fw"></i> Download PDF</a>
+                    <a href="https://michaelpragsdale.com/resume/mragsdale-customer-service.docx" class="button button-outline-secondary" target="_blank" rel="noopener"><i class="fa-duotone fa-file-word fa-fw"></i> Download DOCX</a>
                 </div>
             </div>
         </section>
@@ -125,10 +112,36 @@
 
         <section class="resume-section resume-view-it">
             <h2>Technical Projects</h2>
-            <div class="auto-grid">
+            <?php
+                // --- Generate unique categories from the projects' tech_stack ---
+                $unique_tech = [];
+                if (!empty($projects)) {
+                    foreach ($projects as $project) {
+                        if (!empty($project['tech_stack'])) {
+                            foreach ($project['tech_stack'] as $tech) {
+                                if (!empty($tech)) {
+                                    $key = strtolower(trim($tech));
+                                    $unique_tech[$key] = $tech; // Store original casing
+                                }
+                            }
+                        }
+                    }
+                }
+                ksort($unique_tech); // Sort keys alphabetically
+            ?>
+            <div id="project-filter" class="filter-tabs">
+                <span>Filter by:</span>
+                <button class="button active" data-filter="all">All</button>
+                <?php foreach ($unique_tech as $slug => $displayName): ?>
+                    <button class="button" data-filter="<?php echo htmlspecialchars($slug); ?>">
+                        <?php echo htmlspecialchars($displayName); ?>
+                    </button>
+                <?php endforeach; ?>
+            </div>
+            <div class="auto-grid" id="project-list">
                 <?php if (!empty($projects)): ?>
                     <?php foreach ($projects as $project): ?>
-                        <div class="card <?php if (!empty($project['is_featured'])) echo 'card-featured'; ?>">
+                        <div class="card <?php if (!empty($project['is_featured'])) echo 'card-featured'; ?>" data-category="<?php echo htmlspecialchars(strtolower(implode(' ', $project['tech_stack'] ?? []))); ?>">
                             <div class="card-body">
                                 <h3 class="card-title"><?php echo htmlspecialchars($project['name']); ?></h3>
                                 <p class="card-text"><?php echo htmlspecialchars($project['short_description'] ?? $project['description']); ?></p>
@@ -195,6 +208,9 @@
                                         <div class="history-item__subtitle"><?php echo htmlspecialchars($job['location']); ?></div>
                                     </div>
                                 </div>
+                                <div class="history-item__tags">
+                                    <?php /* tag rendering logic */ ?>
+                                </div>
                                 <ul class="role-list">
                                     <?php foreach ($job['roles'] as $role): ?>
                                         <li class="role-item">
@@ -213,22 +229,6 @@
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
-                                <div class="history-item__tags">
-                                <?php 
-                                    // Get the list of categories, filtering out any empty values
-                                    $tags = array_filter(explode(' ', $job['categories']));
-
-                                    // Loop through and display each one as a styled tag
-                                    if (!empty($tags)):
-                                        foreach ($tags as $tag):
-                                            $tag_text = htmlspecialchars(ucwords(str_replace('-', ' ', $tag)));
-                                ?>
-                                    <span class="tag tag-<?php echo htmlspecialchars($tag); ?>"><?php echo $tag_text; ?></span>
-                                <?php
-                                        endforeach;
-                                    endif;
-                                ?>
-                            </div>
                             </div>
                         </li>
                     <?php endforeach; ?>
@@ -236,68 +236,42 @@
             </ul>
         </section>
 
-        <?php // In resume/index.php, at the bottom of the <main> container ?>
-
-<section id="resume-education" class="resume-section">
-    <h2>Education & Certifications</h2>
-    <ul class="history-list">
-        <?php if (!empty($education)): ?>
-            <?php foreach ($education as $edu_item): ?>
-                <li class="history-item is-default" data-category="<?php echo htmlspecialchars($edu_item['categories']); ?>">
-
-                    <div class="history-item__period"><?php echo htmlspecialchars($edu_item['period']); ?></div>
-
-                    <div class="history-item__content">
-                        <div class="history-item__header">
-                            <img class="history-item__logo" src="/<?php echo htmlspecialchars($edu_item['logo']); ?>" alt="<?php echo htmlspecialchars($edu_item['institution']); ?> logo">
-                            <div class="history-item__header-text">
-                                <h3 class="history-item__title"><?php echo htmlspecialchars($edu_item['institution']); ?></h3>
-                                <div class="history-item__subtitle"><?php echo htmlspecialchars($edu_item['location']); ?></div>
+        <section id="resume-education" class="resume-section">
+            <h2>Education & Certifications</h2>
+            <ul class="history-list">
+                <?php if (!empty($education)): ?>
+                    <?php foreach ($education as $edu_item): ?>
+                        <li class="history-item is-default">
+                            <div class="history-item__period"><?php echo htmlspecialchars($edu_item['period']); ?></div>
+                            <div class="history-item__content">
+                                <div class="history-item__header">
+                                    <img class="history-item__logo" src="/<?php echo htmlspecialchars($edu_item['logo']); ?>" alt="<?php echo htmlspecialchars($edu_item['institution']); ?> logo">
+                                    <div class="history-item__header-text">
+                                        <h3 class="history-item__title"><?php echo htmlspecialchars($edu_item['institution']); ?></h3>
+                                        <div class="history-item__subtitle"><?php echo htmlspecialchars($edu_item['location']); ?></div>
+                                    </div>
+                                </div>
+                                <ul class="role-list">
+                                    <?php foreach ($edu_item['roles'] as $role): ?>
+                                        <li class="role-item">
+                                            <h4 class="role-title"><?php echo htmlspecialchars($role['title']); ?></h4>
+                                            <div class="role-period"><?php echo htmlspecialchars($role['period']); ?></div>
+                                            <?php if(!empty($role['description'])): ?>
+                                            <ul class="role-description">
+                                                <?php foreach (($role['description']['it'] ?? $role['description']['cs'] ?? []) as $bullet): ?>
+                                                    <li><?php echo htmlspecialchars($bullet); ?></li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                            <?php endif; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
                             </div>
-                        </div>
-
-                        <div class="history-item__tags">
-                            <?php 
-                                $tags = array_filter(explode(' ', $edu_item['categories']));
-                                if (!empty($tags)):
-                                    foreach ($tags as $tag):
-                                        $tag_text = htmlspecialchars(ucwords(str_replace('-', ' ', $tag)));
-                            ?>
-                                <span class="tag tag-<?php echo htmlspecialchars($tag); ?>"><?php echo $tag_text; ?></span>
-                            <?php
-                                    endforeach;
-                                endif;
-                            ?>
-                        </div>
-
-                        <ul class="role-list">
-                            <?php foreach ($edu_item['roles'] as $role): ?>
-                                <li class="role-item">
-                                    <h4 class="role-title"><?php echo htmlspecialchars($role['title']); ?></h4>
-                                    <div class="role-period"><?php echo htmlspecialchars($role['period']); ?></div>
-
-                                    <?php // This is the logic that correctly shows IT or CS descriptions ?>
-                                    <?php if(!empty($role['description'])): ?>
-                                        <ul class="role-description resume-view-it">
-                                            <?php foreach (($role['description']['it'] ?? []) as $bullet): ?>
-                                                <li><?php echo htmlspecialchars($bullet); ?></li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                        <ul class="role-description resume-view-cs is-hidden">
-                                            <?php foreach (($role['description']['cs'] ?? []) as $bullet): ?>
-                                                <li><?php echo htmlspecialchars($bullet); ?></li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                    <?php endif; ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                </li>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </ul>
-</section>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </ul>
+        </section>
 
     </div>
 </main>

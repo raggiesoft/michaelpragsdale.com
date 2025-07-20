@@ -227,3 +227,24 @@
     font-style: normal; // Ensure the icon itself isn't italicized
   }
 }
+
+// in assets/scss/components/_history-list.scss
+
+// ... all your existing history list styles ...
+
+// --- NEW: Styles for Project Tech Tags ---
+.project-tech-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-md) 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+
+  // We'll use our new CSS variables to color the tags.
+  .tag {
+    font-size: 0.8rem;
+    background-color: var(--tech-tag-bg);
+    color: var(--tech-tag-text);
+  }
+}

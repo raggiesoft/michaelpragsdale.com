@@ -3,7 +3,7 @@
     "name": "Custom Portfolio Website (This Site)",
     "tagline": "A data-driven portfolio built from scratch.",
     "is_featured": true,
-    "short_description": "A fully responsive, accessible, and themeable portfolio website built to showcase my skills in modern web development practices.",
+    "description": "A fully responsive, accessible, and themeable portfolio website built to showcase my skills in modern web development practices.",
     "tech_stack": ["PHP", "SCSS", "JavaScript (ES6+)", "WCAG", "JSON"],
     "live_url": "https://michaelpragsdale.com/",
     "repo_url": "https://github.com/raggiesoft/michaelpragsdale.com"
@@ -11,7 +11,7 @@
   {
     "name": "StoreTrainer",
     "tagline": "A Utility for Launching PC Game Trainers",
-    "short_description": "A custom tool for creating shortcuts that launch two executables at once (e.g., a game and a trainer) and correctly sets the Working Directory.",
+    "description": "A custom tool for creating shortcuts that launch two executables at once (e.g., a game and a trainer) and correctly sets the Working Directory.",
     "tech_stack": ["Visual Basic 6", "Windows API"],
     "live_url": "",
     "repo_url": ""

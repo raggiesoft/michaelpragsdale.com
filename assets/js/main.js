@@ -108,6 +108,35 @@ function initEmploymentFilter() {
 }
 
 /**
+ * Initializes the interactive filter on the Projects page.
+ */
+function initProjectFilter() {
+    const filterContainer = document.querySelector('#project-filter');
+    const projectItems = document.querySelectorAll('#project-list .card');
+
+    if (!filterContainer || projectItems.length === 0) return;
+
+    filterContainer.addEventListener('click', (event) => {
+        const clickedButton = event.target.closest('button');
+        if (!clickedButton) return;
+
+        const filterCategory = clickedButton.dataset.filter;
+
+        filterContainer.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+        clickedButton.classList.add('active');
+
+        projectItems.forEach(item => {
+            const itemCategories = item.dataset.category;
+            if (filterCategory === 'all' || (itemCategories && itemCategories.includes(filterCategory))) {
+                item.classList.remove('is-hidden');
+            } else {
+                item.classList.add('is-hidden');
+            }
+        });
+    });
+}
+
+/**
  * Initializes the IT vs. Customer Service view toggler on the resume page.
  */
 function initResumeToggler() {
@@ -280,5 +309,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (scriptsToRun.includes('contact-flow')) {
         initContactFlow();
+    }
+    if (scriptsToRun.includes('project-filter')) { // <<< ADD THIS
+        initProjectFilter();
     }
 });

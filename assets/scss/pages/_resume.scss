@@ -92,21 +92,7 @@
   .skill-category li {
     margin-bottom: var(--spacing-xs);
   }
-  .project-tech-list {
-    list-style: none;
-    padding: 0;
-    margin: var(--spacing-md) 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-
-    // We can reuse our existing .tag styles for a consistent look!
-    .tag {
-      font-size: 0.8rem;
-      background-color: var(--mpr-color-raggiesoft-blue-100);
-      color: var(--mpr-color-raggiesoft-blue-800);
-    }
-  }
+ 
 
   .download-links {
     // This is the main container for the groups

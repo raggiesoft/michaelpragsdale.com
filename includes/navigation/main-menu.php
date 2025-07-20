@@ -1,25 +1,5 @@
-<?php // --- includes/navigation/main-menu.php ---
-/**
- * My Portfolio Website
- *
- * This file is part of My Portfolio Website.
- *
- * My Portfolio Website is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
- *
- * @copyright Copyright (c) 2025 Michael Ragsdale
- * @license   https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
- */
+<?php // --- includes/navigation/main-menu.php (Complete & Final Version) ---
+
     $current_uri = $_SERVER['REQUEST_URI'];
 
     // This is the central data source for your main navigation menu.
@@ -32,23 +12,37 @@
             'text' => 'Résumé',
             'icon' => 'file-lines'
         ],
+        '/projects/'    => [
+            'text' => 'Projects',
+            'icon' => 'laptop-code'
+        ],
         '/about-me/'    => [
             'text' => 'About',
             'icon' => 'user',
             'sub-menu' => [
-                '/education/'  => 'Education',
-                '/employment/' => 'Employment'
+                '/education/'       => ['text' => 'Education'],
+                '/employment/'      => ['text' => 'Employment'],
+                'separator-about'   => '---', // This will render as a separator
+                '/about-me/salary/' => ['text' => 'Salary Checker']
             ]
         ],
         '/contact/'     => [
             'text' => 'Contact',
-            'icon' => 'calendar-days'
-        ],
-        'https://www.linkedin.com/in/michael-ragsdale-raggiesoft/' => [
-            'text'       => 'LinkedIn',
-            'icon'       => 'linkedin',
-            'icon_brand' => true, // Use fa-brands style for this icon
-            'is_external'=> true  // Mark as an external link
+            'icon' => 'envelope',
+            'sub-menu' => [
+                'https://www.linkedin.com/in/michael-ragsdale-raggiesoft/' => [
+                    'text'       => 'LinkedIn',
+                    'icon'       => 'linkedin',
+                    'icon_brand' => true,
+                    'is_external'=> true
+                ],
+                'https://github.com/raggiesoft' => [
+                    'text'       => 'GitHub',
+                    'icon'       => 'github',
+                    'icon_brand' => true,
+                    'is_external'=> true
+                ]
+            ]
         ]
     ];
 
@@ -60,40 +54,52 @@
                 // --- Determine item properties ---
                 $has_children = isset($item['sub-menu']);
                 $is_external = isset($item['is_external']) && $item['is_external'];
-                
-                // --- Icon Logic ---
                 $icon_to_render = $item['icon'] ?? null;
                 $icon_style = (isset($item['icon_brand']) && $item['icon_brand']) ? 'fa-brands' : 'fa-duotone';
                 
                 // --- Active State Logic (only for internal links) ---
                 $is_active = false;
                 if (!$is_external) {
-                    // Handle special case for home page
                     if ($path === '/') {
                         if ($current_uri === '/' || $current_uri === '/index.php') $is_active = true;
                     } else {
-                        // Check if the current URL path starts with the link's path
                         $link_root = str_replace('.php', '', $path);
                         if (str_starts_with($current_uri, $link_root)) $is_active = true;
                     }
                 }
             ?>
             <li class="nav-item <?php if ($has_children) echo 'has-children'; ?> <?php if ($is_active) echo 'active'; ?>">
-                <a href="<?php echo $path; ?>" class="nav-link">
+                <a href="<?php echo $path; ?>" class="nav-link" <?php if ($is_external) echo 'target="_blank" rel="noopener noreferrer"'; ?>>
                     
-                    <?php if ($icon_to_render): // Render icon if one is specified ?>
+                    <?php if ($icon_to_render): ?>
                         <i class="<?php echo $icon_style; ?> fa-fw fa-<?php echo $icon_to_render; ?>" aria-hidden="true"></i>
                     <?php endif; ?>
 
                     <span><?php echo $item['text']; ?></span>
-                    <?php // The CSS pseudo-element will automatically add the external link icon if needed ?>
                 </a>
                 
                 <?php if ($has_children): ?>
                     <ul class="sub-menu">
-                        <?php foreach ($item['sub-menu'] as $sub_path => $sub_text): ?>
+                        <?php foreach ($item['sub-menu'] as $sub_path => $sub_item): ?>
+                            <?php
+                                // Check if the item is a separator
+                                if ($sub_item === '---') {
+                                    echo '<li class="menu-separator" role="separator"></li>';
+                                    continue; // Skip to the next item in the loop
+                                }
+
+                                // Determine sub-item properties
+                                $sub_is_external = isset($sub_item['is_external']) && $sub_item['is_external'];
+                                $sub_icon_to_render = $sub_item['icon'] ?? null;
+                                $sub_icon_style = (isset($sub_item['icon_brand']) && $sub_item['icon_brand']) ? 'fa-brands' : 'fa-duotone';
+                            ?>
                             <li class="nav-item sub-menu-item">
-                                <a href="<?php echo $sub_path; ?>" class="nav-link sub-menu-link"><?php echo $sub_text; ?></a>
+                                <a href="<?php echo $sub_path; ?>" class="nav-link sub-menu-link" <?php if ($sub_is_external) echo 'target="_blank" rel="noopener noreferrer"'; ?>>
+                                    <?php if ($sub_icon_to_render): ?>
+                                        <i class="<?php echo $sub_icon_style; ?> fa-fw fa-<?php echo $sub_icon_to_render; ?>" aria-hidden="true"></i>
+                                    <?php endif; ?>
+                                    <span><?php echo $sub_item['text']; ?></span>
+                                </a>
                             </li>
                         <?php endforeach; ?>
                     </ul>
