@@ -23,7 +23,7 @@
  */?>
     </div> <?php // Closes the .page-container from document-open.php ?>
 
-    ?php // 1. Load the Prism.js library files FIRST. ?>
+    <?php // 1. Load the Prism.js library files FIRST. ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
