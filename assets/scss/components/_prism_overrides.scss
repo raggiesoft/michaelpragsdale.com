@@ -1,0 +1,29 @@
+// assets/scss/components/_prism-overrides.scss
+
+// --- Word Wrap Utility Class ---
+// Apply this class to a <pre> tag to enable word wrapping.
+pre.pre-wrap {
+  white-space: pre-wrap;       // CSS property to wrap text
+  word-break: break-word;      // Break long words if necessary
+}
+
+// --- Custom Line Number Styling ---
+// These rules override the default Prism line number styles
+// to better match the okaidia theme and our site's design.
+pre.line-numbers {
+  // Make space on the left for the line numbers
+  padding-left: 4.5em; 
+}
+
+.line-numbers .line-numbers-rows {
+  // Style the gutter where the numbers live
+  border-right: 1px solid var(--gray-700);
+  background-color: rgba(0,0,0,0.1);
+  left: 0; // Ensure it's aligned to the far left
+
+  // Style the numbers themselves
+  span::before {
+    color: var(--gray-500); // Muted color for the numbers
+    text-shadow: none;
+  }
+}

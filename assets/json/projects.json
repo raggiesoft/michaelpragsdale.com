@@ -17,7 +17,7 @@
     "short_description": "A sophisticated PowerShell script that uses Pandoc to convert structured Microsoft Word documents into a nested, multi-file Markdown project, perfect for personal wikis or static site generators.",
     "tech_stack": ["PowerShell", "Pandoc", "YAML"],
     "live_url": "/projects/docx-converter/",
-    "repo_url": "https://github.com/raggiesoft/your-repo-for-this-script",
+    "repo_url": "https://github.com/raggiesoft/powershell-docx-converter",
     "details": {
       "story": "To manage a large, multi-generational fictional universe, I needed an automated way to convert my primary writing files from Microsoft Word into a structured set of Markdown files suitable for my Obsidian vault and for web publishing. This script is the engine that powers that workflow.",
       "features": [

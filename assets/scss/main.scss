@@ -47,6 +47,7 @@
 @use 'components/filter-tabs';
 @use 'components/icons';
 @use 'components/forms';
+@use 'components/prism_overrides';
 
 // 5. Page-Specific Styles (if any)
 @use 'pages/home';

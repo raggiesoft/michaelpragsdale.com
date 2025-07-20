@@ -165,6 +165,32 @@ function initResumeToggler() {
     });
 }
 
+// In main.js
+function initLiveCodeEmbed() {
+    const container = document.getElementById('script-container');
+    if (!container) return;
+
+    const rawUrl = 'https://raw.githubusercontent.com/raggiesoft/powershell-docx-converter/refs/heads/master/convert-and-split.ps1';
+
+    fetch(rawUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(text => {
+            container.textContent = text;
+            Prism.highlightElement(container); // Tell Prism to highlight the new content
+        })
+        .catch(error => {
+            container.textContent = 'Error: Could not load script from GitHub.';
+            console.error('Error fetching script:', error);
+        });
+}
+
+
+
 /**
  * Makes any element with a `data-link` attribute clickable. (DEBUGGING VERSION)
  */
@@ -357,5 +383,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (scriptsToRun.includes('project-filter')) { // <<< ADD THIS
         initProjectFilter();
+    }
+    if (scriptsToRun.includes('live-code-embed')) { // <<< THE FIX
+        initLiveCodeEmbed();
     }
 });

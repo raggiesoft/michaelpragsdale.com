@@ -89,7 +89,8 @@
     ?>
 
     <meta name="theme-color" content="#12445B"> <?php // Your dark RaggieSoft Blue ?>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
     <link rel="stylesheet" href="/assets/css/main.css">
     <?php
         // This loop loads any supplemental theme stylesheets (like frutiger-aero.css)
