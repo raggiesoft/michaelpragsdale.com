@@ -221,7 +221,7 @@ textarea {
 // --- Automatic External Link Icon ---
 // This rule targets any <a> tag with an href starting with "http"
 // but excludes links pointing back to your own domain.
-a[href^="http"]:not([href*="michaelpragsdale.com"]) {
+a[href^="http"]:not([href^="https://michaelpragsdale.com"]):not([href^="http://michaelpragsdale.com"]) {
 
   // Add the icon as a pseudo-element after the link text.
   &::after {

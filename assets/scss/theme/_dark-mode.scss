@@ -8,7 +8,7 @@
     // Core Theme Colors (Brand accents for interactive elements)
     // Using the RaggieSoft blue palette, potentially adjusted for better contrast on dark backgrounds.
     --primary-accent-color: var(--mpr-color-raggiesoft-blue-400);     // Adjusted (lighter) brand blue for dark mode actions
-    --secondary-accent-color: var(--mpr-color-raggiesoft-blue-300);   // Even lighter for secondary accents if needed
+    --secondary-accent-color: var(--gray-400); // Light gray for dark mode
 
     // Text & Background (Neutral dark defaults)
     --text-color: var(--gray-200);                                  // Light gray for general text on dark background

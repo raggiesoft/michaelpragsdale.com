@@ -112,36 +112,16 @@
 
         <section class="resume-section resume-view-it">
             <h2>Technical Projects</h2>
-            <?php
-                // --- Generate unique categories from the projects' tech_stack ---
-                $unique_tech = [];
-                if (!empty($projects)) {
-                    foreach ($projects as $project) {
-                        if (!empty($project['tech_stack'])) {
-                            foreach ($project['tech_stack'] as $tech) {
-                                if (!empty($tech)) {
-                                    $key = strtolower(trim($tech));
-                                    $unique_tech[$key] = $tech; // Store original casing
-                                }
-                            }
-                        }
-                    }
-                }
-                ksort($unique_tech); // Sort keys alphabetically
-            ?>
-            <div id="project-filter" class="filter-tabs">
-                <span>Filter by:</span>
-                <button class="button active" data-filter="all">All</button>
-                <?php foreach ($unique_tech as $slug => $displayName): ?>
-                    <button class="button" data-filter="<?php echo htmlspecialchars($slug); ?>">
-                        <?php echo htmlspecialchars($displayName); ?>
-                    </button>
-                <?php endforeach; ?>
-            </div>
             <div class="auto-grid" id="project-list">
                 <?php if (!empty($projects)): ?>
                     <?php foreach ($projects as $project): ?>
-                        <div class="card <?php if (!empty($project['is_featured'])) echo 'card-featured'; ?>" data-category="<?php echo htmlspecialchars(strtolower(implode(' ', $project['tech_stack'] ?? []))); ?>">
+                        <div 
+                            class="card clickable-card <?php if (!empty($project['is_featured'])) echo 'card-featured'; ?>" 
+                            data-link="/projects/detail.php?id=<?php echo htmlspecialchars($project['id'] ?? ''); ?>"
+                            data-category="<?php echo htmlspecialchars(strtolower(implode(' ', $project['tech_stack'] ?? []))); ?>"
+                            role="link"
+                            tabindex="0">
+
                             <div class="card-body">
                                 <h3 class="card-title"><?php echo htmlspecialchars($project['name']); ?></h3>
                                 <p class="card-text"><?php echo htmlspecialchars($project['short_description'] ?? $project['description']); ?></p>
@@ -151,14 +131,11 @@
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
-                            <?php if (!empty($project['live_url']) || !empty($project['repo_url'])): ?>
+                            <?php if (!empty($project['repo_url'])): ?>
                                 <div class="card-footer">
-                                    <?php if (!empty($project['live_url'])): ?>
-                                        <a href="<?php echo htmlspecialchars($project['live_url']); ?>" class="button button-outline-primary">View Project</a>
-                                    <?php endif; ?>
-                                    <?php if (!empty($project['repo_url'])): ?>
-                                        <a href="<?php echo htmlspecialchars($project['repo_url']); ?>" class="button button-outline-secondary">View Code</a>
-                                    <?php endif; ?>
+                                    <a href="<?php echo htmlspecialchars($project['repo_url']); ?>" class="button button-outline-secondary">
+                                        <i class="fa-brands fa-github fa-fw"></i> View Code
+                                    </a>
                                 </div>
                             <?php endif; ?>
                         </div>

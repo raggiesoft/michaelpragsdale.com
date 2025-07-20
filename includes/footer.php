@@ -29,7 +29,7 @@
                 <i class="fa-brands fa-linkedin fa-fw"></i>
             </a>
             <a href="/contact/" aria-label="Schedule an interview with Michael Ragsdale">
-                <i class="fa-duotone fa-calendar-days fa-fw"></i>
+                <i class="fa-duotone fa-envelope fa-fw"></i>
             </a>
             <a href="https://github.com/raggiesoft" target="_blank" rel="noopener noreferrer" aria-label="Michael Ragsdale on GitHub">
                 <i class="fa-brands fa-github-square fa-fw"></i>

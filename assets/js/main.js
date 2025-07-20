@@ -166,6 +166,50 @@ function initResumeToggler() {
 }
 
 /**
+ * Makes any element with a `data-link` attribute clickable. (DEBUGGING VERSION)
+ */
+function initClickableCards() {
+    // Checkpoint 1: Is this function even being called?
+    console.log('[Clickable Cards] - Initializing...');
+
+    const clickableItems = document.querySelectorAll('[data-link]');
+
+    // Checkpoint 2: Does the script find any cards with the data-link attribute?
+    console.log(`[Clickable Cards] - Found ${clickableItems.length} items with a data-link attribute.`);
+
+    clickableItems.forEach(item => {
+        // Checkpoint 3: Is an event listener being attached to each card?
+        console.log('[Clickable Cards] - Attaching listeners to:', item);
+
+        // Handle mouse clicks
+        item.addEventListener('click', function(event) {
+            // Checkpoint 4: Is the click event firing?
+            console.log('[Clickable Cards] - Card was clicked!', this);
+
+            if (event.target.closest('a, button')) {
+                console.log('[Clickable Cards] - Click was on a button/link inside the card. Stopping navigation.');
+                return;
+            }
+
+            if (this.dataset.link) {
+                console.log('[Clickable Cards] - Navigating to:', this.dataset.link);
+                window.location.href = this.dataset.link;
+            } else {
+                console.warn('[Clickable Cards] - Clicked item has no data-link value.');
+            }
+        });
+
+        // Handle keyboard navigation (Enter key)
+        item.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                console.log('[Clickable Cards] - Enter key pressed on card. Triggering click.');
+                this.click();
+            }
+        });
+    });
+}
+
+/**
  * Initializes the accordion-based contact flow.
  */
 function initContactFlow() {
@@ -295,6 +339,7 @@ function initExternalLinks() {
 document.addEventListener('DOMContentLoaded', function() {
     initMobileNav();
     initExternalLinks();
+    initClickableCards();
 
     const pageScripts = document.body.dataset.pageScript;
     if (!pageScripts) return;

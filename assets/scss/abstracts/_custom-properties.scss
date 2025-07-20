@@ -61,7 +61,7 @@
 
     // Core Theme Colors
     --primary-accent-color: var(--mpr-color-raggiesoft-blue);         // Brand blue for key actions/links
-    --secondary-accent-color: var(--mpr-color-raggiesoft-blue-700);  // Darker brand blue for secondary actions
+    --secondary-accent-color: var(--gray-700); // Use a strong gray for the default
     --primary-accent-color-rgb: 66, 170, 219; // RGB for primary accent color (used in focus states, etc.)
 
     // Text & Background (Neutral defaults)

@@ -54,7 +54,7 @@ $breakpoints: (
 $theme-colors: (
   // "name": (bg: CSS_VARIABLE_FOR_BACKGROUND, text: STATIC_TEXT_COLOR)
   "primary":   (bg: var(--primary-accent-color), text: #ffffff),
-  "secondary": (bg: var(--gray-600),             text: #ffffff),
+  "secondary": (bg: var(--secondary-accent-color),             text: #ffffff),
   "success":   (bg: var(--color-success),        text: #ffffff),
   "info":      (bg: var(--color-info),           text: var(--gray-900)), // Light cyan bg needs dark text
   "warning":   (bg: var(--color-warning),        text: var(--gray-900)), // Yellow bg needs dark text

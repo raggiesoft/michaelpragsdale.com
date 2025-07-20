@@ -1,20 +1,33 @@
 // assets/scss/components/_cards.scss
 
+//--------------------------------------------------------------------------
+// Base Card Component
+//--------------------------------------------------------------------------
 .card {
-  position: relative;
+  position: relative; // Essential anchor for positioned children like the stretched-link and featured ribbon.
   display: grid;
-  grid-template-rows: 1fr auto; // Row 1 (body) grows, Row 2 (footer) is auto-sized
+  grid-template-rows: 1fr auto; // Row 1 (body) grows, Row 2 (footer) is auto-sized.
   min-width: 0;
   word-wrap: break-word;
-  background-color: var(--background-color);
+  background-color: var(--background-color-alt);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  height: 100%;
+  height: 100%; // Fill the height of the parent grid cell for equal-height cards.
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+// Apply the hover effect only to cards that are clickable.
+.card:has(.stretched-link):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .card-body {
   padding: var(--spacing-lg);
+  // Establish a stacking context for the card's main content.
+  position: relative;
+  z-index: 1;
 }
 
 .card-footer {
@@ -24,6 +37,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-sm);
+  // Establish a stacking context for the footer content.
+  position: relative;
 }
 
 .card-title {
@@ -40,23 +55,6 @@
   margin-bottom: 0;
 }
 
-.card-link {
-  &:not(:first-child) {
-    margin-left: var(--spacing-md);
-  }
-}
-
-.stretched-link::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  content: "";
-  background-color: rgba(0, 0, 0, 0);
-}
-
 .card-img,
 .card-img-top {
   width: 100%;
@@ -64,16 +62,40 @@
   border-top-right-radius: var(--border-radius);
 }
 
+//--------------------------------------------------------------------------
+// Card Links & Overlays
+//--------------------------------------------------------------------------
+.card-link {
+  &:not(:first-child) {
+    margin-left: var(--spacing-md);
+  }
+}
+
+// in assets/scss/components/_cards.scss
+
+// Add this rule for cards that are clickable via JavaScript
+.clickable-card {
+  cursor: pointer;
+}
+
+//--------------------------------------------------------------------------
+// Card Modifiers
+//--------------------------------------------------------------------------
+
+// Modifier for a "Featured" Card
 .card-featured {
   border-color: var(--primary-accent-color);
   border-width: 2px;
   overflow: hidden;
+
+  // The "Featured" corner ribbon
   &::before {
     content: 'Featured';
     position: absolute;
     top: 18px;
     right: -34px;
-    z-index: 1;
+    // Sits on top of the stretched-link overlay.
+    z-index: 3;
     display: block;
     width: 120px;
     padding: var(--spacing-xs) 0;
@@ -88,12 +110,15 @@
   }
 }
 
+// Modifier for cards on the "About Me" page
 .card-icon-link {
   text-align: center;
+  
   .card-icon {
     color: var(--primary-accent-color);
     margin-bottom: var(--spacing-md);
   }
+  
   .card-text {
     font-size: 0.9rem;
     min-height: 5em;
