@@ -2,14 +2,14 @@
   {
     "company": "Virginia Beach Parks & Recreation",
     "location": "Virginia Beach, VA",
-    "period": "May 2023 – Present",
+    "period": "",
     "logo": "assets/images/employment/vb.jpg",
     "categories": "customer-service current-employer leadership",
     "is_public": true,
     "roles": [
       {
         "title": "Clerk-Cashier",
-        "period": "",
+        "period": "May 2023 – Present",
         "description": {
           "it": [
             "Developed a workflow to generate accessible, Section 508 compliant, and printer-friendly documents from a legacy system not designed for such outputs.",
@@ -31,14 +31,14 @@
   {
     "company": "RaggieSoft (Personal Brand & Projects)",
     "location": "Norfolk, VA",
-    "period": "July 2022 - Present",
+    "period": "",
     "logo": "assets/images/employment/raggiesoft.png",
     "categories": "developer information-technology current-employer",
     "is_public": true,
     "roles": [
       {
         "title": "Independent Developer & Lifelong Learner",
-        "period": "",
+        "period": "July 2022 - Present",
         "description": {
           "it": [
             "Developing personal projects to demonstrate and sharpen skills in modern web technologies.",
@@ -56,14 +56,14 @@
   {
     "company": "ODU Online, Old Dominion University",
     "location": "Norfolk, VA",
-    "period": "Nov 2019 – Jul 2022",
+    "period": "",
     "logo": "assets/images/employment/odu.png",
     "categories": "information-technology behind-the-scenes",
     "is_public": true,
     "roles": [
       {
         "title": "Section 508 Compliance Specialist",
-        "period": "",
+        "period": "Nov 2019 – Jul 2022",
         "description": {
           "it": [
             "Ensured WCAG 2.1 AA & Section 508 compliance for online courses; remediated pages, verified student code, used Deque axe for reporting, and migrated content to Canvas."
@@ -80,7 +80,7 @@
   {
     "company": "University Village Bookstore (Follett)",
     "location": "Norfolk, VA",
-    "period": "Jan 2019 – Aug 2020",
+    "period": "",
     "logo": "assets/images/employment/follett.png",
     "categories": "customer-service retail",
     "is_public": true,
@@ -107,7 +107,7 @@
   {
     "company": "Monarch Dining (Aramark)",
     "location": "Norfolk, VA",
-    "period": "Jul 2017 – Dec 2019",
+    "period": "",
     "logo": "assets/images/employment/aramark.png",
     "categories": "customer-service data-entry",
     "is_public": true,
@@ -133,7 +133,7 @@
   {
     "company": "Residence Hall Association, ODU",
     "location": "Norfolk, VA",
-    "period": "Sep 2015 – May 2017",
+    "period": "",
     "logo": "assets/images/employment/odu.png",
     "categories": "leadership behind-the-scenes",
     "is_public": true,
@@ -141,7 +141,7 @@
     "roles": [
       {
         "title": "Director of Administration",
-        "period": "",
+        "period": "Sep 2015 – May 2017",
         "description": {
           "it": ["Managed organizational administration via Google Drive.", "Prepared official minutes, presentations, and other documents for association leadership."],
           "cs": ["Elected by the student body to a paid leadership position responsible for all administrative functions of the association.", "Prepared and maintained official minutes and documents for the RHA President, Advisor, and student members."]
@@ -152,14 +152,14 @@
   {
     "company": "First Landing State Park (DCR)",
     "location": "Virginia Beach, VA",
-    "period": "Apr 2015 – Aug 2015",
+    "period": "",
     "logo": "assets/images/employment/vadcr.png",
     "categories": "volunteer customer-service",
     "is_public": true,
     "roles": [
       {
         "title": "Volunteer Contact Ranger",
-        "period": "",
+        "period": "Apr 2015 – Aug 2015",
         "description": {
           "it": ["Collected parking fees and gave general park information at an entrance booth setting."],
           "cs": ["Collected parking fees.", "Gave general park information appropriate for an entrance booth setting."]
@@ -170,14 +170,14 @@
   {
     "company": "Dominion Enterprises",
     "location": "Norfolk, VA",
-    "period": "Sep 2012 – Dec 2012",
+    "period": "",
     "logo": "assets/images/employment/de.png",
     "categories": "developer internship information-technology",
     "is_public": true,
     "roles": [
       {
         "title": "Mobile Applications Developer Intern",
-        "period": "",
+        "period": "Sep 2012 – Dec 2012",
         "description": {
           "it": ["Gained hands-on experience in cross-platform mobile development for Android & iOS using Titanium SDK.", "Created a dictionary of real estate terms mobile app to learn the SDK."],
           "cs": ["Learned Android and iOS development by way of the JavaScript-based Titanium SDK."]
@@ -188,14 +188,14 @@
   {
     "company": "Target",
     "location": "Virginia Beach, VA",
-    "period": "Jun 2008 – Aug 2008",
+    "period": "",
     "logo": "assets/images/employment/target.png",
     "categories": "customer-service retail seasonal",
     "is_public": true,
     "roles": [
       {
         "title": "Retail Associate",
-        "period": "",
+        "period": "Jun 2008 – Aug 2008",
         "description": {
           "it": ["Performed retail duties, including answering questions, restocking shelves, and operating a cash register."],
           "cs": ["Performed various retail duties, including answering questions and restocking shelves.", "Performed cashier duties during busy periods as requested."]
@@ -206,7 +206,7 @@
   {
     "company": "Food Lion",
     "location": "Norfolk, VA",
-    "period": "Dec 2022 (3 days)",
+    "period": "",
     "logo": "assets/images/employment/food-lion.png",
     "categories": "customer-service retail",
     "is_public": false,
@@ -214,7 +214,7 @@
     "roles": [
       {
         "title": "Grocery Cashier",
-        "period": "",
+        "period": "Dec 2022 (3 days)",
         "description": {
           "it": ["Operated point-of-sale system and handled customer transactions."],
           "cs": ["Provided front-line customer service in a retail grocery environment."]
@@ -225,7 +225,7 @@
   {
     "company": "GAP Solutions, Inc.",
     "location": "Herndon, VA (Remote)",
-    "period": "Jul 2022 – Oct 2022",
+    "period": "",
     "logo": "assets/images/employment/gap.png",
     "categories": "information-technology behind-the-scenes",
     "is_public": false,
@@ -233,7 +233,7 @@
     "roles": [
       {
         "title": "Section 508 Compliance Specialist",
-        "period": "",
+        "period": "Jul 2022 – Oct 2022",
         "description": {
           "it": ["Hired for a Section 508 compliance role similar to ODU Online position; tasks were not assigned during the employment period."],
           "cs": ["Hired for a Section 508 compliance role similar to ODU Online position; tasks were not assigned during the employment period."]
@@ -244,7 +244,7 @@
   {
     "company": "ICT Group (Dell Contractor)",
     "location": "Chesapeake, VA",
-    "period": "Approx. 2004 - 2006",
+    "period": "",
     "logo": "assets/images/employment/ict-group.png",
     "categories": "information-technology customer-service",
     "is_public": false,
@@ -252,7 +252,7 @@
     "roles": [
       {
         "title": "Technical Support Representative",
-        "period": "",
+        "period": "Sometime within 2004 - 2006",
         "description": {
           "it": [
             "Provided telephone-based technical support for Dell consumer hardware and software issues.",
@@ -269,7 +269,7 @@
   {
     "company": "Wendy's",
     "location": "Virginia Beach, VA",
-    "period": "Various times between 2007-2013",
+    "period": "",
     "logo": "assets/images/employment/wendys.png",
     "categories": "food-service",
     "is_public": false,
@@ -277,7 +277,7 @@
     "roles": [
       {
         "title": "Dishwasher / Team Member",
-        "period": "",
+        "period": "Sometime between 2007-2013",
         "description": {
           "it": ["Maintained kitchen sanitation using a 3-compartment sink system."],
           "cs": ["Worked as part of the kitchen team to ensure operational cleanliness and readiness."]
@@ -288,15 +288,15 @@
   {
     "company": "Popeye's Chicken and Biscuits",
     "location": "Norfolk, VA",
-    "period": "Approx. 2004 - 2005",
+    "period": "",
     "logo": "assets/images/employment/popeyes.png",
     "categories": "food-service customer-service",
     "is_public": false,
-    "notes": "Dates are approximate, based on memory from high school.",
+    "notes": "Dates are approximate, based on memory.",
     "roles": [
       {
         "title": "Dishwasher / Team Member",
-        "period": "",
+        "period": "Approx. 2004 - 2005",
         "description": {
           "it": ["Maintained sanitation standards in the dish room using a 3-compartment sink system."],
           "cs": ["Worked as part of the kitchen team to ensure operational cleanliness and readiness."]
@@ -307,7 +307,7 @@
   {
     "company": "HMS Host (MacArthur Center)",
     "location": "Norfolk, VA",
-    "period": "Approx. 2003 (2 days)",
+    "period": "",
     "logo": "assets/images/employment/hms-host.png",
     "categories": "food-service",
     "is_public": false,
@@ -315,7 +315,7 @@
     "roles": [
       {
         "title": "Food Court Team Member",
-        "period": "",
+        "period": "Approx. 2003 (2 days)",
         "description": {
           "it": ["Completed initial onboarding and training for food court operations."],
           "cs": ["Completed initial onboarding and training for food court operations."]
