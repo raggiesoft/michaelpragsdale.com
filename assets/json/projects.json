@@ -13,7 +13,7 @@
     "id": "docx-converter",
     "name": "PowerShell DOCX to Markdown Converter",
     "tagline": "An advanced script for automating writing workflows.",
-    "is_featured": false,
+    "is_featured": true,
     "short_description": "A sophisticated PowerShell script that uses Pandoc to convert structured Microsoft Word documents into a nested, multi-file Markdown project, perfect for personal wikis or static site generators.",
     "tech_stack": ["PowerShell", "Pandoc", "YAML"],
     "live_url": "/projects/docx-converter/",
