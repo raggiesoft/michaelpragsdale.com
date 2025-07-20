@@ -47,8 +47,10 @@
       transform: translateY(-2px); // Add a subtle lift effect
     }
 
-    &::after {
-      display: none;
+    // This more specific rule targets the pseudo-element on external links
+    // ONLY within the footer, ensuring it overrides the global style.
+    &[href^="http"]::after {
+      display: none !important; // Add !important for extra certainty
     }
   }
 
