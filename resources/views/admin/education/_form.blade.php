@@ -37,28 +37,6 @@
         <input type="text" id="categories" name="categories" value="{{ old('categories', $education->categories) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-900 dark:border-gray-600">
     </div>
 
-    {{-- ... other form fields like institution, location, etc. ... --}}
-
-{{-- NEW: Logo Upload Field --}}
-<div class="form-group mt-6">
-    <label for="logo" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Institution Logo</label>
-    <input type="file" id="logo" name="logo" class="mt-1 block w-full text-sm text-gray-500
-        file:mr-4 file:py-2 file:px-4
-        file:rounded-md file:border-0
-        file:bg-indigo-50 dark:file:bg-indigo-900/50
-        file:text-indigo-700 dark:file:text-indigo-300
-        hover:file:bg-indigo-100 dark:hover:file:bg-indigo-900">
-
-    {{-- Show the current logo when editing --}}
-    @if ($education->logo)
-        <div class="mt-4">
-            <p class="text-sm text-gray-500">Current Logo:</p>
-            <img src="{{ asset($education->logo) }}" alt="{{ $education->institution }} logo" class="h-16 w-auto mt-2 rounded-md border border-gray-200 dark:border-gray-700">
-        </div>
-    @endif
-</div>
-
-
     {{-- Roles (Dynamic with Alpine.js) --}}
     <div x-data='{ roles: @json($roles) }'>
         <h4 class="text-md font-semibold mb-2">Degrees / Certificates</h4>
