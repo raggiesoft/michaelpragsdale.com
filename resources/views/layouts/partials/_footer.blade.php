@@ -1,44 +1,52 @@
-<?php
-/**
- * My Portfolio Website
- *
- * This file is part of My Portfolio Website.
- *
- * My Portfolio Website is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
- *
- * @copyright Copyright (c) 2025 Michael Ragsdale
- * @license   https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
- */
-?>
+{{-- resources/views/partials/_footer.blade.php --}}
 <footer class="site-footer">
-    <div class="footer-content container">
+    <div class="container">
+        <div class="footer-grid">
 
-        <div class="footer-social">
-            <a href="https://www.linkedin.com/in/michael-ragsdale-raggiesoft" target="_blank" rel="noopener noreferrer" aria-label="Michael Ragsdale on LinkedIn">
-                <i class="fa-brands fa-linkedin fa-fw"></i>
-            </a>
-            <a href="/contact/" aria-label="Schedule an interview with Michael Ragsdale">
-                <i class="fa-duotone fa-envelope fa-fw"></i>
-            </a>
-            <a href="https://github.com/raggiesoft" target="_blank" rel="noopener noreferrer" aria-label="Michael Ragsdale on GitHub">
-                <i class="fa-brands fa-github-square fa-fw"></i>
-            </a>
+            <div class="footer-column footer-about">
+                <h3 class="footer-heading">Michael Ragsdale</h3>
+                <p>A web developer building accessible, user-friendly, and maintainable applications from the ground up.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/michael-ragsdale-raggiesoft/" aria-label="LinkedIn Profile">
+                        <i class="fa-brands fa-linkedin fa-fw"></i>
+                    </a>
+                    <a href="https://github.com/raggiesoft" aria-label="GitHub Profile">
+                        <i class="fa-brands fa-github fa-fw"></i>
+                    </a>
+                </div>
+            </div>
+
+            {{-- This new container groups the two link columns --}}
+            <div class="footer-links-grid">
+                <div class="footer-column">
+                    <h3 class="footer-heading">Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('/resume') }}">Résumé</a></li>
+                        <li><a href="{{ url('/projects') }}">Projects</a></li>
+                        <li><a href="{{ url('/contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-heading">Developer</h3>
+                    <ul class="footer-links">
+                        <li><a href="{{ url('/api-docs') }}">API Documentation</a></li>
+                        <li><a href="{{ url('/api/v1/employment') }}" target="_blank">Employment API</a></li>
+                        <li><a href="{{ url('/api/v1/projects') }}" target="_blank">Projects API</a></li>
+                        <li><a href="{{ url('/api/v1/education') }}" target="_blank">Education API</a></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
-
-        <div class="footer-copyright">
-            <p>&copy; <?php echo date("Y"); ?> Michael Ragsdale. All Rights Reserved.</p>
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p>&copy; 1997&ndash;{{ date('Y') }} Michael Ragsdale</p>
+                <p class="copyright-milestones">
+                    Coding since 1997. RaggieSoft since 2008. This portfolio since 2023.
+                </p>
+            </div>
         </div>
-
     </div>
 </footer>

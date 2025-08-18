@@ -1,0 +1,23 @@
+.site-search-form {
+  display: flex;
+  align-items: center;
+}
+.search-input {
+  background-color: var(--background-color-alt);
+  border: 1px solid var(--border-color);
+  border-right: none;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  padding: 0.5rem 0.75rem;
+  color: var(--text-color);
+  width: 150px;
+  transition: width 0.3s ease-in-out;
+
+  &:focus {
+    width: 250px;
+    outline: none;
+  }
+}
+.search-button {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}

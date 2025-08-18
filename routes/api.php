@@ -2,24 +2,22 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\Api\V1\JobController;
+use App\Http\Controllers\Api\V1\ProjectController;
+use App\Http\Controllers\Api\V1\EducationController;
 
 /*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
+| Laravel automatically prefixes all routes in this file with '/api'.
+| We will add our own 'v1' prefix for versioning.
 |
 */
 
-// This is a default Laravel route for user authentication, which you can use later.
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->group(function () {
+    Route::get('/employment', [JobController::class, 'index']);
+    Route::get('/projects', [ProjectController::class, 'index']);
+    Route::get('/education', [EducationController::class, 'index']);
 });
-
-// This is the new route for our Salary Checker API.
-// It listens for POST requests to the '/api/salary-check' URL.
-Route::post('/salary-check', [SalaryController::class, 'check']);

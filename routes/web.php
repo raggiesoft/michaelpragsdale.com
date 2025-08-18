@@ -1,17 +1,20 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\EducationController;
 use App\Models\Job;
 use App\Models\Education;
 use App\Models\Project;
 
 /*
 |--------------------------------------------------------------------------
-| Public-Facing Routes
+| Public-Facing Web Routes
 |--------------------------------------------------------------------------
 */
 
@@ -41,10 +44,10 @@ Route::get('/resume', function () {
 Route::get('/projects', function () {
     $projects = Project::all();
     return view('pages.projects', [
-        'page_title'  => 'Projects',
+        'page_title'  => 'Projects - Michael Ragsdale',
         'body_class'  => 'page-projects has-sidebar',
         'page_script' => 'project-filter',
-        'sidebar'     => '_sidebar-default',
+        'sidebar'     => 'sidebars._sidebar-default',
         'projects'    => $projects
     ]);
 });
@@ -55,7 +58,7 @@ Route::get('/projects/{project_id}', function ($project_id) {
         'page_title'  => $project->name,
         'body_class'  => 'page-project-detail has-sidebar',
         'page_script' => 'live-code-embed',
-        'sidebar'     => '_sidebar-project-detail',
+        'sidebar'     => 'sidebars._sidebar-project-detail',
         'project'     => $project
     ]);
 });
@@ -66,7 +69,7 @@ Route::get('/employment', function () {
         'page_title'  => 'Employment History',
         'body_class'  => 'page-employment has-sidebar',
         'page_script' => 'employment-filter',
-        'sidebar'     => '_sidebar-employment',
+        'sidebar'     => 'sidebars._sidebar-employment',
         'jobs'        => $jobs
     ]);
 });
@@ -76,7 +79,7 @@ Route::get('/education', function () {
     return view('pages.education', [
         'page_title'      => 'Education & Certifications',
         'body_class'      => 'page-education has-sidebar',
-        'sidebar'         => '_sidebar-education',
+        'sidebar'         => 'sidebars._sidebar-education',
         'education_items' => $education_items
     ]);
 });
@@ -85,7 +88,7 @@ Route::get('/about-me', function () {
     return view('pages.about-me', [
         'page_title'  => 'About Michael Ragsdale',
         'body_class'  => 'page-about has-sidebar',
-        'sidebar'     => '_sidebar-about'
+        'sidebar'     => 'sidebars._sidebar-about'
     ]);
 });
 
@@ -95,47 +98,41 @@ Route::get('/contact', function () {
     return view('pages.contact', [
         'page_title'  => 'Contact Me',
         'body_class'  => 'page-contact has-sidebar',
-        'sidebar'     => '_sidebar-contact',
+        'sidebar'     => 'sidebars._sidebar-contact',
         'page_script' => 'contact-flow'
     ]);
 });
 
 Route::post('/contact', [ContactController::class, 'store']);
 
+Route::get('/api-docs', function () {
+    return view('pages.api-docs', [
+        'page_title' => 'API Documentation',
+        'body_class' => 'page-api-docs full-width',
+        'sidebar'    => ''
+    ]);
+});
+
 
 /*
 |--------------------------------------------------------------------------
-| Admin & Authentication Routes (from Laravel Breeze)
+| Admin & Authentication Routes
 |--------------------------------------------------------------------------
 */
 
-// --- BREEZE AUTHENTICATION & ADMIN ROUTES ---
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    // The main admin dashboard view (Read)
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('jobs', JobController::class);
+    Route::resource('projects', ProjectController::class);
+    Route::resource('education', EducationController::class);
+});
 
-    // Show the form to create a new job (Create)
-    Route::get('/dashboard/jobs/create', [DashboardController::class, 'create'])->name('jobs.create');
-
-    // Store the new job in the database (Create)
-    Route::post('/dashboard/jobs', [DashboardController::class, 'store'])->name('jobs.store');
-
-    // Show the form to edit an existing job (Update)
-    Route::get('/dashboard/jobs/{job}/edit', [DashboardController::class, 'edit'])->name('jobs.edit');
-
-    // Update the job in the database (Update)
-    Route::patch('/dashboard/jobs/{job}', [DashboardController::class, 'update'])->name('jobs.update');
-
-    // Delete a job (Delete)
-    Route::delete('/dashboard/jobs/{job}', [DashboardController::class, 'destroy'])->name('jobs.destroy');
-
-    // Breeze Profile Routes
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// This line includes all the other necessary authentication routes
-// (login, register, password reset, etc.) from a separate file.
 require __DIR__.'/auth.php';
