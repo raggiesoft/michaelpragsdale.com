@@ -7,7 +7,7 @@
 
     <script src="https://kit.fontawesome.com/ec060982d4.js" crossorigin="anonymous"></script>
 
-    @vite(['resources/scss/main.scss', 'resources/js/main.js'])
+    @vite(['resources/scss/app.scss', 'resources/js/app.js', 'resources/js/main.js'])
 </head>
 <body class="{{ $body_class ?? '' }}" data-page-script="{{ $page_script ?? '' }}">
 

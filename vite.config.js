@@ -5,7 +5,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css', // This should be the main CSS entry point
+                'resources/scss/app.scss', // This should be the main CSS entry point
                 'resources/js/app.js',
                 'resources/js/main.js',
             ],

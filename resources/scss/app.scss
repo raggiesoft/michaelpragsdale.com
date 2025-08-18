@@ -1,0 +1,9 @@
+// resources/scss/app.scss
+
+/* Import Tailwind's base, component, and utility styles */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import all of our custom SCSS styles */
+@import 'main.scss';
