@@ -1,0 +1,53 @@
+[
+  {
+    "institution": "Tidewater Community College",
+    "location": "Virginia Beach, VA",
+    "period": "In Progress",
+    "logo": "assets/images/education/tcc.jpg",
+    "categories": "degree information-technology",
+    "roles": [
+      {
+        "title": "Associate of Science, Information Technology",
+        "period": "Expected Graduation: 2026",
+        "description": {
+          "it": ["Core coursework in software engineering principles, database management, and web application development."],
+          "cs": ["Developed strong foundational skills in programming logic and data structures."]
+        }
+      }
+    ]
+  },
+  {
+    "institution": "Old Dominion University",
+    "location": "Norfolk, VA",
+    "period": "In Progress",
+    "logo": "assets/images/education/odu.jpg",
+    "categories": "degree leadership",
+    "roles": [
+      {
+        "title": "Bachelor of Science, Customized Studies in Leadership",
+        "period": "Continuing Studies",
+        "description": {
+          "it": ["Focus on organizational leadership, project management, and team dynamics."],
+          "cs": ["Coursework centered on effective communication, strategic planning, and ethical leadership."]
+        }
+      }
+    ]
+  },
+  {
+    "institution": "Wilson Workforce & Rehabilitation Center",
+    "location": "Fishersville, VA",
+    "period": "2009-2011",
+    "logo": "assets/images/education/wwrc.jpg",
+    "categories": "certification business",
+    "roles": [
+      {
+        "title": "Certificate, Business & Information Technology",
+        "period": "Completed: 2011",
+        "description": {
+          "it": ["Completed a comprehensive program covering business fundamentals and information technology applications."],
+          "cs": ["Gained practical skills in an office environment, including administration and technology usage."]
+        }
+      }
+    ]
+  }
+]

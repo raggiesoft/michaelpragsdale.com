@@ -1,0 +1,66 @@
+[
+  {
+    "id": "portfolio-website",
+    "name": "Custom Portfolio Website (This Site)",
+    "tagline": "A data-driven portfolio built from scratch.",
+    "is_featured": true,
+    "description": "A fully responsive, accessible, and themeable portfolio website built to showcase my skills in modern web development practices.",
+    "tech_stack": ["PHP", "SCSS", "JavaScript (ES6+)", "WCAG", "JSON"],
+    "live_url": "https://michaelpragsdale.com/",
+    "repo_url": "https://github.com/raggiesoft/michaelpragsdale.com"
+  },
+  {
+    "id": "docx-converter",
+    "name": "PowerShell DOCX to Markdown Converter",
+    "tagline": "An advanced script for automating writing workflows.",
+    "is_featured": true,
+    "short_description": "A sophisticated PowerShell script that uses Pandoc to convert structured Microsoft Word documents into a nested, multi-file Markdown project, perfect for personal wikis or static site generators.",
+    "tech_stack": ["PowerShell", "Pandoc", "YAML"],
+    "live_url": "/projects/docx-converter/",
+    "repo_url": "https://github.com/raggiesoft/powershell-docx-converter",
+    "details": {
+      "story": "To manage a large, multi-generational fictional universe, I needed an automated way to convert my primary writing files from Microsoft Word into a structured set of Markdown files suitable for my Obsidian vault and for web publishing. This script is the engine that powers that workflow.",
+      "features": [
+        "Processes single files or entire directories of .docx files.",
+        "Automatically creates a nested folder structure based on Heading 1, 2, and 3 styles (Book/Chapter/Part).",
+        "Parses YAML frontmatter from the source Word document and preserves it.",
+        "Intelligently generates 'previous' and 'next' navigation links in the frontmatter of each chapter.",
+        "Includes robust command-line parameters for configuration (-Padding, -PurgeOutputFolder) and a full help screen."
+      ],
+      "compatibility": [
+        "Windows PowerShell"
+      ],
+      "tech_stack": [
+        "PowerShell",
+        "Pandoc"
+      ]
+    }
+  },
+  {
+    "id": "store-trainer",
+    "name": "StoreTrainer",
+    "tagline": "A Utility for Launching PC Game Trainers",
+    "description": "A custom tool for creating shortcuts that launch two executables at once (e.g., a game and a trainer) and correctly sets the Working Directory.",
+    "tech_stack": ["Visual Basic 6", "Windows API"],
+    "live_url": "",
+    "repo_url": ""
+  },
+  {
+    "id": "raggiesoft-presentation-software",
+    "name": "RaggieSoft Presentation Software",
+    "tagline": "A custom web-based presentation tool.",
+    "description": "Engineered to overcome a mobility impairment during a university class, this web-based software featured separate presenter and audience views, enabling seamless presentation from an iPad before mainstream mobile solutions were common.",
+    "tech_stack": ["PHP", "HTML", "CSS"],
+    "live_url": "",
+    "repo_url": ""
+  },
+  {
+    "id": "responsive-photo-gallery",
+    "name": "Responsive Photo Gallery",
+    "tagline": "A JavaScript and CSS class project.",
+    "description": "Developed a responsive, web-based photo gallery for a class project, which included an intentionally broken element to demonstrate error handling and debugging skills.",
+    "tech_stack": ["HTML", "CSS", "JavaScript"],
+    "live_url": "",
+    "repo_url": ""
+  }
+]

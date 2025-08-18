@@ -1,0 +1,106 @@
+// resources/scss/components/_tags.scss
+
+// 1. Define a central color palette with descriptive names.
+$tech-color-palette: (
+  "php-purple": #777BB4,
+  "js-yellow": #F7DF1E,
+  "html-orange": #E34F26,
+  "css-blue": #1572B6,
+  "scss-pink": #CC6699,
+  "powershell-blue": #012456,
+  "windows-blue": #00A4EF,
+  "database-cyan": #008080,
+  "standard-gray": #4A4A4A,
+  "data-red": #CB171E,
+  "soft-skill-teal": #20B2AA,
+  "role-status-green": #28a745,
+  "education-purple": #6f42c1 // New color for academic types
+);
+
+// 2. Assign a color from the palette to each technology and category family.
+$tech-families: (
+  // Web Backend
+  "php": "php-purple",
+  "sql": "database-cyan",
+  // Web Frontend
+  "javascript": "js-yellow",
+  "html": "html-orange",
+  "css": "css-blue",
+  "scss": "scss-pink",
+  // Automation & Tooling
+  "powershell": "powershell-blue",
+  "pandoc": "standard-gray",
+  "git-github": "standard-gray",
+  // Windows Development
+  "visual-basic-6": "windows-blue",
+  "windows-api": "windows-blue",
+  "c-sharp": "windows-blue",
+  // Web Technologies & Concepts
+  "web-development": "html-orange",
+  "database-management": "database-cyan",
+  "software-engineering": "powershell-blue",
+  // Standards & Data Formats
+  "wcag": "standard-gray",
+  "section-508": "standard-gray",
+  "json": "data-red",
+  "yaml": "data-red",
+  // Professional Skills & Roles
+  "leadership": "soft-skill-teal",
+  "team-training": "soft-skill-teal",
+  "communication": "soft-skill-teal",
+  "problem-solving": "soft-skill-teal",
+  "customer-service": "soft-skill-teal",
+  "retail": "soft-skill-teal",
+  "seasonal": "soft-skill-teal",
+  "business": "soft-skill-teal",
+  "developer": "powershell-blue",
+  "information-technology": "powershell-blue",
+  "behind-the-scenes": "standard-gray",
+  "data-entry": "standard-gray",
+  // Role & Education Status/Type
+  "volunteer": "role-status-green",
+  "internship": "role-status-green",
+  "current-employer": "standard-gray",
+  "degree": "education-purple",
+  "certification": "education-purple"
+);
+
+// 3. Define the base style for all tags, including a fallback "error" style.
+.tag {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+
+  // --- Fallback style for undefined tags ---
+  background-color: #ff00ff; // Bright magenta
+  color: #ffffff;
+  border-color: #000000;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+// 4. Loop through the families map to generate styles that OVERRIDE the fallback.
+@each $tech, $color-name in $tech-families {
+  $color: map-get($tech-color-palette, $color-name);
+
+  .tag-#{$tech} {
+    // --- Light Mode Styles ---
+    background-color: rgba($color, 0.1);
+    color: darken(saturate($color, 15%), 25%);
+    border-color: rgba($color, 0.3);
+    text-shadow: none; // Reset the text shadow for defined tags
+
+    // --- Dark Mode Overrides ---
+    @media (prefers-color-scheme: dark) {
+      background-color: rgba($color, 0.25);
+      color: lighten(saturate($color, 20%), 45%);
+      border-color: rgba(lighten($color, 20%), 0.5);
+    }
+  }
+}
