@@ -36,17 +36,20 @@
 
         <?php // This wrapper holds all the right-aligned actions. ?>
         <div class="header-actions">
-            <x-main-menu />
-            <form action="{{ url('/search') }}" method="GET" class="site-search-form">
-                <input type="search" name="q" placeholder="Search..." class="search-input" required>
-                <button type="submit" class="search-button" aria-label="Submit Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
-            <button class="mobile-nav-toggle" aria-controls="site-navigation" aria-expanded="false" type="button" aria-label="Toggle Navigation">
-                <span class="hamburger-icon"><i class="fa-duotone fa-bars fa-fw"></i></span>
-            </button>
-        </div>
+    
+        {{-- Loop through the navigation blocks provided by the Composer --}}
+        @foreach ($navigationBlocks as $block)
+            @if ($block['type'] === 'buttons')
+                @include('layouts.partials.navigation._button-controls', ['nav_items' => $block['items']])
+            @else
+                @include('layouts.partials.navigation._main-menu', ['nav_items' => $block['items']])
+            @endif
+        @endforeach
+        
+        <button class="mobile-nav-toggle" aria-controls="site-navigation" aria-expanded="false" type="button" aria-label="Toggle Navigation">
+            <span class="hamburger-icon"><i class="fa-duotone fa-bars fa-fw"></i></span>
+        </button>
+    </div>
 
     </div>
 </header>

@@ -37,17 +37,18 @@
 
         <div class="auto-grid" id="project-list">
             @forelse ($projects as $project)
-                <div
-                    class="card clickable-card @if($project->is_featured) card-featured @endif"
+                <div 
+                    class="card clickable-card @if($project->is_featured) card-featured @endif" 
                     data-link="{{ url('/projects/' . $project->project_id) }}"
                     data-category="{{ strtolower(implode(' ', $project->tech_stack ?? [])) }}"
                     role="link"
                     tabindex="0">
-
+                    
                     <div class="card-body">
                         <h2 class="card-title h3">{{ $project->name }}</h2>
+                        {{-- Use the null coalescing operator (??) as a fallback --}}
                         <p class="card-text">{{ $project->short_description ?? $project->description }}</p>
-
+                        
                         @if (!empty($project->tech_stack))
                             <ul class="project-tech-list">
                                 @foreach ($project->tech_stack as $tech)

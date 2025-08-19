@@ -10,7 +10,7 @@
             '/education' => ['text' => 'Education'],
             '/employment' => ['text' => 'Employment'],
             'separator-1' => '---',
-            '/about/salary' => ['text' => 'Salary Checker']
+            '/about-me/salary' => ['text' => 'Salary Checker']
         ]],
         '/contact' => ['text' => 'Contact', 'icon' => 'envelope'],
         'https://www.linkedin.com/in/michael-ragsdale-raggiesoft/' => ['text' => 'LinkedIn', 'icon' => 'linkedin', 'icon_brand' => true, 'is_external' => true]

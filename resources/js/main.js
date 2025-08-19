@@ -296,7 +296,10 @@ function initContactFlow() {
         submitButton.disabled = true;
 
         try {
-            const response = await fetch('/api/check-salary.php', { method: 'POST', body: new FormData(salaryForm) });
+                const response = await fetch('/api/v1/salary-check', {
+                method: 'POST',
+                body: new FormData(salaryForm)
+            });
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const result = await response.json();
 
@@ -388,14 +391,13 @@ function initSalaryChecker() {
 
         try {
             // Fetch from our new Laravel API route
-            const response = await fetch('/api/salary-check', {
+            const response = await fetch('/api/v1/salary-check', {
                 method: 'POST',
                 body: formData,
                 headers: {
                     'Accept': 'application/json', // Important for Laravel validation
                 },
             });
-
             const result = await response.json();
 
             if (!response.ok) {
