@@ -1,20 +1,38 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
+/*
+|--------------------------------------------------------------------------
+| Define The Application's Base Path
+|--------------------------------------------------------------------------
+|
+| This is the absolute path to your main Laravel application folder,
+| which lives one level above the public_html directory.
+|
+*/
+$app_path = '/home/pl3hb1hv1mjf/website-laravel';
 
-define('LARAVEL_START', microtime(true));
 
-// Determine if the application is in maintenance mode...
-if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
-    require $maintenance;
-}
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+*/
+require $app_path . '/vendor/autoload.php';
 
-// Register the Composer autoloader...
-require __DIR__.'/../vendor/autoload.php';
 
-// Bootstrap Laravel and handle the request...
-/** @var Application $app */
-$app = require_once __DIR__.'/../bootstrap/app.php';
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+*/
+$app = require_once $app_path . '/bootstrap/app.php';
 
-$app->handleRequest(Request::capture());
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+);
+
+$response->send();
+
+$kernel->terminate($request, $response);
