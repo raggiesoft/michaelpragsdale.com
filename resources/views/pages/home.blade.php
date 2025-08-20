@@ -1,8 +1,7 @@
-{{-- This tells Blade to use our main layout file as a template --}}
 @extends('layouts.app')
 
-{{-- This is the main content section that gets injected into the layout --}}
 @section('content')
+    {{-- Hero Section --}}
     <div class="hero-section">
         <div class="container">
             <div class="hero-content">
@@ -22,4 +21,58 @@
             </div>
         </div>
     </div>
+
+    {{-- About Me Snippet --}}
+    <section class="home-about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="{{ asset('assets/images/michael-ragsdale-profile.jpg') }}" alt="A professional headshot of Michael Ragsdale.">
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">A Lifelong Passion for Building</h2>
+                    <p>I wrote my first line of HTML in 1997, and I've been fascinated with building for the web ever since. My journey has taken me from classic Visual Basic applications to modern, database-driven sites. This portfolio is a living document of that journey, showcasing my commitment to clean code, accessible design, and continuous learning.</p>
+                    <a href="{{ url('about-me') }}" class="button button-primary">More About Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- Featured Work Section --}}
+    <section class="home-featured-work">
+        <div class="container">
+            <h2 class="section-title">Featured Work</h2>
+            <div class="auto-grid">
+                @forelse ($featuredProjects as $project)
+                    <div
+                        class="card clickable-card"
+                        data-link="{{ url('/projects/' . $project->project_id) }}"
+                        role="link"
+                        tabindex="0">
+
+                        <div class="card-body">
+                            <h3 class="card-title h4">{{ $project->name }}</h3>
+                            <p class="card-text">{{ $project->short_description ?? $project->description }}</p>
+
+                            @if (!empty($project->tech_stack))
+                                <ul class="project-tech-list">
+                                    @foreach ($project->tech_stack as $tech)
+                                        @php
+                                            $slug = strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $tech));
+                                        @endphp
+                                        <li><span class="tag tag-{{ $slug }}">{{ $tech }}</span></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                    </div>
+                @empty
+                    <p>No featured projects to display at this time.</p>
+                @endforelse
+            </div>
+            <div class="section-cta">
+                <a href="{{ url('projects') }}" class="button button-outline-secondary">View All Projects</a>
+            </div>
+        </div>
+    </section>
 @endsection

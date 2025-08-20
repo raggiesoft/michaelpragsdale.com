@@ -19,6 +19,7 @@ use App\Models\Project;
 */
 
 Route::get('/', function () {
+    // The View Composer now handles fetching the data automatically.
     return view('pages.home', [
         'page_title' => 'Home - Michael Ragsdale',
         'body_class' => 'page-home full-width',

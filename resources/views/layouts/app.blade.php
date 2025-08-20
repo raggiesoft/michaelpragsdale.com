@@ -16,10 +16,10 @@
     <div class="page-container">
 
         @include('layouts.partials._header')
-
+            
         <div class="site-body-wrapper">
             @if (!empty($sidebar))
-                @include('layouts.partials.sidebars.' . $sidebar)
+                @include('layouts.partials' . $sidebar)
             @endif
             <main class="site-content" id="content">
                 @yield('content')

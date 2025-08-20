@@ -17,58 +17,91 @@
  * along with this program; if not, see <https://www.gnu.org/licenses/>.
  */
 
-.page-home {
+// resources/scss/pages/_home.scss
 
-  // --- Hero Section Styling ---
-  .home-hero {
-    background-color: var(--mpr-color-raggiesoft-blue-900);
-    // This color will apply to paragraphs and other elements that don't have
-    // a more specific color rule.
-    color: #ffffff; 
+.page-home {
+  .hero-section {
+    display: flex;
+    align-items: center;
     padding: var(--spacing-xxl) 0;
     text-align: center;
+    background-color: var(--background-color-alt);
+  }
 
-    .hero-title {
-      // By adding the color here, this rule becomes more specific
-      // than the general h1 rule in our base styles.
-      color: #ffffff; // <<< THE FIX
-      font-size: 3.5rem;
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: var(--spacing-md);
-    }
+  .hero-content {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    .hero-subtitle {
-      // This was already correctly styled with a specific light color.
-      color: var(--mpr-color-raggiesoft-blue-100);
-      font-size: 1.25rem;
-      font-weight: 300;
-      max-width: 65ch;
-      margin: 0 auto var(--spacing-xl) auto;
-    }
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0;
+  }
 
-    .hero-cta .button {
-      margin: 0 var(--spacing-sm);
-    }
-    
-    // This rule is also fine as it targets the button specifically.
-    .button-outline-light {
-      --color-light: #ffffff;
-      border-color: rgba(255, 255, 255, 0.5);
-      color: #ffffff;
+  .hero-subtitle {
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    font-weight: 300;
+    color: var(--text-color-muted);
+    margin-bottom: var(--spacing-lg);
+  }
 
-      &:hover, 
-      &:focus-visible {
-        background-color: #ffffff;
-        border-color: #ffffff;
-        color: var(--mpr-color-raggiesoft-blue-900);
-      }
+  .hero-text {
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+  }
+
+  .hero-skills {
+    margin-top: var(--spacing-xl);
+    .tech-tags {
+      justify-content: center;
     }
   }
 
-  // --- Featured Work Section Styling ---
+  .home-about {
+    padding: var(--spacing-xxl) 0;
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+      text-align: left;
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 2fr;
+      }
+    }
+    .about-image img {
+      border-radius: 50%;
+      max-width: 250px;
+      margin: 0 auto;
+    }
+  }
+
   .home-featured-work {
     padding: var(--spacing-xxl) 0;
     text-align: center;
+    background-color: var(--background-color-alt);
+  }
+
+  .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+  }
+
+  .section-cta {
+      margin-top: var(--spacing-xl);
   }
 }
