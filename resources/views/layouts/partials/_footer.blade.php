@@ -18,23 +18,23 @@
                 <div class="footer-column">
                     <h3 class="footer-heading">Navigation</h3>
                     <ul class="footer-links">
-                        <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="{{ route('resume') }}">Résumé</a></li>
-                        <li><a href="{{ route('projects.index') }}">Projects</a></li>
-                        <li><a href="{{ route('contact') }}">Contact</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('/resume') }}">Résumé</a></li>
+                        <li><a href="{{ url('/projects') }}">Projects</a></li>
+                        <li><a href="{{ url('/contact') }}">Contact</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
                     <h3 class="footer-heading">Developer</h3>
                     <ul class="footer-links">
-                        <li><a href="{{ route('api-docs') }}">API Documentation</a></li>
+                        <li><a href="{{ url('/api-docs') }}">API Documentation</a></li>
                         <li><a href="https://status.michaelpragsdale.com" target="_blank">Server Status</a></li>
                         <li><a href="https://mail.michaelpragsdale.com" target="_blank">Webmail</a></li>
                         <li class="menu-separator" role="separator"></li>
-                        <li><a href="{{ route('api.v1.employment.index') }}" target="_blank">Employment API</a></li>
-                        <li><a href="{{ route('api.v1.projects.index') }}" target="_blank">Projects API</a></li>
-                        <li><a href="{{ route('api.v1.education.index') }}" target="_blank">Education API</a></li>
+                        <li><a href="{{ url('/api/v1/employment') }}" target="_blank">Employment API</a></li>
+                        <li><a href="{{ url('/api/v1/projects') }}" target="_blank">Projects API</a></li>
+                        <li><a href="{{ url('/api/v1/education') }}" target="_blank">Education API</a></li>
                     </ul>
                 </div>
             </div>
