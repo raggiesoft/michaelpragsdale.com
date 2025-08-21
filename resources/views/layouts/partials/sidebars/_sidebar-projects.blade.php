@@ -21,9 +21,4 @@
             </li>
         </ul>
     </div>
-    <div class="widget">
-        <h3 class="widget-title">Have a Project in Mind?</h3>
-        <p>If you're interested in collaborating or have a project you'd like to discuss, please feel free to get in touch.</p>
-        <a href="{{ url('/contact') }}" class="button button-primary button-sm">Contact Me</a>
-    </div>
 </aside>
