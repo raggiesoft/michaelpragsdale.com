@@ -19,7 +19,7 @@ class SalaryController extends Controller
         return view('pages.salary', [
             'page_title'  => 'Salary Checker',
             'body_class'  => 'page-salary-checker has-sidebar',
-            'sidebar'     => '_sidebar-about-me',
+            'sidebar'     => 'sidebars._sidebar-about-me',
             'page_script' => 'salary-checker'
         ]);
     }
