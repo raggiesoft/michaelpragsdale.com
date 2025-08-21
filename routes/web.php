@@ -42,16 +42,17 @@ Route::get('/resume', function () {
     ]);
 });
 
-Route::get('/projects', function () {
-    $projects = Project::all();
-    return view('pages.projects', [
-        'page_title'  => 'Projects - Michael Ragsdale',
-        'body_class'  => 'page-projects has-sidebar',
-        'page_script' => 'project-filter',
-        'sidebar'     => 'sidebars._sidebar-default',
-        'projects'    => $projects
+Route::get('/projects/{project_slug}', function ($project_slug) {
+    $projects = json_decode(file_get_contents(resource_path('json/projects.json')), true);
+    $project = collect($projects)->firstWhere('slug', $project_slug);
+    if (!$project) {
+        abort(404);
+    }
+    return view('pages.projects.detail', [
+        'project' => $project,
+        'sidebar' => 'sidebars._sidebar-project-detail' // This already uses a custom sidebar
     ]);
-});
+})->name('projects.show');
 
 Route::get('/projects/{project_id}', function ($project_id) {
     $project = Project::where('project_id', $project_id)->firstOrFail();
