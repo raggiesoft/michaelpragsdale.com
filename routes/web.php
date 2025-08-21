@@ -48,7 +48,7 @@ Route::get('/projects', function () {
         'page_title'  => 'Projects - Michael Ragsdale',
         'body_class'  => 'page-projects has-sidebar',
         'page_script' => 'project-filter',
-        'sidebar'     => 'sidebars._sidebar-projects',
+        'sidebar'     => 'sidebars._sidebar-default',
         'projects'    => $projects
     ]);
 });
