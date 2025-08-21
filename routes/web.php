@@ -48,7 +48,7 @@ Route::get('/projects', function () {
         'page_title'  => 'Projects - Michael Ragsdale',
         'body_class'  => 'page-projects has-sidebar',
         'page_script' => 'project-filter',
-        'sidebar'     => 'sidebars._sidebar-default',
+        'sidebar'     => '',
         'projects'    => $projects
     ]);
 });
@@ -89,7 +89,7 @@ Route::get('/about-me', function () {
     return view('pages.about-me', [
         'page_title'  => 'About Michael Ragsdale',
         'body_class'  => 'page-about has-sidebar',
-        'sidebar'     => 'sidebars._sidebar-about'
+        'sidebar'     => 'sidebars._sidebar-about-me'
     ]);
 });
 
