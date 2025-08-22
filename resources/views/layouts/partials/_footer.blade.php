@@ -32,7 +32,11 @@
                         <li><a href="{{ url('/api/v1/employment') }}" target="_blank">Employment API</a></li>
                         <li><a href="{{ url('/api/v1/projects') }}" target="_blank">Projects API</a></li>
                         <li><a href="{{ url('/api/v1/education') }}" target="_blank">Education API</a></li>
-                        <li class="menu-separator" role="separator"></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-heading">Administrative</h3>
+                    <ul class="footer-links">
                         <li><a href="https://bold-firefly.raggiesoft.com" target="_blank">RaggieSoft Bold Firefly</a></li>
                     </ul>
                 </div>
