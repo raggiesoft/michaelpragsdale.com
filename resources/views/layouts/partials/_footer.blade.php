@@ -29,12 +29,11 @@
                     <h3 class="footer-heading">Developer</h3>
                     <ul class="footer-links">
                         <li><a href="{{ url('/api-docs') }}">API Documentation</a></li>
-                        <li><a href="https://status.michaelpragsdale.com" target="_blank">Server Status</a></li>
-                        <li><a href="https://mail.michaelpragsdale.com" target="_blank">Webmail</a></li>
-                        <li class="menu-separator" role="separator"></li>
                         <li><a href="{{ url('/api/v1/employment') }}" target="_blank">Employment API</a></li>
                         <li><a href="{{ url('/api/v1/projects') }}" target="_blank">Projects API</a></li>
                         <li><a href="{{ url('/api/v1/education') }}" target="_blank">Education API</a></li>
+                        <li class="menu-separator" role="separator"></li>
+                        <li><a href="https://bold-firefly.raggiesoft.com" target="_blank">RaggieSoft Bold Firefly</a></li>
                     </ul>
                 </div>
             </div>
