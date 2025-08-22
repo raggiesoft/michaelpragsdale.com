@@ -9,26 +9,19 @@
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js', 'resources/js/main.js'])
 </head>
-<body class="{{ $body_class ?? '' }}" data-page-script="{{ $page_script ?? '' }}">
+    <body class="font-sans antialiased {{ $body_class ?? '' }}">
+        <div class="min-h-screen bg-gray-100">
 
-    <a href="#content" class="skip-link">Skip to Main Content</a>
+            {{-- This includes the main site header --}}
+            @include('layouts.partials._header')
 
-    <div class="page-container">
-
-        @include('layouts.partials._header')
-
-        <div class="site-body-wrapper">
-            @if (!empty($sidebar))
-                @include('layouts.partials.' . $sidebar)
-            @endif
-            <main class="site-content" id="content">
-                @yield('content')
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
             </main>
+
+            {{-- This includes the main site footer --}}
+            @include('layouts.partials._footer')
         </div>
-
-        @include('layouts.partials._footer')
-
-    </div>
-
-</body>
+    </body>
 </html>
