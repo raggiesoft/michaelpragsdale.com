@@ -4,7 +4,7 @@
         <x-dropdown align="right" width="48">
             <x-slot name="trigger">
                 <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                    {{-- Use optional() helper to prevent errors on stale sessions --}}
+                    {{-- Use optional() helper to safely get the user's name, even if the session is stale --}}
                     <div>{{ optional(Auth::user())->name }}</div>
 
                     <div class="ml-1">
@@ -41,4 +41,3 @@
         <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
     @endif
 @endauth
-
