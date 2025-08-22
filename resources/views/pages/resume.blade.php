@@ -1,16 +1,10 @@
 @extends('layouts.app')
 
 @php
-    // It's good practice to define helper functions at the top of the Blade file if they are specific to this view.
-    if (!function_exists('get_history_item_priority_class')) {
-        function get_history_item_priority_class($categories_string) {
-            if (str_contains($categories_string, 'current-employer')) return 'is-current';
-            if (str_contains($categories_string, 'volunteer') || str_contains($categories_string, 'internship')) return 'is-highlighted';
-            return 'is-default';
-        }
-    }
+    // Revert to fetching data directly from the JSON file
+    $projects = json_decode(file_get_contents(resource_path('json/projects.json')), true);
+    $featuredProjects = collect($projects)->where('is_featured', true)->take(3);
 @endphp
-
 @section('content')
     <main class="site-content" id="content">
         <div class="container">
