@@ -15,16 +15,18 @@ Route::view('/api-docs', 'pages.api-docs')->name('api-docs');
 
 // --- Projects (Reverted to read from JSON) ---
 Route::get('/projects', function () {
-    $projects = json_decode(file_get_contents(resource_path('json/projects.json')), true);
+    $projectsArray = json_decode(file_get_contents(resource_path('json/projects.json')), true);
     return view('pages.projects', [
-        'projects' => $projects,
+        // Convert the array to a Laravel Collection before passing it to the view
+        'projects' => collect($projectsArray),
         'sidebar' => 'sidebars._sidebar-projects'
     ]);
 })->name('projects.index');
 
 Route::get('/projects/{project_slug}', function ($project_slug) {
     $projects = json_decode(file_get_contents(resource_path('json/projects.json')), true);
-    $project = collect($projects)->firstWhere('id', $project_slug); // Use 'id' to match JSON structure
+    // The firstWhere method on a collection returns a single item (an array in this case), which is correct.
+    $project = collect($projects)->firstWhere('id', $project_slug);
     if (!$project) {
         abort(404);
     }
