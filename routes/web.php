@@ -6,33 +6,74 @@ use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\SearchController;
 
 // --- Static Pages ---
-Route::view('/', 'pages.home')->name('home');
-Route::view('/resume', 'pages.resume')->name('resume');
-Route::view('/about-me', 'pages.about-me')->name('about-me');
-Route::view('/education', 'pages.education')->name('education');
-Route::view('/employment', 'pages.employment')->name('employment');
-Route::view('/api-docs', 'pages.api-docs')->name('api-docs');
+Route::get('/', function () {
+    return view('pages.home', [
+        'page_title' => 'Home',
+        'body_class' => 'page-home full-width',
+    ]);
+})->name('home');
+
+Route::get('/resume', function () {
+    return view('pages.resume', [
+        'page_title' => 'Résumé',
+        'body_class' => 'page-resume',
+    ]);
+})->name('resume');
+
+Route::get('/about-me', function () {
+    return view('pages.about-me', [
+        'page_title' => 'About Me',
+        'body_class' => 'page-about-me has-sidebar',
+        'sidebar' => 'sidebars._sidebar-about-me'
+    ]);
+})->name('about-me');
+
+Route::get('/education', function () {
+    return view('pages.education', [
+        'page_title' => 'Education',
+        'body_class' => 'page-education has-sidebar',
+        'sidebar' => 'sidebars._sidebar-education'
+    ]);
+})->name('education');
+
+Route::get('/employment', function () {
+    return view('pages.employment', [
+        'page_title' => 'Employment History',
+        'body_class' => 'page-employment has-sidebar',
+        'sidebar' => 'sidebars._sidebar-employment'
+    ]);
+})->name('employment');
+
+Route::get('/api-docs', function () {
+    return view('pages.api-docs', [
+        'page_title' => 'API Documentation',
+        'body_class' => 'page-api-docs',
+    ]);
+})->name('api-docs');
+
 
 // --- Projects (Reverted to read from JSON) ---
 Route::get('/projects', function () {
     $projectsArray = json_decode(file_get_contents(resource_path('json/projects.json')), true);
     return view('pages.projects', [
-        // Convert the array to a Laravel Collection before passing it to the view
         'projects' => collect($projectsArray),
-        'sidebar' => 'sidebars._sidebar-projects'
+        'sidebar' => 'sidebars._sidebar-projects',
+        'page_title' => 'Projects',
+        'body_class' => 'page-projects has-sidebar',
     ]);
 })->name('projects.index');
 
 Route::get('/projects/{project_slug}', function ($project_slug) {
     $projects = json_decode(file_get_contents(resource_path('json/projects.json')), true);
-    // The firstWhere method on a collection returns a single item (an array in this case), which is correct.
     $project = collect($projects)->firstWhere('id', $project_slug);
     if (!$project) {
         abort(404);
     }
     return view('pages.projects.detail', [
         'project' => $project,
-        'sidebar' => 'sidebars._sidebar-project-detail'
+        'sidebar' => 'sidebars._sidebar-project-detail',
+        'page_title' => $project['name'],
+        'body_class' => 'page-project-detail has-sidebar',
     ]);
 })->name('projects.show');
 
