@@ -41,8 +41,8 @@
 .has-sidebar {
     .site-body-wrapper {
         display: grid;
-        // Updated: Give main content flexible space and sidebar a fixed width.
-        grid-template-columns: 1fr 320px;
+        // Corrected: The sidebar comes first in the HTML, so its width must be defined first.
+        grid-template-columns: 320px 1fr;
         gap: 2rem;
         align-items: start;
     }
@@ -55,12 +55,12 @@
         }
 
         .site-content {
-            // Ensure main content appears first on mobile.
+            // On mobile, the main content is now the second element, so it needs order: 1.
             order: 1;
         }
 
         .sidebar {
-            // Ensure sidebar appears after main content on mobile.
+            // On mobile, the sidebar is the first element, so it needs order: 2 to appear after.
             order: 2;
             margin-top: 2rem;
         }
