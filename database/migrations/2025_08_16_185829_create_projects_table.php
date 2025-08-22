@@ -1,4 +1,5 @@
 <?php
+// database/migrations/2025_08_16_185829_create_projects_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -9,23 +10,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-public function up(): void
-{
-    Schema::create('projects', function (Blueprint $table) {
-        $table->id();
-        $table->string('project_id')->unique();
-        $table->string('name');
-        $table->string('tagline');
-        $table->boolean('is_featured')->default(false);
-        $table->text('description')->nullable();
-        $table->text('short_description')->nullable();
-        $table->json('tech_stack'); // Use the JSON column type
-        $table->string('live_url')->nullable();
-        $table->string('repo_url')->nullable();
-        $table->json('details')->nullable(); // Use the JSON column type
-        $table->timestamps();
-    });
-}
+    public function up(): void
+    {
+        Schema::create('projects', function (Blueprint $table) {
+            $table->string('id')->primary();
+            $table->string('name');
+            $table->string('tagline');
+            $table->boolean('is_featured')->default(false);
+            $table->text('short_description')->nullable();
+            $table->string('url')->nullable(); // <-- This line has been added
+            $table->string('repo_url')->nullable();
+            $table->string('live_url')->nullable();
+            $table->json('details')->nullable();
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.
