@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\SalaryController;
-use App\Http\Controllers\SearchController;
+use Illuminate-Support-Facades-Route;
+use App-Http-Controllers-ContactController;
+use App-Http-Controllers-SalaryController;
+use App-Http-Controllers-SearchController;
 
 // --- Static Pages ---
 Route::get('/', function () {
@@ -52,7 +52,7 @@ Route::get('/api-docs', function () {
 })->name('api-docs');
 
 
-// --- Projects (Reverted to read from JSON) ---
+// --- Projects (Reading from JSON) ---
 Route::get('/projects', function () {
     $projectsArray = json_decode(file_get_contents(resource_path('json/projects.json')), true);
     return view('pages.projects', [
@@ -96,13 +96,14 @@ Route::prefix('api/v1')->name('api.v1.')->group(function () {
     Route::get('/education', [\App\Http\Controllers\Api\V1\EducationController::class, 'index'])->name('education.index');
 });
 
-// --- Admin & Auth Routes ---
-require __DIR__.'/auth.php';
+// --- Admin & Auth Routes (DISABLED) ---
+// require __DIR__.'/auth.php';
 
-Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+// Route::middleware(['auth'])->prefix('admin')->group(function () {
+//     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::resource('education', \App\Http\Controllers\Admin\EducationController::class, ['as' => 'admin']);
-    Route::resource('jobs', \App\Http\Controllers\Admin\JobController::class, ['as' => 'admin']);
-    Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class, ['as' => 'admin']);
-});
+//     Route::resource('education', \App\Http\Controllers\Admin\EducationController::class, ['as' => 'admin']);
+//     Route::resource('jobs', \App\Http\Controllers\Admin\JobController::class, ['as' => 'admin']);
+//     Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class, ['as' => 'admin']);
+// });
+
