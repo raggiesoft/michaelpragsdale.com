@@ -1,245 +1,83 @@
-@extends('layouts.app')
-
 @php
-    // Revert to fetching data directly from the JSON file
+    // Fetch data from JSON and convert to a Collection
     $projects = json_decode(file_get_contents(resource_path('json/projects.json')), true);
     $featuredProjects = collect($projects)->where('is_featured', true)->take(3);
 @endphp
-@section('content')
-    <main class="site-content" id="content">
-        <div class="container">
 
-            <section class="resume-contact-info">
-                <h1 class="resume-name">Michael Ragsdale</h1>
-                <ul class="contact-links">
-                    <li><i class="fa-duotone fa-location-dot fa-fw"></i> Norfolk, VA (Open to Remote in VA)</li>
-                    <li><a href="{{ url('contact') }}"><i class="fa-duotone fa-calendar-days fa-fw"></i> Schedule Interview</a></li>
-                    <li><a href="https://www.linkedin.com/in/michael-ragsdale-raggiesoft/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin fa-fw"></i> LinkedIn</a></li>
-                    <li><a href="https://github.com/raggiesoft" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github fa-fw"></i> GitHub</a></li>
-                </ul>
-            </section>
-
-            <header class="page-header">
-                <h2>Interactive Résumé</h2>
-                <p class="lead">An overview of my professional background. Use the view toggles and filters to tailor the content.</p>
-            </header>
-
-            <section class="resume-section download-links">
-                <div class="download-group">
-                    <h3 class="download-title">Information Technology Focus</h3>
-                    <div class="download-buttons">
-                        <a href="https://michaelpragsdale.com/resume/mragsdale-info-tech.pdf" class="button button-primary" target="_blank" rel="noopener"><i class="fa-duotone fa-file-pdf fa-fw"></i> Download PDF</a>
-                        <a href="https://michaelpragsdale.com/resume/mragsdale-info-tech.docx" class="button button-outline-secondary" target="_blank" rel="noopener"><i class="fa-duotone fa-file-word fa-fw"></i> Download DOCX</a>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <h3 class="download-title">Customer Service Focus</h3>
-                    <div class="download-buttons">
-                        <a href="https://michaelpragsdale.com/resume/mragsdale-customer-service.pdf" class="button button-primary" target="_blank" rel="noopener"><i class="fa-duotone fa-file-pdf fa-fw"></i> Download PDF</a>
-                        <a href="https://michaelpragsdale.com/resume/mragsdale-customer-service.docx" class="button button-outline-secondary" target="_blank" rel="noopener"><i class="fa-duotone fa-file-word fa-fw"></i> Download DOCX</a>
-                    </div>
-                </div>
-            </section>
-
-            <div class="view-toggle filter-tabs">
-                <span>View:</span>
-                <button class="button active" data-view="it">Information Technology</button>
-                <button class="button" data-view="cs">Customer Service</button>
+<x-app-layout :page_title="'Résumé'" :body_class="'page-resume'">
+    <div class="container">
+        <div class="resume-header">
+            <h1>Michael Ragsdale</h1>
+            <p class="lead">Senior Web Developer</p>
+            <div class="resume-contact">
+                <span><i class="fa-duotone fa-fw fa-location-dot"></i> Virginia Beach, VA</span>
+                <span><i class="fa-duotone fa-fw fa-envelope"></i> <a href="mailto:hireme@michaelpragsdale.com">hireme@michaelpragsdale.com</a></span>
+                <span><i class="fa-brands fa-fw fa-linkedin"></i> <a href="https://www.linkedin.com/in/michael-ragsdale-raggiesoft/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></span>
             </div>
-
-            {{-- Professional Summary Sections --}}
-            <section class="resume-section resume-view-it">
-                <h2>Professional Summary</h2>
-                <p>A versatile professional with a proven background in customer-facing roles, team leadership, and operational management. Actively building on a practical foundation in web development and technical problem-solving while pursuing degrees in Information Technology and Leadership. Eager to apply a unique blend of strong communication skills and technical aptitude to an entry-level IT role.</p>
-            </section>
-            <section class="resume-section resume-view-cs is-hidden">
-                <h2>Professional Summary</h2>
-                <p>A versatile professional with a proven background in customer-facing roles, team leadership, and operational management. Actively building on a practical foundation in web development and technical problem-solving while pursuing degrees in Information Technology and Leadership. Eager to apply a unique blend of strong communication skills and technical aptitude to a customer service or entry-level IT role.</p>
-            </section>
-
-            {{-- Skills Sections --}}
-            <section class="resume-section resume-view-it">
-                <h2>Technical Skills</h2>
-                <div class="skills-list">
-                    <div class="skill-category">
-                        <h3>Technical</h3>
-                        <ul><li>PHP, HTML, CSS, JavaScript, Bootstrap, SQL (MariaDB), REST APIs, Unix/Linux, WCAG, ARIA, Section 508, Deque axe, InstallAware, Inno Setup, NSIS.</li></ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Professional</h3>
-                        <ul><li>Team Supervision, Customer Service, Front-Desk Operations, Peer Guidance, Problem-Solving, Communication.</li></ul>
-                    </div>
-                </div>
-            </section>
-            <section class="resume-section resume-view-cs is-hidden">
-                <h2>Core Competencies</h2>
-                <div class="skills-list">
-                    <div class="skill-category">
-                        <h3>Customer Service & Leadership</h3>
-                        <ul><li>Team Supervision, Front-Desk Operations, De-escalation & Conflict Resolution, Customer-Centric Problem Solving, Peer Guidance & Training, Cash Handling & Closing Reports.</li></ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Communication & Administration</h3>
-                        <ul><li>Interpersonal Communication, Document Creation & Management (Google Drive), Administrative Support, Database Management (ActiveNet).</li></ul>
-                    </div>
-                     <div class="skill-category">
-                        <h3>Technical Acumen</h3>
-                        <ul><li>Proficient with Customer Relationship Management (CRM) systems, Learning Management Systems (LMS), and knowledgeable in web accessibility standards (WCAG/Section 508) for creating user-friendly documents.</li></ul>
-                    </div>
-                </div>
-            </section>
-
-            {{-- Technical Projects Section --}}
-            <section class="resume-section resume-view-it">
-                <h2>Technical Projects</h2>
-                <div class="auto-grid" id="project-list">
-                    @forelse ($projects as $project)
-                        <div
-                            class="card clickable-card @if($project->is_featured) card-featured @endif"
-                            data-link="{{ url('/projects/' . $project->project_id) }}"
-                            data-category="{{ strtolower(implode(' ', $project->tech_stack ?? [])) }}"
-                            role="link"
-                            tabindex="0">
-
-                            <div class="card-body">
-                                <h3 class="card-title">{{ $project->name }}</h3>
-                                <p class="card-text">{{ $project->short_description ?? $project->description }}</p>
-                                <ul class="project-tech-list">
-                                    @foreach ($project->tech_stack as $tech)
-                                        @php
-                                            $slug = strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $tech));
-                                        @endphp
-                                        <li><span class="tag tag-{{ $slug }}">{{ $tech }}</span></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @if (!empty($project->repo_url))
-                                <div class="card-footer">
-                                    <a href="{{ $project->repo_url }}" class="button button-outline-secondary"><i class="fa-brands fa-github fa-fw"></i> View Code</a>
-                                </div>
-                            @endif
-                        </div>
-                    @empty
-                        <p>No projects to display.</p>
-                    @endforelse
-                </div>
-            </section>
-
-            {{-- Professional Experience Section --}}
-            <section class="resume-section" id="resume-employment">
-                <h2>Professional Experience</h2>
-                @php
-                    $unique_categories = [];
-                    if (!empty($jobs)) {
-                        foreach ($jobs as $job) {
-                            if (!empty($job['categories'])) {
-                                $categories_for_job = explode(' ', $job['categories']);
-                                foreach ($categories_for_job as $category) {
-                                    if (!empty($category)) $unique_categories[$category] = true;
-                                }
-                            }
-                        }
-                        $unique_categories = array_keys($unique_categories);
-                        sort($unique_categories);
-                    }
-                @endphp
-                <div id="employment-filter" class="filter-tabs">
-                    <span>Filter by:</span>
-                    <button class="button active" data-filter="all">All</button>
-                    @foreach ($unique_categories as $category)
-                        <button class="button" data-filter="{{ $category }}">{{ ucwords(str_replace('-', ' ', $category)) }}</button>
-                    @endforeach
-                </div>
-
-                <ul class="history-list" id="employment-list">
-                    @forelse ($jobs as $job)
-                        @php $priority_class = get_history_item_priority_class($job['categories']); @endphp
-                        <li class="history-item {{ $priority_class }}" data-category="{{ $job['categories'] }}">
-                            <div class="history-item__period">{{ $job['period'] }}</div>
-                            <div class="history-item__content">
-                                <div class="history-item__header">
-                                    <img class="history-item__logo" src="{{ asset($job['logo']) }}" alt="{{ $job['company'] }} logo">
-                                    <div class="history-item__header-text">
-                                        <h3 class="history-item__title">{{ $job['company'] }}</h3>
-                                        <div class="history-item__subtitle">{{ $job['location'] }}</div>
-                                    </div>
-                                </div>
-                                <div class="history-item__tags">
-                                    @php $tags = array_filter(explode(' ', $job['categories'])); @endphp
-                                    @if (!empty($tags))
-                                        @foreach ($tags as $tag)
-                                            <span class="tag tag-{{$tag}}">{{ ucwords(str_replace('-', ' ', $tag)) }}</span>
-                                        @endforeach
-                                    @endif
-                                </div>
-                                <ul class="role-list">
-                                    @foreach ($job['roles'] as $role)
-                                        <li class="role-item">
-                                            <h4 class="role-title">{{ $role['title'] }}</h4>
-                                            @if (!empty($role['period']))
-                                                <div class="role-period">{{ $role['period'] }}</div>
-                                            @endif
-                                            <ul class="role-description resume-view-it">
-                                                @foreach (($role['description']['it'] ?? []) as $bullet)
-                                                    <li>{{ $bullet }}</li>
-                                                @endforeach
-                                            </ul>
-                                            <ul class="role-description resume-view-cs is-hidden">
-                                                @foreach (($role['description']['cs'] ?? []) as $bullet)
-                                                    <li>{{ $bullet }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </li>
-                    @empty
-                        <p>No employment history to display.</p>
-                    @endforelse
-                </ul>
-            </section>
-
-            {{-- Education Section --}}
-            <section id="resume-education" class="resume-section">
-                <h2>Education & Certifications</h2>
-                <ul class="history-list">
-                    @forelse ($education as $edu_item)
-                        <li class="history-item is-default">
-                            <div class="history-item__period">{{ $edu_item['period'] }}</div>
-                            <div class="history-item__content">
-                                <div class="history-item__header">
-                                    <img class="history-item__logo" src="{{ asset($edu_item['logo']) }}" alt="{{ $edu_item['institution'] }} logo">
-                                    <div class="history-item__header-text">
-                                        <h3 class="history-item__title">{{ $edu_item['institution'] }}</h3>
-                                        <div class="history-item__subtitle">{{ $edu_item['location'] }}</div>
-                                    </div>
-                                </div>
-                                <ul class="role-list">
-                                    @foreach ($edu_item['roles'] as $role)
-                                        <li class="role-item">
-                                            <h4 class="role-title">{{ $role['title'] }}</h4>
-                                            @if (!empty($role['period']))
-                                                <div class="role-period">{{ $role['period'] }}</div>
-                                            @endif
-                                            @if(!empty($role['description']))
-                                            <ul class="role-description">
-                                                @foreach (($role['description']['it'] ?? $role['description']['cs'] ?? []) as $bullet)
-                                                    <li>{{ $bullet }}</li>
-                                                @endforeach
-                                            </ul>
-                                            @endif
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </li>
-                    @empty
-                        <p>No education history to display.</p>
-                    @endforelse
-                </ul>
-            </section>
-
         </div>
-    </main>
-@endsection
+
+        <section class="resume-section">
+            <h2 class="section-title">Summary</h2>
+            <p>Highly skilled and motivated Senior Web Developer with over a decade of experience in building accessible, user-friendly, and maintainable applications. Proven ability to work with modern frameworks like Laravel and legacy systems, with a strong focus on writing clean, well-documented code. Passionate about solving complex problems and translating user needs into elegant digital solutions.</p>
+        </section>
+
+        <section class="resume-section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages & Frameworks</h3>
+                    <ul>
+                        <li>PHP, Laravel</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>HTML5, CSS3, SCSS</li>
+                        <li>SQL (MySQL)</li>
+                        <li>C#, ASP.NET (Familiar)</li>
+                        <li>Visual Basic 6 (Legacy)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Platforms</h3>
+                    <ul>
+                        <li>Git, GitHub</li>
+                        <li>DigitalOcean, Laravel Forge</li>
+                        <li>WordPress</li>
+                        <li>Visual Studio Code</li>
+                        <li>Windows & Linux Environments</li>
+                        <li>MS-DOS, Windows for Workgroups 3.11</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Concepts & Practices</h3>
+                    <ul>
+                        <li>Object-Oriented Programming (OOP)</li>
+                        <li>Web Accessibility (WCAG)</li>
+                        <li>Responsive Design</li>
+                        <li>REST API Development</li>
+                        <li>Agile/Scrum Methodologies</li>
+                        <li>Server Administration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="resume-section">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="auto-grid">
+                @if($featuredProjects->isNotEmpty())
+                    @foreach($featuredProjects as $project)
+                        <div class="card clickable-card" data-link="{{ route('projects.show', ['project_slug' => $project['id']]) }}" role="link" tabindex="0">
+                            <div class="card-body">
+                                <h3 class="card-title h4">{{ $project['name'] }}</h3>
+                                <p class="card-text">{{ $project['short_description'] }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+            <div class="section-cta">
+                <a href="{{ route('projects.index') }}" class="button button-outline-secondary">View All Projects</a>
+            </div>
+        </section>
+
+    </div>
+</x-app-layout>
