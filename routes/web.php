@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\EducationController;
+use App\Http\Controllers\ProjectController as PublicProjectController;
 use App\Models\Job;
 use App\Models\Education;
 use App\Models\Project;
@@ -42,27 +43,8 @@ Route::get('/resume', function () {
     ]);
 });
 
-Route::get('/projects', function () {
-    $projects = Project::all();
-    return view('pages.projects', [
-        'page_title'  => 'Projects - Michael Ragsdale',
-        'body_class'  => 'page-projects has-sidebar',
-        'page_script' => 'project-filter',
-        'sidebar'     => 'sidebars._sidebar-projects',
-        'projects'    => $projects
-    ]);
-});
-
-Route::get('/projects/{project_id}', function ($project_id) {
-    $project = Project::where('project_id', $project_id)->firstOrFail();
-    return view('pages.projects.detail', [
-        'page_title'  => $project->name,
-        'body_class'  => 'page-project-detail has-sidebar',
-        'page_script' => 'live-code-embed',
-        'sidebar'     => 'sidebars._sidebar-project-detail',
-        'project'     => $project
-    ]);
-});
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 
 Route::get('/employment', function () {
     $jobs = Job::where('is_public', true)->get();

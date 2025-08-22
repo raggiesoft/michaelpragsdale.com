@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,9 +13,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // This tells Laravel to run your custom seeder.
+        // User::factory(10)->create();
+
+        User::factory()->create([
+            'name' => 'Michael Ragsdale',
+            'email' => 'hireme@michaelpragsdale.com',
+        ]);
+
+        // Call your new ProjectSeeder
         $this->call([
-            PortfolioSeeder::class,
+            ProjectSeeder::class,
         ]);
     }
 }
