@@ -95,15 +95,3 @@ Route::prefix('api/v1')->name('api.v1.')->group(function () {
     Route::get('/projects', [\App\Http\Controllers\Api\V1\ProjectController::class, 'index'])->name('projects.index');
     Route::get('/education', [\App\Http\Controllers\Api\V1\EducationController::class, 'index'])->name('education.index');
 });
-
-// --- Admin & Auth Routes (DISABLED) ---
-// require __DIR__.'/auth.php';
-
-// Route::middleware(['auth'])->prefix('admin')->group(function () {
-//     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
-
-//     Route::resource('education', \App\Http\Controllers\Admin\EducationController::class, ['as' => 'admin']);
-//     Route::resource('jobs', \App\Http\Controllers\Admin\JobController::class, ['as' => 'admin']);
-//     Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class, ['as' => 'admin']);
-// });
-
