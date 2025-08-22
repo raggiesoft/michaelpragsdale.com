@@ -1,10 +1,14 @@
-@php
-    // Fetch data from JSON and convert to a Collection
-    $projects = json_decode(file_get_contents(resource_path('json/projects.json')), true);
-    $featuredProjects = collect($projects)->where('is_featured', true)->take(3);
-@endphp
+{{-- Use the new master layout --}}
+@extends('layouts.app')
 
-<x-app-layout :page_title="'Résumé'" :body_class="'page-resume'">
+{{-- Define the content for the page --}}
+@section('content')
+    @php
+        // Fetch data from JSON and convert to a Collection
+        $projects = json_decode(file_get_contents(resource_path('json/projects.json')), true);
+        $featuredProjects = collect($projects)->where('is_featured', true)->take(3);
+    @endphp
+
     <div class="container">
         <div class="resume-header">
             <h1>Michael Ragsdale</h1>
@@ -80,4 +84,4 @@
         </section>
 
     </div>
-</x-app-layout>
+@endsection

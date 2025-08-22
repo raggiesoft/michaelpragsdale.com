@@ -7,33 +7,32 @@
 
         <title>{{ $page_title ?? config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        {{-- Font Awesome --}}
+        <script src="https://kit.fontawesome.com/ec060982d4.js" crossorigin="anonymous"></script>
 
         <!-- Scripts and Styles -->
         @vite(['resources/scss/app.scss', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased {{ $body_class ?? '' }}">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <body class="{{ $body_class ?? '' }}" data-page-script="{{ $page_script ?? '' }}">
+        <a href="#content" class="skip-link">Skip to Main Content</a>
+        <div class="page-container">
 
-            {{-- This includes the main site header --}}
             @include('layouts.partials._header')
 
-            <!-- Page Content -->
-            <main class="site-content" id="content">
-                <div class="site-body-wrapper">
-                    @if(isset($sidebar) && $sidebar)
-                        @include('layouts.partials.' . $sidebar)
-                    @endif
+            <div class="site-body-wrapper">
 
+                @if(isset($sidebar) && $sidebar)
+                    @include('layouts.partials.' . $sidebar)
+                @endif
+
+                <main class="site-content" id="content">
                     <div class="main-content">
-                        {{ $slot }}
+                        {{-- This is the new, robust content area --}}
+                        @yield('content')
                     </div>
-                </div>
-            </main>
+                </main>
+            </div>
 
-            {{-- This includes the main site footer --}}
             @include('layouts.partials._footer')
         </div>
     </body>

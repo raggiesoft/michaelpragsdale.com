@@ -1,4 +1,6 @@
-<x-app-layout :page_title="'Home'" :body_class="'page-home full-width'">
+@extends('layouts.app')
+
+@section('content')
     <div class="hero-section">
         <div class="container">
             <div class="hero-content">
@@ -42,7 +44,6 @@
                     @foreach($featuredProjects as $project)
                         <div class="card clickable-card" data-link="{{ route('projects.show', ['project_slug' => $project['id']]) }}" role="link" tabindex="0">
                             <div class="card-body">
-                                {{-- Use array syntax to access project data --}}
                                 <h3 class="card-title h4">{{ $project['name'] }}</h3>
                                 <p class="card-text">{{ $project['short_description'] }}</p>
                             </div>
@@ -55,4 +56,4 @@
             </div>
         </div>
     </section>
-</x-app-layout>
+@endsection
