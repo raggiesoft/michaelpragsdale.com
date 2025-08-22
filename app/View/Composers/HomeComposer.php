@@ -3,23 +3,19 @@
 namespace App\View\Composers;
 
 use Illuminate\View\View;
-use App\Models\Project;
+use Illuminate\Support\Facades\File;
 
 class HomeComposer
 {
     /**
      * Bind data to the view.
-     *
-     * @param  \Illuminate\View\View  $view
-     * @return void
      */
-    public function compose(View $view)
+    public function compose(View $view): void
     {
-        // Fetch only the projects that are marked as 'featured'.
-        // We compare against the integer 1 for a more reliable query.
-        $featuredProjects = Project::where('is_featured', 1)->latest()->get();
+        // Read project data from the JSON file
+        $projects = json_decode(File::get(resource_path('json/projects.json')), true);
 
-        // Pass the data directly to any view this composer is attached to.
-        $view->with('featuredProjects', $featuredProjects);
+        // Filter for featured projects and pass it to the view as a Collection
+        $view->with('featuredProjects', collect($projects)->where('is_featured', true)->take(2));
     }
 }
