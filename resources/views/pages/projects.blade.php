@@ -1,77 +1,28 @@
-{{-- resources/views/pages/projects.blade.php --}}
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout :page_title="$page_title" :body_class="$body_class" :sidebar="$sidebar">
     <div class="container">
-        <header class="page-header">
-            <h1>My Projects</h1>
-            <p class="lead">A selection of applications and utilities I've built to solve problems and explore new technologies.</p>
-        </header>
+        <h1>Projects</h1>
+        <p class="lead">A collection of my personal and professional work.</p>
 
-        @php
-            // Generate unique categories from the projects' tech_stack
-            $unique_tech = [];
-            if ($projects->isNotEmpty()) {
-                foreach ($projects as $project) {
-                    if (!empty($project->tech_stack)) {
-                        foreach ($project->tech_stack as $tech) {
-                            if (!empty($tech)) {
-                                $key = strtolower(trim($tech));
-                                $unique_tech[$key] = $tech;
-                            }
-                        }
-                    }
-                }
-            }
-            ksort($unique_tech);
-        @endphp
-        <div id="project-filter" class="filter-tabs">
-            <span>Filter by:</span>
-            <button class="button active" data-filter="all">All</button>
-            @foreach ($unique_tech as $slug => $displayName)
-                <button class="button" data-filter="{{ $slug }}">
-                    {{ $displayName }}
-                </button>
-            @endforeach
-        </div>
+        <div class="auto-grid">
+            @if($projects->isNotEmpty())
+                @foreach($projects as $project)
+                    <div class="card clickable-card" data-link="{{ route('projects.show', ['project_slug' => $project['id']]) }}" role="link" tabindex="0">
+                        <div class="card-body">
+                            {{-- Use array syntax for all properties --}}
+                            <h3 class="card-title h4">{{ $project['name'] }}</h3>
+                            @if(isset($project['short_description']))
+                                <p class="card-text">{{ $project['short_description'] }}</p>
+                            @endif
 
-        <div class="auto-grid" id="project-list">
-            @forelse ($projects as $project)
-                <div 
-                    class="card clickable-card @if($project->is_featured) card-featured @endif" 
-                    data-link="{{ url('/projects/' . $project->project_id) }}"
-                    data-category="{{ strtolower(implode(' ', $project->tech_stack ?? [])) }}"
-                    role="link"
-                    tabindex="0">
-                    
-                    <div class="card-body">
-                        <h2 class="card-title h3">{{ $project->name }}</h2>
-                        {{-- Use the null coalescing operator (??) as a fallback --}}
-                        <p class="card-text">{{ $project->short_description ?? $project->description }}</p>
-                        
-                        @if (!empty($project->tech_stack))
-                            <ul class="project-tech-list">
-                                @foreach ($project->tech_stack as $tech)
-                                    @php
-                                        $slug = strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $tech));
-                                    @endphp
-                                    <li><span class="tag tag-{{ $slug }}">{{ $tech }}</span></li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </div>
-
-                    @if (!empty($project->repo_url))
-                        <div class="card-footer">
-                            <a href="{{ $project->repo_url }}" class="button button-outline-secondary">
-                                <i class="fa-brands fa-github fa-fw"></i> View Code
-                            </a>
+                            @if(isset($project['details']['tech_stack']))
+                                <x-tech-tag-list :tags="$project['details']['tech_stack']" />
+                            @endif
                         </div>
-                    @endif
-                </div>
-            @empty
-                <p>There are no projects to display at this time.</p>
-            @endforelse
+                    </div>
+                @endforeach
+            @else
+                <p>No projects found.</p>
+            @endif
         </div>
     </div>
-@endsection
+</x-app-layout>
