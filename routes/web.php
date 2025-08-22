@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate-Support-Facades-Route;
-use App-Http-Controllers-ContactController;
-use App-Http-Controllers-SalaryController;
-use App-Http-Controllers-SearchController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\SearchController;
 
 // --- Static Pages ---
 Route::get('/', function () {
