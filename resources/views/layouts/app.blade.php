@@ -1,39 +1,34 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $page_title ?? "Michael Ragsdale's Portfolio" }}</title>
 
-        <title>{{ $page_title ?? config('app.name', 'Laravel') }}</title>
+    <script src="https://kit.fontawesome.com/ec060982d4.js" crossorigin="anonymous"></script>
 
-        {{-- Font Awesome --}}
-        <script src="https://kit.fontawesome.com/ec060982d4.js" crossorigin="anonymous"></script>
+    @vite(['resources/scss/app.scss', 'resources/js/app.js', 'resources/js/main.js'])
+</head>
+<body class="{{ $body_class ?? '' }}" data-page-script="{{ $page_script ?? '' }}">
 
-        <!-- Scripts and Styles -->
-        @vite(['resources/scss/app.scss', 'resources/js/app.js'])
-    </head>
-    <body class="{{ $body_class ?? '' }}" data-page-script="{{ $page_script ?? '' }}">
-        <a href="#content" class="skip-link">Skip to Main Content</a>
-        <div class="page-container">
+    <a href="#content" class="skip-link">Skip to Main Content</a>
 
-            @include('layouts.partials._header')
+    <div class="page-container">
 
-            <div class="site-body-wrapper">
+        @include('layouts.partials._header')
 
-                @if(isset($sidebar) && $sidebar)
-                    @include('layouts.partials.' . $sidebar)
-                @endif
-
-                <main class="site-content" id="content">
-                    <div class="main-content">
-                        {{-- This is the new, robust content area --}}
-                        @yield('content')
-                    </div>
-                </main>
-            </div>
-
-            @include('layouts.partials._footer')
+        <div class="site-body-wrapper">
+            @if (!empty($sidebar))
+                @include('layouts.partials.' . $sidebar)
+            @endif
+            <main class="site-content" id="content">
+                @yield('content')
+            </main>
         </div>
-    </body>
+
+        @include('layouts.partials._footer')
+
+    </div>
+
+</body>
 </html>

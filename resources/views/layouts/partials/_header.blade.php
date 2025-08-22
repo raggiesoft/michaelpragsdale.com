@@ -23,19 +23,33 @@
 ?>
 <header class="site-header">
     <div class="header-content container">
+
         <div class="site-branding">
-            <a href="{{ url('/') }}" rel="home" aria-label="RaggieSoft - Home">
+            <a href="/" rel="home" aria-label="RaggieSoft - Home">
                 <x-site-logo />
-                <span class="visually-hidden">Michael Ragsdale - Home</span>
+               <span class="visually-hidden">Michael Ragsdale - Home</span>
             </a>
         </div>
 
-        {{-- The header-actions div now only contains the navigation --}}
+        <?php // The centered H1 for the page title. ?>
+        <h1 class="site-title-header"><?php echo $page_title; ?></h1>
+
+        <?php // This wrapper holds all the right-aligned actions. ?>
         <div class="header-actions">
-            <x-main-menu />
-            <button class="mobile-nav-toggle" aria-controls="site-navigation" aria-expanded="false" type="button" aria-label="Toggle Navigation">
-                <span class="hamburger-icon"><i class="fa-duotone fa-bars fa-fw"></i></span>
-            </button>
-        </div>
+    
+        {{-- Loop through the navigation blocks provided by the Composer --}}
+        @foreach ($navigationBlocks as $block)
+            @if ($block['type'] === 'buttons')
+                @include('layouts.partials.navigation._button-controls', ['nav_items' => $block['items']])
+            @else
+                @include('layouts.partials.navigation._main-menu', ['nav_items' => $block['items']])
+            @endif
+        @endforeach
+        
+        <button class="mobile-nav-toggle" aria-controls="site-navigation" aria-expanded="false" type="button" aria-label="Toggle Navigation">
+            <span class="hamburger-icon"><i class="fa-duotone fa-bars fa-fw"></i></span>
+        </button>
+    </div>
+
     </div>
 </header>
