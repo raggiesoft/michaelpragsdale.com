@@ -35,9 +35,10 @@
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3 class="footer-heading">Administrative</h3>
+                    <h3 class="footer-heading">Dashboards</h3>
                     <ul class="footer-links">
                         <li><a href="https://bold-firefly.raggiesoft.com" target="_blank">RaggieSoft Bold Firefly</a></li>
+                        <li><a href="https://glowing-galaxy.raggiesoft.com" target="_blank">RaggieSoft Glowing Galaxy</a></li>
                     </ul>
                 </div>
             </div>
