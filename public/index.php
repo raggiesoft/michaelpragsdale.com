@@ -97,17 +97,20 @@
             <div class="card">
                 <div class="card-body">
                     <div class="history-item__header">
+                        <?php // Check for the logo and fix the path by using it directly from the root. ?>
                         <?php if (!empty($latest_job['logo'])): ?>
-                            <img src="/assets/images/employment/<?php echo htmlspecialchars($latest_job['logo']); ?>" alt="<?php echo htmlspecialchars($latest_job['employer']); ?> logo" class="history-item__logo">
+                            <img src="/<?php echo htmlspecialchars($latest_job['logo']); ?>" alt="<?php echo htmlspecialchars($latest_job['employer'] ?? ''); ?> logo" class="history-item__logo">
                         <?php endif; ?>
                         <div class="history-item__header-text">
-                            <h3 class="history-item__title"><?php echo htmlspecialchars($latest_job['employer']); ?></h3>
-                            <?php if (!empty($latest_job['roles'])): ?>
+                            <h3 class="history-item__title"><?php echo htmlspecialchars($latest_job['employer'] ?? 'N/A'); ?></h3>
+                            <?php // Check that roles exist and have at least one entry ?>
+                            <?php if (!empty($latest_job['roles'][0]['title'])): ?>
                                 <h4 class="history-item__subtitle"><?php echo htmlspecialchars($latest_job['roles'][0]['title']); ?></h4>
                             <?php endif; ?>
                         </div>
                     </div>
-                    <?php if (!empty($latest_job['roles'][0]['description'])): ?>
+                    <?php // Check that a description exists and is an array before looping ?>
+                    <?php if (!empty($latest_job['roles'][0]['description']) && is_array($latest_job['roles'][0]['description'])): ?>
                         <ul class="role-description">
                             <?php foreach ($latest_job['roles'][0]['description'] as $bullet_point): ?>
                                 <li><?php echo htmlspecialchars($bullet_point); ?></li>
