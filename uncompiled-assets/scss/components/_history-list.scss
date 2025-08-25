@@ -33,8 +33,8 @@
   border-left: 2px solid var(--border-color);
   > li {
         // Remove the default bullet point from the list item itself.
-        list-style: none;
-        
+        list-style: none !important;
+
         // Optional: Remove the default browser padding on the <ul>
         // to prevent unwanted indentation after the bullet is gone.
         // You can uncomment the parent rule below if needed.
