@@ -14,7 +14,7 @@
     "build:theme:frutiger-aero": "sass uncompiled-assets/scss/theme/frutiger-aero.scss:public/assets/css/theme/frutiger-aero.css --style=compressed",
     "build:theme:monokai-pro": "sass uncompiled-assets/scss/theme/monokai-pro.scss:public/assets/css/theme/monokai-pro.css --style=compressed",
     "build:theme:8-bit-sunset": "sass uncompiled-assets/scss/theme/8-bit-sunset.scss:public/assets/css/theme/8-bit-sunset.css --style=compressed",
-    "build": "npm-run-all --parallel build:*"
+    "build": "npm-run-all --parallel build:scss build:js build:theme:frutiger-aero build:theme:monokai-pro build:theme:8-bit-sunset"
   },
   "author": "Michael Ragsdale",
   "license": "ISC",
