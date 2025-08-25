@@ -42,7 +42,20 @@
 
 // By default (mobile), we hide the header title to save space
 .site-title-header {
-  display: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    
+    // --- WCAG FIX ---
+    // Set a light text color for high contrast against the dark background in light mode.
+    // This will be overridden by the dark mode styles.
+    color: colors.$color-text-light;
+
+    a {
+        // Ensures the link inside also inherits the correct color and has no underline
+        color: inherit;
+        text-decoration: none;
+    }
 }
 
 //--------------------------------------------------------------------------
