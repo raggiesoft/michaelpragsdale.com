@@ -95,7 +95,7 @@
     <?php
         // This loop loads any supplemental theme stylesheets (like frutiger-aero.css)
         foreach ($supplemental_css_files as $css_file_name) {
-            echo '<link rel="stylesheet" href="/assets/css/themes/' . htmlspecialchars($css_file_name) . '.css">';
+            echo '<link rel="stylesheet" href="/assets/css/theme/' . htmlspecialchars($css_file_name) . '.css">';
         }
     ?>
 
