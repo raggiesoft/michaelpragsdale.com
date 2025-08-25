@@ -31,6 +31,14 @@
   position: relative;
   // On mobile, the timeline bar is simpler, closer to the content
   border-left: 2px solid var(--border-color);
+  > li {
+        // Remove the default bullet point from the list item itself.
+        list-style: none;
+        
+        // Optional: Remove the default browser padding on the <ul>
+        // to prevent unwanted indentation after the bullet is gone.
+        // You can uncomment the parent rule below if needed.
+    }
 }
 
 .history-item {
@@ -163,10 +171,7 @@
 }
 
 .role-title {
-    // Removes the default bullet point from the list item.
-    list-style: none !important;
-    
-    // Add any other specific styling for the role title here.
+    // Styling for the title itself remains here.
     font-weight: bold;
 }
 
