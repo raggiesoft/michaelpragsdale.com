@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaggieSoft Storybook Reader</title> <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/ec060982d4.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    </head>
+<body class="min-h-screen flex flex-col font-sans">
+
+    <header id="app-header" class="p-4 shadow-lg sticky top-0 z-30 border-b">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center w-1/3"> <button id="back-to-library-button" class="p-2 rounded focus:outline-none focus:ring-2 hidden mr-2" title="Back to Library">
+                    <i class="fa-duotone fa-arrow-left-long fa-fw text-xl" aria-hidden="true"></i>
+                </button>
+                <button id="menu-toggle" class="p-2 rounded focus:outline-none focus:ring-2 hidden lg:hidden" title="Open Table of Contents">
+                    <i class="fa-duotone fa-bars fa-fw text-xl" aria-hidden="true"></i>
+                </button>
+            </div>
+            <h1 id="main-app-title" class="text-xl font-bold text-center w-1/3 px-2 lg:text-left">RaggieSoft Storybook Reader</h1>
+            <div class="flex items-center justify-end w-1/3"> <button id="codex-toggle" class="p-2 rounded focus:outline-none focus:ring-2 hidden" title="Open Codex">
+                    <i class="fa-duotone fa-book-open fa-fw text-xl" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="main-body-container" class="flex flex-1 overflow-hidden">
+        <aside id="sidebar" class="fixed top-0 left-0 w-72 md:w-80 h-full bg-[var(--color-bg-sidebar)] shadow-2xl z-40 
+                                   transform -translate-x-full transition-transform duration-300 ease-in-out 
+                                   lg:sticky lg:translate-x-0 lg:flex-shrink-0 lg:z-20 lg:top-[var(--header-height)] 
+                                   lg:h-[calc(100vh-var(--header-height))]"
+               style="border-right-color: var(--color-border); overflow-y: auto;">
+             <div class="flex justify-between items-center p-6 border-b" style="border-color: var(--color-border);">
+                <h2 id="sidebar-title" class="text-lg font-bold text-[var(--color-text-primary)]"> 
+                    Table of Contents
+                </h2>
+                <button id="sidebar-close-button" class="p-1 rounded text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-button-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] lg:hidden" title="Close Table of Contents">
+                    <i class="fa-duotone fa-times fa-fw text-xl" aria-hidden="true"></i>
+                </button>
+             </div>
+             <nav id="table-of-contents" class="py-4">
+                </nav>
+        </aside>
+
+        <div id="overlay" class="hidden fixed inset-0 bg-black opacity-50 z-30 lg:hidden"></div>
+
+        <main id="page-content" class="flex-1 p-4 sm:p-8 overflow-y-auto relative">
+            <div id="library-view" class="w-full max-w-5xl mx-auto"> 
+                <h2 id="library-title" class="text-3xl font-bold mb-8 text-center text-[var(--color-text-primary)]">Choose Your Saga</h2>
+                <div id="library-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    </div>
+            </div>
+
+            <div id="story-view" class="hidden w-full flex flex-col"> 
+                <div id="story-content-wrapper" class="p-6 rounded-lg shadow-xl w-full flex flex-col border h-full" 
+                     style="background-color: var(--color-bg-secondary); border-color: var(--color-border); min-height: calc(100vh - var(--header-height, 4rem) - 9rem); /* Adjusted min-height slightly, accounting for main padding and footer */"> 
+                    <h2 id="scene-title" class="text-2xl font-bold mb-4 border-b pb-2 flex-shrink-0 text-[var(--color-text-primary)]" style="border-color: var(--color-border);"></h2>
+                    <div id="scene-text" class="content-area leading-relaxed text-sm sm:text-base flex-grow overflow-y-auto pr-2 text-[var(--color-text-secondary)]">
+                        </div>
+                    
+                    <div id="hud-status-display" class="hidden p-3 my-4 border rounded-md text-xs flex-shrink-0" style="border-color: var(--color-border-darker); background-color: var(--color-bg-button);">
+                        <h4 class="font-semibold mb-1 text-[var(--color-text-primary)] border-b pb-1 mb-2" style="border-color: var(--color-border);">Status:</h4>
+                        <div id="hud-stats-container">
+                            </div>
+                        <div id="hud-alert-text" class="hidden mt-2 pt-2 border-t text-sm font-semibold" style="border-color: var(--color-border-darker); color: var(--color-error);">
+                            </div>
+                    </div>
+
+                    <div id="nav-buttons-container" class="mt-auto pt-4 border-t flex justify-between flex-shrink-0" style="border-color: var(--color-border);">
+                        <button id="prev-button" class="font-bold py-2 px-4 rounded transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fa-duotone fa-chevron-left fa-fw mr-1 sm:mr-2" aria-hidden="true"></i><span class="hidden sm:inline">Previous</span>
+                        </button>
+                        <button id="next-button" class="text-white font-bold py-2 px-4 rounded transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span class="hidden sm:inline">Next</span><i class="fa-duotone fa-chevron-right fa-fw ml-1 sm:ml-2" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="codex-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div id="codex-content" class="p-6 rounded-lg shadow-xl w-full max-w-4xl h-[85vh] flex flex-col relative border" style="background-color: var(--color-bg-secondary); border-color: var(--color-border);">
+            <div class="flex justify-between items-center border-b pb-3 mb-4 flex-shrink-0" style="border-color: var(--color-border);">
+                <h3 id="codex-title" class="text-xl font-bold text-[var(--color-text-primary)]">Codex</h3>
+                <button id="codex-close-button" class="p-1 rounded text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-button-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" title="Close Codex">
+                     <i class="fa-duotone fa-times fa-fw text-xl" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="flex border-b mb-4 flex-shrink-0" style="border-color: var(--color-border);">
+                <button class="codex-tab-button active py-2 px-4 focus:outline-none" data-tab="characters">
+                    <i class="fa-duotone fa-users fa-fw mr-2" aria-hidden="true"></i>Characters
+                </button>
+                <button class="codex-tab-button py-2 px-4 focus:outline-none" data-tab="locations">
+                    <i class="fa-duotone fa-map-marked-alt fa-fw mr-2" aria-hidden="true"></i>Locations
+                </button>
+            </div>
+            <div class="flex flex-grow overflow-hidden space-x-4">
+                <div class="w-2/5 flex flex-col border-r pr-4" style="border-color: var(--color-border);">
+                    <input type="text" id="codex-search-input" placeholder="Search..." class="p-2 mb-3 rounded border flex-shrink-0" style="border-color: var(--color-border); background-color: var(--color-bg-secondary); color: var(--color-text-primary);">
+                    <div id="codex-items-container" class="flex-grow overflow-y-auto">
+                        </div>
+                    <div id="codex-list-pagination" class="flex justify-center items-center space-x-1 p-2 border-t flex-shrink-0" style="border-color: var(--color-border);">
+                        </div>
+                </div>
+                <div id="codex-detail-pane" class="w-3/5 overflow-y-auto pl-4">
+                    <p class="text-[var(--color-text-secondary)]">Select an item from the list to view details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="app-footer" class="p-3 text-center text-xs border-t">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-center items-center">
+            <div id="footer-logo-container" class="mb-2 sm:mb-0 sm:mr-4">
+                <img src="assets/images/logo.svg" alt="RaggieSoft Logo" id="footer-logo-img" style="height: 2.5rem; width: auto;">
+            </div>
+            <p class="text-[var(--color-text-secondary)]">&copy; 2025 Miller-Anderson-Walker Saga by RaggieSoft</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js" defer></script>
+</body>
+</html>

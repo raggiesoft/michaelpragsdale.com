@@ -1,0 +1,32 @@
+# Dependencies
+/node_modules
+
+# IDE & Editor Settings
+/.vscode/
+/.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment Variables
+# Ignore all .env files...
+.env
+.env.*
+# ...but DO commit the example file.
+!/.env.example
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Log Files
+/logs
+*.log
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+
+# Compiled Assets
+# Source files are in /uncompiled-assets/, so we ignore the public output directories. (except JSON)
+/public/assets/css/
+/public/assets/js/

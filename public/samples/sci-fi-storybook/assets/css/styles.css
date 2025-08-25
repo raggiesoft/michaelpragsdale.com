@@ -1,0 +1,440 @@
+:root { 
+    /* Light Mode Colors */
+    --color-bg-primary: #f9fafb; /* Tailwind gray-50 */
+    --color-bg-secondary: #ffffff;  /* white */
+    --color-bg-header: #ffffff; 
+    --color-bg-footer: #ffffff; 
+    --color-bg-sidebar: #f3f4f6; /* gray-100 */
+    --color-bg-button: #e5e7eb; /* gray-200 */
+    --color-bg-button-hover: #d1d5db; /* gray-300 */
+    --color-bg-button-next: #3b82f6; /* blue-500 */
+    --color-bg-button-next-hover: #2563eb; /* blue-700 */
+    --color-bg-codex-pane: #ffffff; 
+    --color-bg-codex-item-hover: #e2e8f0; 
+    --color-bg-codex-item-active: #3b82f6; 
+    --color-accent: #3b82f6; 
+    --color-text-primary: #111827;  /* gray-900 */
+    --color-text-secondary: #4b5563;  /* gray-600 */
+    --color-text-button: #1f2937; /* gray-800 */
+    --color-text-white: #ffffff; 
+    --color-text-codex-item: #374151; 
+    --color-text-codex-item-active: #ffffff; 
+    --color-border: #e5e7eb;  /* gray-200 */
+    --color-border-darker: #cbd5e0; /* gray-300 */
+    --color-scrollbar-track: #e2e8f0; 
+    --color-scrollbar-thumb: #a0aec0; 
+    --color-error: #c53030; /* red-700 */
+    --color-ring-focus: #3b82f680; /* blue-500 with opacity for ring */
+}
+
+.dark { 
+    /* Dark Mode Colors */
+    --color-bg-primary: #111827;  /* gray-900 */
+    --color-bg-secondary: #1f2937;  /* gray-800 */
+    --color-bg-header: #030712; /* gray-950 */
+    --color-bg-footer: #030712; 
+    --color-bg-sidebar: #030712; 
+    --color-bg-button: #374151; /* gray-700 */
+    --color-bg-button-hover: #4b5563; /* gray-600 */
+    --color-bg-button-next: #2563eb; /* blue-600 */
+    --color-bg-button-next-hover: #1d4ed8; /* blue-700 */
+    --color-bg-codex-pane: #1f2937; 
+    --color-bg-codex-item-hover: #374151; 
+    --color-bg-codex-item-active: #2563eb; 
+    --color-accent: #60a5fa;  /* blue-400 */
+    --color-text-primary: #f3f4f6;  /* gray-100 */
+    --color-text-secondary: #9ca3af;  /* gray-400 */
+    --color-text-button: #f3f4f6; 
+    --color-text-white: #ffffff; 
+    --color-text-codex-item: #d1d5db; 
+    --color-text-codex-item-active: #ffffff; 
+    --color-border: #374151;  /* gray-700 */
+    --color-border-darker: #4b5563; 
+    --color-scrollbar-track: #2d3748; 
+    --color-scrollbar-thumb: #4a5568; 
+    --color-error: #e53e3e; /* red-500 */
+    --color-ring-focus: #60a5fa80; /* blue-400 with opacity for ring */
+}
+
+/* Accessibility: Visually Hidden */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+.visually-hidden:focus,
+.visually-hidden:active {
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    position: static; 
+}
+
+body { 
+    background-color: var(--color-bg-primary); 
+    color: var(--color-text-primary); 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+header, footer {
+    background-color: var(--color-bg-header);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+/* Sidebar (Table of Contents) Styles */
+#sidebar { 
+    transition: transform 0.3s ease-in-out; 
+    background-color: var(--color-bg-sidebar); 
+    border-color: var(--color-border); 
+}
+#sidebar.hidden { 
+    transform: translateX(-100%); 
+}
+#sidebar-title, 
+#menu-toggle, 
+#sidebar-close-button, 
+#codex-toggle, 
+#codex-close-button { 
+    color: var(--color-text-primary);
+}
+#sidebar-close-button:hover, 
+#codex-close-button:hover { 
+    background-color: var(--color-bg-button-hover);
+    color: var(--color-text-button);
+}
+#menu-toggle:focus, 
+#sidebar-close-button:focus, 
+#codex-toggle:focus, 
+#codex-close-button:focus { 
+    box-shadow: 0 0 0 2px var(--color-ring-focus);
+    outline: none;
+}
+
+.book-section details summary::-webkit-details-marker {
+    display: none; /* Hide default disclosure triangle for WebKit */
+}
+.book-section details summary {
+    list-style: none; /* Hide default disclosure triangle for Firefox */
+}
+.book-title-summary {
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.book-title-summary:hover {
+    background-color: var(--color-bg-button-hover);
+}
+.book-title-summary .arrow {
+    transition: transform 0.2s ease-in-out;
+    display: inline-block;
+}
+.book-title-summary.open .arrow, 
+details[open] > .book-title-summary .arrow {
+    transform: rotate(90deg);
+}
+.chapter-list-nested {
+    padding-left: 1.5rem; 
+    max-height: 0; 
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+details[open] > .chapter-list-nested {
+    max-height: 1000px; /* Sufficiently large value for content */
+}
+.chapter-link { 
+    display: block; 
+    padding: 0.5rem 1rem; 
+    transition: all 0.2s ease; 
+    border-bottom: 1px solid var(--color-border); 
+    color: var(--color-text-secondary); 
+    font-size: 0.875rem; 
+}
+.chapter-link:hover { 
+    background-color: var(--color-bg-button-hover); 
+    color: var(--color-text-primary);
+}
+.chapter-link.active { 
+    background-color: var(--color-accent); 
+    color: var(--color-text-white); 
+    font-weight: 500; 
+}
+
+/* Main App & Story Content Styles */
+#main-app-title { 
+    color: var(--color-text-primary);
+}
+#story-content-wrapper { 
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border);
+}
+#scene-title { 
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+#scene-text { 
+    color: var(--color-text-secondary);
+}
+#scene-text p { 
+    margin-bottom: 1rem; 
+} 
+#scene-text p:last-child { 
+    margin-bottom: 0; 
+}
+#nav-buttons-container { 
+    border-color: var(--color-border);
+}
+#prev-button { 
+    background-color: var(--color-bg-button);
+    color: var(--color-text-button);
+}
+#prev-button:hover:not(:disabled) { 
+    background-color: var(--color-bg-button-hover);
+}
+#next-button { 
+    background-color: var(--color-bg-button-next);
+    color: var(--color-text-white);
+}
+#next-button:hover:not(:disabled) { 
+    background-color: var(--color-bg-button-next-hover);
+}
+
+/* Codex Styles */
+#codex-content { 
+    background-color: var(--color-bg-secondary); 
+    border-color: var(--color-border); 
+}
+#codex-title { 
+    color: var(--color-text-primary); 
+}
+.codex-tab-button { 
+    color: var(--color-text-secondary); 
+    border-bottom: 2px solid transparent; 
+    margin-bottom: -1px; 
+    transition: color 0.2s, border-color 0.2s; 
+    padding-left: 1rem; /* Ensure some padding */
+    padding-right: 1rem;
+}
+.codex-tab-button:hover { 
+    color: var(--color-text-primary); 
+}
+.codex-tab-button.active { 
+    color: var(--color-accent); 
+    border-bottom-color: var(--color-accent); 
+    font-weight: 600; 
+}
+
+/* Codex List Pane (Left) */
+#codex-search-input {
+    /* Tailwind: block w-full p-2 mb-3 rounded border */
+    /* Variables applied via JS style for dynamic placeholder and color */
+    /* Ensure it has some margin if not applied by Tailwind classes in JS */
+    /* margin: 0.75rem; */ /* Example if needed, but JS applies mx-3 my-3 */
+}
+#codex-search-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px var(--color-ring-focus);
+}
+
+#codex-items-container .codex-category-header { 
+    color: var(--color-text-secondary);
+    /* Tailwind classes: text-xs uppercase font-semibold mt-4 mb-2 px-0 */
+    /* These are applied via JS className */
+}
+#codex-items-container .codex-item-button { 
+    display: block; 
+    width: 100%; 
+    text-align: left; 
+    padding: 0.5rem 0.75rem; 
+    border-radius: 0.25rem; 
+    color: var(--color-text-codex-item); 
+    transition: background-color 0.2s, color 0.2s; 
+    margin-bottom: 0.125rem; /* Small gap between items */
+    border: none; /* Ensure no default button border interferes */
+    background-color: transparent; /* Ensure no default button bg interferes */
+}
+#codex-items-container .codex-item-button:hover { 
+    background-color: var(--color-bg-codex-item-hover); 
+    color: var(--color-text-primary); 
+}
+#codex-items-container .codex-item-button.active { 
+    background-color: var(--color-bg-codex-item-active); 
+    color: var(--color-text-codex-item-active); 
+    font-weight: 500; 
+}
+
+/* Codex List Pagination */
+#codex-list-pagination button {
+    padding: 0.25rem 0.5rem;
+    margin: 0 0.125rem;
+    border-radius: 0.25rem;
+    background-color: var(--color-bg-button);
+    color: var(--color-text-button);
+    border: 1px solid var(--color-border-darker);
+    font-size: 0.75rem; 
+    transition: background-color 0.2s;
+}
+#codex-list-pagination button:hover:not(:disabled) {
+    background-color: var(--color-bg-button-hover);
+}
+#codex-list-pagination button.active { 
+    background-color: var(--color-accent);
+    color: var(--color-text-white);
+    border-color: var(--color-accent);
+}
+#codex-list-pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+#codex-list-pagination span { 
+    color: var(--color-text-secondary);
+    padding: 0 0.5rem; /* Give it some space */
+}
+
+/* Codex Detail Pane (Right) */
+#codex-detail-pane img { 
+    max-width: 150px; 
+    border-radius: 0.375rem; 
+    border: 1px solid var(--color-border); 
+    margin-bottom: 0.75rem; 
+    float: left; 
+    margin-right: 1rem; 
+}
+#codex-detail-pane h4 { 
+    color: var(--color-text-primary); 
+    font-weight: bold; 
+    font-size: 1.125rem; 
+    margin-bottom: 0.5rem; 
+}
+#codex-detail-pane p { 
+    color: var(--color-text-secondary); 
+    font-size: 0.875rem; 
+    margin-bottom: 0.5rem; 
+}
+#codex-detail-pane ul { 
+    list-style-type: disc; 
+    padding-left: 1.25rem; 
+    color: var(--color-accent); 
+    font-size: 0.875rem; 
+}
+#codex-detail-pane .disability-info { 
+    color: var(--color-accent); 
+    margin-top: 0.5rem; 
+    font-weight: 600;
+}
+
+.error-message { 
+    color: var(--color-error); 
+    font-weight: bold; 
+}
+#overlay { 
+    transition: opacity 0.3s ease-in-out; 
+}
+.content-area::-webkit-scrollbar { 
+    width: 8px; 
+}
+.content-area::-webkit-scrollbar-track { 
+    background: var(--color-scrollbar-track); 
+}
+.content-area::-webkit-scrollbar-thumb { 
+    background-color: var(--color-scrollbar-thumb); 
+    border-radius: 4px; 
+}
+
+#footer-logo-container svg {
+    height: 2rem; /* Tailwind h-8. Adjust as needed */
+    width: auto; /* Maintain aspect ratio */
+    display: inline-block; /* Allows it to sit nicely with text if wrapped in a flex container */
+    vertical-align: middle; /* Aligns better if next to text */
+}
+
+/* If you want the logo text to also change with theme (if not already handled by fill="var(...)") */
+/* You might need to target specific classes INSIDE your SVG if your SVG has internal <style> or classes */
+#footer-logo-container svg .raggiesoft-text-class-if-any { 
+    fill: var(--color-text-secondary); /* Or primary, or accent */
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-family: serif; 
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+    header, footer, #sidebar, #overlay, #codex-modal, #menu-toggle, #codex-toggle, #nav-buttons-container {
+        display: none !important;
+    }
+    main#page-content, #story-content-wrapper, #story-content { 
+        margin: 1in !important; 
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: auto !important;
+        overflow: visible !important;
+        width: auto !important; 
+    }
+    #scene-title {
+        font-size: 20pt;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #000000 !important;
+        color: #000000 !important;
+        text-align: left; 
+    }
+    #scene-text {
+        color: #000000 !important;
+        font-size: 12pt;
+    }
+    #scene-text p {
+        margin-bottom: 0.75rem;
+    }
+    .interactive { 
+        text-decoration: none !important;
+        color: inherit !important;
+        cursor: default !important;
+    }
+    img { 
+        max-width: 100% !important; 
+        height: auto !important;
+        page-break-inside: avoid;
+    }
+    a[href^="http"]::after { 
+        content: " (" attr(href) ")";
+        font-size: 90%;
+        color: #555;
+    }
+    h1, h2, h3, h4, h5, h6, img, figure {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+    p, ul, li { 
+        orphans: 3;
+        widows: 3;
+        page-break-inside: auto;
+    }
+    details, summary { 
+        page-break-inside: avoid;
+    }
+    details summary {
+        display: block; 
+    }
+    details > ul { 
+         max-height: none !important; 
+    }
+}
