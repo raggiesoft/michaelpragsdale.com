@@ -16,93 +16,71 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, see <https://www.gnu.org/licenses/>.
  */
+// --- layout/_grid.scss ---
+
+// Import the required modules
+@use 'sass:math';
 @use '../abstracts/variables';
-@use '../abstracts/mixins' as *;
+@use '../abstracts/mixins';
 
-// --- Grid System ---
-// Inspired by Bootstrap's flexbox grid. It's mobile-first.
+// ==========================================================================
+//    #Grid
+// ==========================================================================
 
-// 1. Container
-// Provides a centered, max-width wrapper for your layout.
 .container {
-  width: 100%;
-  max-width: 1200px; // Default max-width, can be overridden
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--spacing-md);
-  padding-right: var(--spacing-md);
-}
+    width: 100%;
+    // Correctly reference the variable using the 'variables' namespace
+    padding-right: variables.$grid-gutter-width;
+    padding-left: variables.$grid-gutter-width;
+    margin-right: auto;
+    margin-left: auto;
 
-// 2. Row
-// The flex container for columns. It uses a negative margin to counteract
-// the padding on columns, ensuring content aligns perfectly.
-// in assets/scss/layout/_grid.scss
+    @include mixins.media-breakpoint-up(sm) { max-width: 540px; }
+    @include mixins.media-breakpoint-up(md) { max-width: 720px; }
+    @include mixins.media-breakpoint-up(lg) { max-width: 960px; }
+    @include mixins.media-breakpoint-up(xl) { max-width: 1140px; }
+}
 
 .row {
-  --grid-gutter-x: var(--spacing-lg);
-  --grid-gutter-y: 0;                
-  
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; // <<< Add this line
-  margin-top: calc(var(--grid-gutter-y) * -1);
-  margin-right: calc(var(--grid-gutter-x) * -0.5);
-  margin-left: calc(var(--grid-gutter-x) * -0.5);
-
-  > * {
-    margin-top: var(--grid-gutter-y);
-    padding-right: calc(var(--grid-gutter-x) * 0.5);
-    padding-left: calc(var(--grid-gutter-x) * 0.5);
-  }
+    display: flex;
+    flex-wrap: wrap;
+    // Correctly reference the variable and use math.div
+    margin-right: -(math.div(variables.$grid-gutter-width, 2));
+    margin-left: -(math.div(variables.$grid-gutter-width, 2));
 }
 
-// 3. Columns
-// The grid is based on 12 columns.
-
-// Base .col class for auto-width columns
-.col {
-  flex: 1 0 0%; // Grow, shrink, and basis of 0
+[class*="col-"] {
+    position: relative;
+    width: 100%;
+    // Correctly reference the variable and use math.div
+    padding-right: math.div(variables.$grid-gutter-width, 2);
+    padding-left: math.div(variables.$grid-gutter-width, 2);
 }
 
-// Generate non-responsive .col-1 through .col-12 classes
-@for $i from 1 through 12 {
-  .col-#{$i} {
-    flex: 0 0 auto;
-    width: percentage($i / 12);
-  }
-}
-
-// Generate responsive column classes for each breakpoint using our mixin
-// This creates .col-sm-1, .col-md-6, .col-lg-4, etc.
-@each $breakpoint-name, $breakpoint-value in variables.$breakpoints {
-  // We don't need to generate for 'xs' as it's the default mobile-first state
-  @if $breakpoint-name != 'xs' {
-    @include media-breakpoint-up($breakpoint-name) {
-      @for $i from 1 through 12 {
-        .col-#{$breakpoint-name}-#{$i} {
-          flex: 0 0 auto;
-          width: percentage($i / 12);
-        }
-      }
-      // Also generate auto-width columns for each breakpoint
-      .col-#{$breakpoint-name}-auto {
-        flex: 0 0 auto;
-        width: auto;
-      }
-    }
-  }
-}
-
-
-
-// --- Automatic Responsive Grid (using CSS Grid) ---
 .auto-grid {
-  display: grid;
-  gap: var(--spacing-lg);
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
 
-  // This tells the browser:
-  // - repeat(): Create as many columns as needed.
-  // - auto-fit: Fit as many columns as possible, and stretch them to fill the space.
-  // - minmax(): Each column must be at least 320px wide but can grow to fill space (1fr).
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+// --- Column Generation ---
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        flex: 0 0 auto;
+        // Corrected: Use math.div() for division
+        width: math.div($i, 12) * 100%;
+    }
+}
+
+// Responsive grid classes
+@each $breakpoint, $width in variables.$breakpoints {
+    @include mixins.media-breakpoint-up($breakpoint) {
+        @for $i from 1 through 12 {
+            .col-#{$breakpoint}-#{$i} {
+                flex: 0 0 auto;
+                // Corrected: Use math.div() for division
+                width: math.div($i, 12) * 100%;
+            }
+        }
+    }
 }
