@@ -162,6 +162,14 @@
   }
 }
 
+.role-title {
+    // Removes the default bullet point from the list item.
+    list-style: none;
+    
+    // Add any other specific styling for the role title here.
+    font-weight: bold;
+}
+
 
 //==========================================================================
 // Desktop Overrides
