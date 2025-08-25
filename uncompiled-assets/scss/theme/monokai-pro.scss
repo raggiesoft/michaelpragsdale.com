@@ -1,0 +1,48 @@
+// --- theme/monokai-pro.scss ---
+
+// ==========================================================================
+//    #Monokai Pro Theme
+// ==========================================================================
+
+// --- Light Mode (Monokai Pro - Paper) ---
+:root {
+    // Core Palette
+    --background-color: #f1f1f1; // Soft, light gray background
+    --text-color: #2D2A2E; // Dark charcoal text
+    --primary-accent-color: #FF6188; // Vibrant pink accent
+    --secondary-accent-color: #A9DC76; // Bright green for success states
+    --border-color: rgba(45, 42, 46, 0.15);
+    --border-color-strong: rgba(45, 42, 46, 0.3);
+
+    // Component-specific overrides
+    --header-bg: #FCFCFC;
+    --card-bg: #FFFFFF;
+    --button-primary-text: #FFFFFF;
+}
+
+// --- Specific Component Styling (Light Mode) ---
+.site-header, .site-footer, .card, .button {
+    border-radius: 0; // Sharp, square corners
+}
+
+.page-header h1, .card-title {
+    font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+// --- Dark Mode (Monokai Pro - Classic) ---
+@media (prefers-color-scheme: dark) {
+    :root {
+        // Core Palette
+        --background-color: #2D2A2E; // Classic Monokai background
+        --text-color: #FCFCFC; // Off-white text
+        --primary-accent-color: #FF6188; // Pink
+        --secondary-accent-color: #A9DC76; // Green
+        --border-color: rgba(252, 252, 252, 0.15);
+        --border-color-strong: rgba(252, 252, 252, 0.3);
+
+        // Component-specific overrides
+        --header-bg: #221F22; // Slightly lighter than main bg
+        --card-bg: #383539;
+        --button-primary-text: #2D2A2E;
+    }
+}

@@ -3,17 +3,23 @@
   "version": "1.0.0",
   "description": "Asset compiler for the v1 vanilla PHP portfolio site.",
   "scripts": {
-    "watch:scss": "sass --watch uncompiled-assets/scss:public/assets/css",
+    "watch:scss": "sass --watch uncompiled-assets/scss/main.scss:public/assets/css/main.css",
     "watch:js": "esbuild uncompiled-assets/js/*.js --outdir=public/assets/js --watch",
+    "watch:theme:frutiger-aero": "sass --watch uncompiled-assets/scss/theme/frutiger-aero.scss:public/assets/css/theme/frutiger-aero.css",
+    "watch:theme:monokai-pro": "sass --watch uncompiled-assets/scss/theme/monokai-pro.scss:public/assets/css/theme/monokai-pro.css",
+    "watch:theme:8-bit-sunset": "sass --watch uncompiled-assets/scss/theme/8-bit-sunset.scss:public/assets/css/theme/8-bit-sunset.css",
     "dev": "npm-run-all --parallel watch:*",
-    "build:scss": "sass uncompiled-assets/scss:public/assets/css --style=compressed",
+    "build:scss": "sass uncompiled-assets/scss/main.scss:public/assets/css/main.css --style=compressed",
     "build:js": "esbuild uncompiled-assets/js/*.js --minify --outdir=public/assets/js",
+    "build:theme:frutiger-aero": "sass uncompiled-assets/scss/theme/frutiger-aero.scss:public/assets/css/theme/frutiger-aero.css --style=compressed",
+    "build:theme:monokai-pro": "sass uncompiled-assets/scss/theme/monokai-pro.scss:public/assets/css/theme/monokai-pro.css --style=compressed",
+    "build:theme:8-bit-sunset": "sass uncompiled-assets/scss/theme/8-bit-sunset.scss:public/assets/css/theme/8-bit-sunset.css --style=compressed",
     "build": "npm-run-all --parallel build:*"
   },
   "author": "Michael Ragsdale",
   "license": "ISC",
   "devDependencies": {
-    "esbuild": "^0.25.9",
+    "esbuild": "^0.21.4",
     "npm-run-all": "^4.1.5",
     "sass": "^1.77.4"
   }

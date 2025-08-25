@@ -1,0 +1,50 @@
+// --- theme/8-bit-sunset.scss ---
+
+// ==========================================================================
+//    #8-Bit Sunset Theme
+// ==========================================================================
+
+// --- Light Mode (Sunset Drive) ---
+:root {
+    // Core Palette
+    --background-color: #FFD1DC; // Light pink background
+    --text-color: #4C2A4C; // Deep purple text
+    --primary-accent-color: #00FFFF; // Neon cyan accent
+    --secondary-accent-color: #FF69B4; // Hot pink
+    --border-color: rgba(76, 42, 76, 0.2);
+    --border-color-strong: rgba(76, 42, 76, 0.4);
+
+    // Component-specific overrides
+    --header-bg: rgba(255, 255, 255, 0.5);
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --button-primary-text: #4C2A4C;
+}
+
+// --- Specific Component Styling (Applies to both modes) ---
+.page-header h1, .card-title {
+    font-family: 'Press Start 2P', cursive; // Pixelated font
+    text-transform: uppercase;
+}
+
+// --- Dark Mode (Neon Noir) ---
+@media (prefers-color-scheme: dark) {
+    :root {
+        // Core Palette
+        --background-color: #1A092D; // Very dark purple
+        --text-color: #F0F0F0; // Light gray text
+        --primary-accent-color: #FF00FF; // Magenta
+        --secondary-accent-color: #00FFFF; // Cyan
+        --border-color: rgba(255, 0, 255, 0.3);
+        --border-color-strong: rgba(255, 0, 255, 0.5);
+
+        // Component-specific overrides
+        --header-bg: rgba(0, 0, 0, 0.3);
+        --card-bg: rgba(26, 9, 45, 0.8);
+        --button-primary-text: #FFFFFF;
+    }
+    
+    // Add a neon glow effect to text elements in dark mode
+    .site-title-header a, .page-header h1, .card-title, .button {
+        text-shadow: 0 0 5px var(--primary-accent-color), 0 0 10px var(--primary-accent-color);
+    }
+}
