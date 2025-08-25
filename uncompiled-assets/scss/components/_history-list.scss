@@ -27,6 +27,7 @@
 .history-list {
   list-style: none;
   padding: 0;
+  padding-left: 0 !important;
   margin: 0;
   position: relative;
   // On mobile, the timeline bar is simpler, closer to the content
@@ -34,6 +35,7 @@
   > li {
         // Remove the default bullet point from the list item itself.
         list-style: none !important;
+        list-style-type: none !important;
 
         // Optional: Remove the default browser padding on the <ul>
         // to prevent unwanted indentation after the bullet is gone.
