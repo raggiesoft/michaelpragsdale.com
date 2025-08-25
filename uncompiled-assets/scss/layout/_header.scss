@@ -49,7 +49,7 @@
     // --- WCAG FIX ---
     // Set a light text color for high contrast against the dark background in light mode.
     // This will be overridden by the dark mode styles.
-    color: colors.$color-text-light;
+    color: #f8f9fa;
 
     a {
         // Ensures the link inside also inherits the correct color and has no underline
