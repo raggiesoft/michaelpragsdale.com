@@ -107,7 +107,7 @@
                             <?php endif; ?>
                             <?php // Add the period for the role ?>
                             <?php if (!empty($latest_job['roles'][0]['period'])): ?>
-                                <p class="history-item__period"><?php echo htmlspecialchars($latest_job['roles'][0]['period']); ?></p>
+                                <div class="history-item__period"><?php echo htmlspecialchars($latest_job['roles'][0]['period']); ?></div>
                             <?php endif; ?>
                         </div>
                     </div>
