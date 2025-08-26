@@ -105,6 +105,10 @@
                             <?php if (!empty($latest_job['roles'][0]['title'])): ?>
                                 <h4 class="history-item__subtitle"><?php echo htmlspecialchars($latest_job['roles'][0]['title']); ?></h4>
                             <?php endif; ?>
+                            <?php // Add the period for the role ?>
+                            <?php if (!empty($latest_job['roles'][0]['period'])): ?>
+                                <p class="history-item__period"><?php echo htmlspecialchars($latest_job['roles'][0]['period']); ?></p>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <?php // Use the 'it' description for the homepage, and check that it exists and is an array ?>
