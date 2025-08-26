@@ -1,0 +1,185 @@
+/* assets/css/utilities/_print.css */
+
+@media print {
+    /* --- General Print Resets and Defaults --- */
+    body {
+        background-color: #ffffff !important; /* Force white background */
+        color: #000000 !important; /* Force black text */
+        font-family: serif !important; /* Serif fonts are often more readable on paper */
+        font-size: 12pt !important;
+        line-height: 1.5 !important;
+        margin: 0 !important; /* Remove any body margin for print */
+        padding: 0 !important;
+    }
+
+    /* --- Hide Non-Printable UI Elements --- */
+    header#app-header,
+    footer#app-footer,
+    aside#sidebar,
+    div#overlay,
+    div#codex-modal,
+    button#menu-toggle,
+    button#codex-toggle,
+    div#nav-buttons-container,
+    button#back-to-library-button,
+    div#hud-status-display,
+    div#library-view { /* Hide library view if for some reason it was visible */
+        display: none !important;
+    }
+
+    /* --- Main Content Area for Print --- */
+    div#main-body-container { /* Reset flex behavior if it interferes */
+        display: block !important;
+        overflow: visible !important;
+    }
+
+    main#page-content {
+        margin: 1in !important; /* Standard print margins */
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: auto !important; /* Allow content to flow */
+        overflow: visible !important; /* Show all content */
+        width: auto !important; /* Allow content to flow */
+        flex-grow: 0 !important; /* Reset flex-grow if it causes issues */
+        display: block !important; /* Ensure it's a block for margin handling */
+    }
+
+    div#story-content-wrapper { /* This is the direct parent of title and text */
+        margin: 0 !important; 
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: auto !important;
+        overflow: visible !important;
+        width: auto !important;
+        background-color: transparent !important; /* Ensure no BG color here */
+    }
+
+    /* Story Scene Title */
+    h2#scene-title {
+        font-size: 20pt !important;
+        margin-bottom: 1rem !important;
+        padding-bottom: 0.5rem !important;
+        border-bottom: 2px solid #000000 !important;
+        color: #000000 !important;
+        text-align: left !important; 
+        font-weight: bold !important;
+    }
+
+    /* Story Scene Text (Rendered Markdown) */
+    div#scene-text {
+        color: #000000 !important;
+        font-size: 12pt !important; /* Ensure consistent font size */
+        background-color: transparent !important; /* Ensure no BG color here */
+    }
+
+    #scene-text p {
+        margin-bottom: 0.75rem !important;
+        color: #000000 !important; /* Ensure paragraph text is black */
+    }
+
+    #scene-text a {
+        color: #0000EE !important; /* Standard blue for printed links */
+        text-decoration: underline !important; /* Always underline links in print */
+    }
+    /* Optionally show full URLs for external links */
+    #scene-text a[href^="http"]::after,
+    #scene-text a[href^="https"]::after { 
+        content: " (" attr(href) ")";
+        font-size: 90%;
+        color: #555555 !important; /* Grey for the URL part */
+    }
+    /* Hide internal navigation links if they don't make sense on paper */
+    #scene-text a[href^="#chapter-"]::after,
+    #scene-text a[href^="#volume-"]::after {
+        content: ""; /* Don't show URL for internal links */
+    }
+
+
+    #scene-text img {
+        max-width: 80% !important; /* Don't let images take full page width */
+        height: auto !important;
+        page-break-inside: avoid !important; /* Try to keep image on one page */
+        margin: 0.5rem auto !important; /* Center images if they are block */
+        float: none !important; /* No floating in print */
+        display: block !important; /* Ensure it's block for margin:auto */
+        border: 1px solid #cccccc !important; /* Optional light border for images */
+    }
+
+    /* Markdown elements styling for print */
+    #scene-text h1, #scene-text h2, #scene-text h3, 
+    #scene-text h4, #scene-text h5, #scene-text h6 {
+        color: #000000 !important;
+        font-weight: bold !important; /* Ensure headings are bold */
+        margin-top: 1.2em !important;
+        margin-bottom: 0.6em !important;
+    }
+    #scene-text h1 { font-size: 18pt !important; }
+    #scene-text h2 { font-size: 16pt !important; }
+    #scene-text h3 { font-size: 14pt !important; }
+
+    #scene-text ul, #scene-text ol {
+        color: #000000 !important;
+        margin-left: 2em !important; /* Indent lists */
+        margin-bottom: 1em !important;
+    }
+    #scene-text li {
+        color: #000000 !important;
+        margin-bottom: 0.25em !important;
+    }
+    #scene-text hr {
+        border: 0 !important;
+        height: 1px !important;
+        background-color: #cccccc !important; /* Light grey rule */
+        margin: 2rem 0 !important;
+    }
+    #scene-text blockquote {
+        border-left: 3px solid #dddddd !important;
+        padding-left: 1em !important;
+        margin-left: 0 !important;
+        font-style: italic !important;
+        color: #333333 !important;
+    }
+    #scene-text code, #scene-text pre {
+        font-family: monospace !important;
+        background-color: #f0f0f0 !important; /* Light grey background for code */
+        color: #000000 !important;
+        border: 1px solid #dddddd !important;
+        padding: 0.2em 0.4em !important;
+    }
+    #scene-text pre {
+        padding: 0.5em !important;
+        white-space: pre-wrap !important; /* Wrap long lines in code blocks */
+        word-wrap: break-word !important;
+    }
+
+
+    /* --- Page Break Control --- */
+    h1, h2, h3, h4, h5, h6, figure, table, hr {
+        page-break-after: avoid !important; /* Try not to have a page break right after these */
+        page-break-inside: avoid !important; /* Try to keep these elements on one page */
+    }
+    p, ul, ol, li, blockquote { 
+        orphans: 3 !important; /* Minimum lines at bottom of page before break */
+        widows: 3 !important;  /* Minimum lines at top of new page after break */
+        page-break-inside: auto !important;
+    }
+
+    /* These are for the sidebar's ToC structure, but will be hidden by the general #sidebar hide.
+       If you ever wanted to print a ToC, these would be useful. */
+    details, summary { 
+        page-break-inside: avoid !important;
+    }
+    details summary { 
+        display: block !important; 
+        font-weight: bold !important; 
+    }
+    details > ul { 
+         max-height: none !important; /* Ensure chapter lists are visible if ToC was printed */
+         padding-left: 1em !important; 
+    }
+    .book-title-summary .arrow { 
+        display: none !important; /* Hide arrows in print */
+    }
+}

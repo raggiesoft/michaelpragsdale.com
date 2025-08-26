@@ -1,0 +1,16 @@
+/*  _header.css */
+#main-app-title h1 {
+    font-size: 1.125rem; /* text-lg equivalent for mobile default */
+    /* other base styles */
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+    #main-app-title h1 {
+        font-size: 1.25rem; /* text-xl equivalent */
+    }
+}
+
+@media (min-width: 1024px) { /* lg breakpoint */
+    #main-app-title h1 {
+        font-size: 1.5rem; /* text-2xl if you want it even larger on desktop */    }
+}

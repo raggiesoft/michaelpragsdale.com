@@ -1,0 +1,121 @@
+/* assets/css/components/_sidebar.css */
+
+/* Styles for the main sidebar container (beyond layout) */
+aside#sidebar {
+    background-color: var(--color-bg-sidebar);
+    border-right-color: var(--color-border); /* Tailwind 'border-r' also applies this */
+    /* transition and overflow-y are handled by Tailwind classes in HTML */
+}
+
+/* Sidebar Header: Title and Close Button Area */
+/* The wrapping div uses Tailwind: "flex justify-between items-center p-6 border-b" */
+#sidebar-title {
+    color: var(--color-text-primary);
+    /* Tailwind: text-lg font-bold */
+}
+
+#sidebar-close-button { /* Also #menu-toggle, #codex-toggle, #back-to-library-button styling in _buttons.css or here */
+    color: var(--color-text-primary); /* Default color */
+    /* Tailwind: p-1 rounded focus:outline-none focus:ring-2 lg:hidden */
+}
+#sidebar-close-button:hover {
+    background-color: var(--color-bg-button-hover);
+    color: var(--color-text-button); /* Or var(--color-text-primary) if preferred */
+}
+#sidebar-close-button:focus {
+    box-shadow: 0 0 0 2px var(--color-ring-focus); /* Ensure focus ring uses variable */
+    outline: none;
+}
+
+
+/* Table of Contents Navigation (nav#table-of-contents) */
+nav#table-of-contents {
+    /* Tailwind: py-4 */
+}
+
+/* Book Section Styling (using <details> and <summary>) */
+.book-section details summary::-webkit-details-marker { 
+    display: none; /* Hide default disclosure triangle for WebKit/Chrome */
+}
+.book-section details summary { 
+    list-style: none; /* Hide default disclosure triangle for Firefox */
+    /* If not an <a> tag, ensure it's focusable for keyboard nav */
+    /* tabindex="0" could be added via JS if summary isn't inherently focusable when link is child */
+}
+
+.book-title-summary { /* This is the <summary> element */
+    padding: 0.75rem 1.5rem; /* Equivalent to Tailwind px-6 py-3 */
+    font-weight: 600; /* Tailwind font-semibold or bold */
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    display: flex; /* To align title and arrow */
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease-in-out;
+}
+.book-title-summary:hover {
+    background-color: var(--color-bg-button-hover);
+}
+.book-title-summary .arrow .book-arrow-icon { /* Targets the Font Awesome <i> icon */
+    transition: transform 0.2s ease-in-out;
+    display: inline-block; /* For transform to work correctly */
+    font-size: 0.75em; /* fa-xs from HTML, can be adjusted here */
+}
+
+/* Arrow rotation when <details> is open or .open class is present */
+.book-title-summary.open .arrow .book-arrow-icon, 
+details[open] > .book-title-summary .arrow .book-arrow-icon {
+    transform: rotate(90deg);
+}
+
+/* Nested list of chapters */
+.chapter-list-nested {
+    padding-left: 1.5rem; /* Indentation for chapters under a book */
+    max-height: 0; /* Collapsed by default for JS-controlled animation */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; /* Smooth transition for collapse/expand */
+    background-color: var(--color-bg-primary); /* Slightly different background for chapter list if desired */
+}
+/* When <details> is open or .open class is present on the summary/ul */
+details[open] > .chapter-list-nested,
+.chapter-list-nested.open { 
+    max-height: 1000px; /* A large enough value to show all content */
+    /* border-bottom: 1px solid var(--color-border); /* Optional border below chapter list */
+}
+
+/* Individual chapter links */
+.chapter-link { 
+    display: block; 
+    padding: 0.5rem 1rem 0.5rem 1.5rem; /* More padding-left for hierarchy */
+    transition: background-color 0.2s ease, color 0.2s ease; 
+    border-bottom: 1px solid var(--color-border); 
+    color: var(--color-text-secondary); 
+    font-size: 0.875rem; /* text-sm */
+    text-decoration: none; /* Remove default underline if summary links have it */
+}
+.chapter-link:last-child {
+    border-bottom: none; /* Remove border from the last chapter link in a list */
+}
+
+/* Styling for the main series introduction link if it's distinct */
+.chapter-link.font-bold.text-lg { 
+    padding: 0.75rem 1.5rem; /* Match book title summary padding */
+    font-weight: 600; /* Tailwind font-semibold */
+    font-size: 1.125rem; /* Tailwind text-lg */
+    color: var(--color-text-primary); /* More prominent color */
+}
+
+.chapter-link:hover { 
+    background-color: var(--color-bg-button-hover); 
+    color: var(--color-text-primary);
+}
+.chapter-link.active { 
+    background-color: var(--color-accent); 
+    color: var(--color-text-white) !important; /* Ensure text is white on active */
+    font-weight: 600; /* Tailwind font-semibold or bold */
+}
+/* Ensure the link within an active summary doesn't get overridden if summary itself is not active */
+.book-title-summary a.chapter-link.active {
+     color: var(--color-text-white) !important;
+}

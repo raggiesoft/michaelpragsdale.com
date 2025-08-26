@@ -1,0 +1,62 @@
+{
+  "manufacturer": "Aurora Ark Industries",
+  "models": [
+    {
+      "model": "EX-3 Escape Pod",
+      "capacity": 3,
+      "description": "A compact emergency evacuation pod engineered for rapid, evasive maneuvering. Designed to safely transport 3 individuals under dire circumstances. Its design emphasizes minimalism and practicality, making it ideal for last-resort escapes in the midst of interstellar conflict.",
+      "context": {
+        "overloadScenario": "Typically intended for 3 survivors, though emergencies might force additional passengers aboard, heightening tensions and resource limitations.",
+        "sacrificesMade": "In a hurried escape, essential items (e.g., mobility aids or communication devices) may be left behind to expedite evacuation."
+      },
+      "assignedNicknames": [
+        {
+          "character": "Captain Reynolds",
+          "nickname": "The Hail Mary",
+          "rationale": "Reflects a desperate, last-ditch effort akin to a 'Hail Mary' pass in sports—symbolizing hope amidst overwhelming odds."
+        },
+        {
+          "character": "Lt. Zhao",
+          "nickname": "Ghost Walker",
+          "rationale": "Emphasizes the pod's ability to slip past enemy fire undetected, highlighting stealth over firepower."
+        }
+      ],
+      "alternativeNicknames": [
+        {
+          "nickname": "Shadow Leap",
+          "description": "Implies rapid, covert movement in the darkness of space."
+        },
+        {
+          "nickname": "Final Refuge",
+          "description": "Underscores its role as the ultimate escape vessel in dire circumstances."
+        }
+      ]
+    },
+    {
+      "model": "EX-6 Escape Pod",
+      "capacity": 6,
+      "description": "A larger variant designed to accommodate 6 survivors. While it offers increased capacity, its design grapples with similar constraints around limited space and the absence of heavy defensive systems, reinforcing the stakes of every escape.",
+      "context": {
+        "overloadScenario": "Ideal for medium-sized crews or larger emergency evacuations. Even so, overcrowding can lead to compromised comfort and safety, and critical personal equipment might be sacrificed in the rush to escape.",
+        "sacrificesMade": "Space optimization comes at the expense of personal amenities; some essential items may be deliberately excluded to maximize capacity."
+      },
+      "assignedNicknames": [
+        {
+          "character": "Commander Vega",
+          "nickname": "The Last Stand",
+          "rationale": "Conveys the desperate necessity for a larger capacity during critical moments and hints at the inevitable trade-offs with increased occupancy."
+        }
+      ],
+      "alternativeNicknames": [
+        {
+          "nickname": "Crowded Haven",
+          "description": "Highlights the tension between safety in numbers and the discomfort of overcrowding."
+        },
+        {
+          "nickname": "Final Refuge",
+          "description": "Underscores its role as the ultimate escape vessel—albeit one with inherent limitations."
+        }
+      ]
+    }
+  ]
+}

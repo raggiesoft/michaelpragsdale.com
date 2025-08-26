@@ -1,0 +1,23 @@
+{
+    "aethelburg": {
+        "name": "Aethelburg Station",
+        "type": "Advanced Space Station Colony",
+        "description": "A massive, self-sustaining orbital habitat that was home to thousands, including the Miller, Anderson, and Walker families. It featured Earth-standard artificial gravity, simulated day/night cycles, extensive hydroponic and botanical gardens (the Greenhouses), and accessible living quarters. It served as a beacon of civilization before the sudden enemy attack.",
+        "imageUrl": "images/locations/aethelburg.png",
+        "keyFeatures": ["Greenhouses", "Accessible facilities", "Simulated Earth environment", "Large population"]
+    },
+    "lifeboat_c7": {
+        "name": "Class-7 Escape Pod (Evac Vessel)",
+        "type": "Emergency Evacuation Craft",
+        "description": "A small, standard-issue emergency escape pod designed for a maximum of 3 occupants in extremely cramped conditions. It possesses no defensive weaponry, relying solely on Chloe's piloting for evasion. Its facilities are minimal, not designed for accessibility or long-term survival, presenting immense challenges for Aiden's care.",
+        "imageUrl": "images/locations/lifeboat_c7.png",
+        "keyFeatures": ["Cramped (3-person design)", "No defenses", "Minimal life support", "Inaccessible facilities"]
+    },
+    "haven_moon": {
+        "name": "Uncharted, Unnamed Moon ('Haven')",
+        "type": "Rocky, Uncharted Celestial Body",
+        "description": "A desolate, uncharted moon discovered by Chloe during their escape. It possesses a thin but breathable oxygen atmosphere. A cave system provided temporary refuge and, miraculously, an ancient supply cache containing fuel and rations. The moon experiences very long day/night cycles due to being tidally locked with its parent planet.",
+        "imageUrl": "images/locations/haven_moon.png",
+        "keyFeatures": ["Thin breathable atmosphere", "Cave system", "Hidden supply cache", "Long day/night cycles", "No native technology/inhabitants detected"]
+    }
+}

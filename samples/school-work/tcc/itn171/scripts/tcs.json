@@ -1,0 +1,10 @@
+{
+    "commands":
+    {
+        "cd":
+        {
+            "name": "Change Directory",
+            "explainer":"Works just as it does in MS-DOS"
+        }
+    }
+}

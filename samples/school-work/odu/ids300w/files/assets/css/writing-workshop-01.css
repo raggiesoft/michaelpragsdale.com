@@ -1,0 +1,177 @@
+:root
+{
+	--rs-heading-color: #191926;
+	--rs-heading-background-color: #c2e3f3;
+
+	--rs-box-shadow-color: #222222;
+	
+	--rs-a-color: #333337;
+	--rs-a-hover-color: #080809;
+	--rs-card-p-color: #070707;
+
+	--rs-opacity-container: 0.75;
+	--rs-opacity-blockquote: 0.85;
+	--rs-opacity-background-image: 0.3;
+}
+@media (prefers-color-scheme: dark)
+{
+	:root
+	{
+		--rs-heading-color: #c2e3f3;
+		--rs-heading-background-color: #191926;
+
+		--rs-a-color: #b1b1ca;
+		--rs-a-hover-color: #a6a8cb;
+		--rs-card-p-color: #ebe4e4;
+	}
+}
+body
+{
+	overflow-x: hidden;
+}
+a
+{
+	color: var(--rs-card-a-color);
+}
+a:hover, .card a:focus
+{
+	color: var(--rs-card-a-hover-color);
+}
+
+h1,h2,h3,h4,h5,h6
+{
+	color: var(--rs-heading-color);
+	text-align: center;
+}
+.card
+{
+	box-shadow: 2px 2px 15px var(--rs-box-shadow-color);
+}
+.card-header
+{
+	color: var(--rs-heading-color);
+	background-color: var(--rs-heading-background-color);
+	text-transform: uppercase;
+}
+.card p
+{
+	color: var(--rs-card-p-color);
+}
+.list-group-item:first-of-type
+{
+	background-color: var(--rs-heading-background-color);
+	color: var(--rs-heading-color);
+	font-weight: bold;
+}
+
+main::before
+{
+	content: ' ';
+	display: block;
+	left: 0;
+	top: 0;
+	min-width: 100%;
+	min-height: 100%;
+	opacity: var(--rs-opacity-background-image);
+	background-image: var(--rs-background-image);
+	position: fixed; /* This is the key to getting a non-scrolling background image */
+	background-repeat: no-repeat;
+	background-position: 50% 0;
+	background-size: 100vw 100vh;
+}
+.container
+{
+	opacity: var(--rs-opacity-container);
+}
+.card-body
+{
+	position: relative;
+}
+.heading
+{
+	background-color: var(--rs-heading-background-color);
+	color: var(--rs-heading-color);
+	opacity: var(--rs-opacity-blockquote);
+	border-radius: 0px 0px 5px 5px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 5px;
+	margin-top: -50px;
+	margin-bottom: 20px;
+	margin-left: -20px;
+	margin-right: -20px;
+	box-shadow: 2px 2px 15px var(--rs-box-shadow-color);
+}
+blockquote {
+	display: block;
+	background: var(--rs-heading-background-color);
+	padding: 15px 20px 15px 45px;
+	margin: 5px auto 10px;
+	position: relative;
+	font-family: Georgia,  serif;
+	font-size: 16px;
+	line-height: 1.2;
+	color: var(--rs-card-p-color);
+	opacity: var(--rs-opacity-blockquote);
+	text-align: justify;
+	border-left: 15px solid var(--rs-heading-color);
+	border-right: 2px solid var(--rs-heading-background-color);/* Don't want a border-right color */
+	box-shadow: 2px 2px 15px var(--rs-box-shadow-color);
+}
+blockquote::before {
+	content: "\201C";
+	font-family: Georgia,  serif;
+	font-size: 60px;
+	font-weight: bold;
+	color: var(--rs-heading-color);
+	position: absolute;
+	left: 10px;
+	top: 5px;
+}
+blockquote::after {
+	content: ""
+}
+blockquote em {
+	font-style: italic;
+}
+ul
+{
+	box-shadow: 2px 2px 15px var(--rs-box-shadow-color);
+	position: relative;
+	opacity: var(--rs-opacity-blockquote);
+}
+cite
+{
+	color: var(--rs-card-p-color);
+}
+cite::before {
+	content: "-";
+}
+
+#preloader-host
+{
+	display: flex;              /* establish flex container */
+	flex-direction: column;     /* stack flex items vertically */
+	justify-content: center;    /* center items vertically, in this case */
+	align-items: center;        /* center items horizontally, in this case */
+	height: 100vh;				/* Sets the height to that of the browser window */
+}
+#preloader-data
+{
+	width: 75%;
+	margin: 5px;
+	text-align: center;
+}
+
+/* Things to hide on small displays */
+#btn-start, #btn-end, #list-discipline, #step-counter
+{
+	display: none;
+}
+@media (min-width:  992px) 
+{
+	#btn-start, #btn-end, #list-discipline, #step-counter
+	{
+		display: block;
+	}
+}
