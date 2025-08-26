@@ -25,13 +25,13 @@
     // --- Handle 404 ---
     if (!$project) {
         header("HTTP/1.0 404 Not Found");
-        include __DIR__ . '/../errors/404.php';
+        include __DIR__ . '/../../errors/404.php';
         exit();
     }
 
     // --- Include Header ---
-    include __DIR__ . '/../includes/document-open.php';
-    include __DIR__ . '/../includes/header.php';
+    include __DIR__ . '/../../includes/document-open.php';
+    include __DIR__ . '/../../includes/header.php';
 ?>
 
 <main class="site-content" id="content">
@@ -95,6 +95,6 @@
 
 <?php
     // --- Include Footer ---
-    include __DIR__ . '/../includes/footer.php';
-    include __DIR__ . '/../includes/document-close.php';
+    include __DIR__ . '/../../includes/footer.php';
+    include __DIR__ . '/../../includes/document-close.php';
 ?>

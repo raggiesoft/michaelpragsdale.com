@@ -17,8 +17,8 @@
             'icon' => 'laptop-code',
             'sub-menu' => [
                 '/projects/docx-converter/'   => ['text' => 'DOCX Converter'],
-                '/projects/servers.php'          => ['text' => 'Server Infrastructure'],
-                '/projects/storetrainer.php'  => ['text' => 'StoreTrainer'],
+                '/projects/servers/'          => ['text' => 'Server Infrastructure'],
+                '/projects/storetrainer/'  => ['text' => 'StoreTrainer'],
             ]
         ],
         '/about-me/'    => [

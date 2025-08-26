@@ -20,6 +20,9 @@
     $body_class = "page-project-detail has-sidebar"; // Changed to has-sidebar
     $page_script = "live-code-embed";
     $page_description = htmlspecialchars($project['short_description']);
+
+    // Load the Monokai Pro theme for this page
+    $supplemental_css_files = ['monokai-pro'];
     
     include __DIR__ . '/../../includes/document-open.php';
     include __DIR__ . '/../../includes/header.php';

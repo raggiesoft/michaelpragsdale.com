@@ -24,8 +24,8 @@
     }
 
     // --- Include Header ---
-    include __DIR__ . '/../includes/document-open.php';
-    include __DIR__ . '/../includes/header.php';
+    include __DIR__ . '/../../includes/document-open.php';
+    include __DIR__ . '/../../includes/header.php';
 ?>
 
 <main class="site-content" id="content">
@@ -123,6 +123,6 @@
 
 <?php
     // --- Include Footer ---
-    include __DIR__ . '/../includes/footer.php';
-    include __DIR__ . '/../includes/document-close.php';
+    include __DIR__ . '/../../includes/footer.php';
+    include __DIR__ . '/../../includes/document-close.php';
 ?>
