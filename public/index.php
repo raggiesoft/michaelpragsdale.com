@@ -105,13 +105,13 @@
                             <?php if (!empty($latest_job['roles'][0]['title'])): ?>
                                 <h4 class="history-item__subtitle"><?php echo htmlspecialchars($latest_job['roles'][0]['title']); ?></h4>
                             <?php endif; ?>
-                            <?php // Add the period for the role ?>
+                            <?php // Use the correct 'role-period' class to match the resume page styling ?>
                             <?php if (!empty($latest_job['roles'][0]['period'])): ?>
-                                <div class="history-item__period"><?php echo htmlspecialchars($latest_job['roles'][0]['period']); ?></div>
+                                <div class="role-period"><?php echo htmlspecialchars($latest_job['roles'][0]['period']); ?></div>
                             <?php endif; ?>
                         </div>
                     </div>
-                    <?php // Use the 'it' description for the homepage, and check that it exists and is an array ?>
+                    <?php // Use the 'it' description for the homepage ?>
                     <?php if (!empty($latest_job['roles'][0]['description']['it']) && is_array($latest_job['roles'][0]['description']['it'])): ?>
                         <ul class="role-description">
                             <?php foreach ($latest_job['roles'][0]['description']['it'] as $bullet_point): ?>
