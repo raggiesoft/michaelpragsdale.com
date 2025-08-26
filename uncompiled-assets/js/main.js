@@ -28,6 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // --- Email Link Obfuscation ---
+    const emailLink = document.getElementById('email-link');
+    if (emailLink) {
+        const user = emailLink.dataset.user;
+        const domain = emailLink.dataset.domain;
+        emailLink.href = 'mailto:' + user + '@' + domain;
+    }
+
     // --- Mobile Navigation ---
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
     const mainMenu = document.getElementById('main-menu');

@@ -80,7 +80,12 @@
                             </p>
                         </div>
                     </details>
-
+                    <details class="accordion-item" id="accordion-other-questions">
+                        <summary class="accordion-header">I have other questions. How can I reach you?</summary>
+                        <div class="accordion-content">
+                            <p>If you have questions that were not addressed in this FAQ, please feel free to reach out via email at <a href="#" id="email-link" data-user="hireme" data-domain="michaelpragsdale.com">Contact me via email</a>. I check my email regularly and will respond as promptly as possible.</p>
+                        </div>
+                    </details>
                 </div> <?php // End .accordion ?>
 
             </div> <?php // End #contact-flow-app ?>
