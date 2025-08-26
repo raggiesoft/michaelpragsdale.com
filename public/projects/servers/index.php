@@ -10,7 +10,7 @@
 
     // --- Data Loading ---
     // Load all projects and find the two server projects
-    $all_projects = json_decode(file_get_contents(__DIR__ . '/../assets/json/projects.json'), true) ?? [];
+    $all_projects = json_decode(file_get_contents(__DIR__ . '/../../assets/json/projects.json'), true) ?? [];
     $bold_firefly = null;
     $glowing_galaxy = null;
 

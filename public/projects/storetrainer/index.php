@@ -9,7 +9,7 @@
 
     // --- Data Loading ---
     // Load all projects and find the StoreTrainer project
-    $all_projects = json_decode(file_get_contents(__DIR__ . '/../assets/json/projects.json'), true) ?? [];
+    $all_projects = json_decode(file_get_contents(__DIR__ . '/../../assets/json/projects.json'), true) ?? [];
     $project = null;
 
     foreach ($all_projects as $p) {
