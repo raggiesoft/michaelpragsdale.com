@@ -27,7 +27,7 @@
                 '/employment/'      => ['text' => 'Employment'],
                 'separator-about'   => '---', // This will render as a separator
                 '/about-me/salary/' => ['text' => 'Salary Checker'],
-                '//accessibility/' => ['text' => 'Accessibility'] 
+                '/accessibility/' => ['text' => 'Accessibility'] 
             ]
         ],
         '/contact/'     => [
