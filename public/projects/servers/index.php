@@ -68,7 +68,7 @@
                         <?php endif; ?>
                     </div>
                     <div class="card-footer">
-                        <a href="<?php echo htmlspecialchars($bold_firefly['url']); ?>" class="button button-outline-primary">Visit Live Site</a>
+                        <a href="<?php echo htmlspecialchars($bold_firefly['live_url']); ?>" class="button button-outline-primary">Visit Live Site</a>
                     </div>
                 </div>
             </aside>
@@ -111,7 +111,7 @@
                         <?php endif; ?>
                     </div>
                     <div class="card-footer">
-                        <a href="<?php echo htmlspecialchars($glowing_galaxy['url']); ?>" class="button button-outline-primary">Visit Live Site</a>
+                        <a href="<?php echo htmlspecialchars($glowing_galaxy['live_url']); ?>" class="button button-outline-primary">Visit Live Site</a>
                     </div>
                 </div>
             </aside>
