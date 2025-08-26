@@ -46,6 +46,10 @@
                     'icon'       => 'github',
                     'icon_brand' => true,
                     'is_external'=> true
+                ],
+                '/accessibility/' => [
+                    'text' => 'Accessibility',
+                    'icon' => 'universal-access'
                 ]
             ]
         ]
