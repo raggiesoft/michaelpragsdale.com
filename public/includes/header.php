@@ -57,10 +57,28 @@
 
         <?php // This wrapper holds all the right-aligned actions. ?>
         <div class="header-actions">
-            <?php 
-                // This now correctly includes your main navigation menu.
-                include __DIR__ . '/navigation/main-menu.php'; 
-            ?>
+            <?php
+            // --- Dynamic Navigation Loader ---
+
+            // Define the path to the default navigation menu.
+            $default_menu = __DIR__ . '/navigation/main-menu.php';
+
+            // Check if a page-specific menu file has been defined.
+            if (isset($page_menu_file) && !empty($page_menu_file)) {
+                // If yes, construct the path to that custom menu file.
+                $custom_menu_path = __DIR__ . '/navigation/' . htmlspecialchars($page_menu_file);
+
+                // Include the custom menu if it exists; otherwise, fall back to the default.
+                if (file_exists($custom_menu_path)) {
+                    include $custom_menu_path;
+                } else {
+                    include $default_menu;
+                }
+            } else {
+                // If no page-specific menu is set, include the default one.
+                include $default_menu;
+            }
+        ?>
             <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-controls="site-navigation" aria-expanded="false" type="button" aria-label="Toggle Navigation">
                 <span class="hamburger-icon"><i class="fa-duotone fa-bars fa-fw"></i></span>
             </button>
