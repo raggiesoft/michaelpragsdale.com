@@ -29,6 +29,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
 
     <?php // 2. THEN, load our own main script file. ?>
-    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/main.js?v=<?php echo time(); ?>"></script> <?php // Use time() for development; switch to filemtime() in production for better caching ?>
 </body>
 </html>
