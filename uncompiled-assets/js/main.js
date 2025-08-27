@@ -144,4 +144,35 @@ clickableCards.forEach((card, index) => {
     });
 });
 
+// --- Resume View Toggler ---
+const viewToggle = document.querySelector('.view-toggle');
+if (viewToggle) {
+    const viewButtons = viewToggle.querySelectorAll('button');
+    const itSections = document.querySelectorAll('.resume-view-it');
+    const csSections = document.querySelectorAll('.resume-view-cs');
+
+    viewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Don't do anything if the button is already active
+            if (this.classList.contains('active')) {
+                return;
+            }
+
+            // Update button active state
+            viewButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            const view = this.getAttribute('data-view');
+
+            if (view === 'it') {
+                itSections.forEach(section => section.classList.remove('is-hidden'));
+                csSections.forEach(section => section.classList.add('is-hidden'));
+            } else if (view === 'cs') {
+                csSections.forEach(section => section.classList.remove('is-hidden'));
+                itSections.forEach(section => section.classList.add('is-hidden'));
+            }
+        });
+    });
+}
+
 console.log('--- SCRIPT END --- All initializations complete.');
