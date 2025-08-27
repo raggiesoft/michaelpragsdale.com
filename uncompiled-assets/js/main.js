@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             mainMenu.classList.toggle('is-open');
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
             this.setAttribute('aria-expanded', !isExpanded);
+            console.log('Mobile menu toggled. Now expanded:', !isExpanded);
         });
     }
 
