@@ -61,7 +61,7 @@
                 // This now correctly includes your main navigation menu.
                 include __DIR__ . '/navigation/main-menu.php'; 
             ?>
-            <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-controls="site-navigation" aria-expanded="false" type="button" aria-label="Toggle Navigation">
+            <button id="mobile-nav-toggle" aria-controls="site-navigation" aria-expanded="false" type="button" aria-label="Toggle Navigation">
                 <span class="hamburger-icon"><i class="fa-duotone fa-bars fa-fw"></i></span>
             </button>
             <?php // The duplicate button that was here has been removed. ?>
