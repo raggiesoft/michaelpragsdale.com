@@ -1,3 +1,4 @@
+debugger;
 /**
  * My Portfolio Website
  * Copyright (c) 2025 Michael Ragsdale
