@@ -5,6 +5,10 @@
     // at the top of resume/index.php
     $page_script = "employment-filter resume-toggler project-filter";
     $page_description = "The interactive resume of Michael Ragsdale, with views tailored for both Information Technology and Customer Service roles.";
+
+    // SET THE CUSTOM MENU FILE NAME HERE - this is an example and is commented out. Create /includes/navigation/resume-menu.php to see this in action
+
+    //$page_menu_file = "resume-menu.php";
     
     // 1. Open the document
     include __DIR__ . '/../includes/document-open.php';
