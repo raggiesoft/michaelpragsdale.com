@@ -56,7 +56,7 @@
     ];
 
 ?>
-<nav class="site-navigation" aria-label="Main Navigation">
+<nav id="main-menu" class="site-navigation" aria-label="Main Navigation">
     <ul class="nav-menu">
         <?php foreach ($nav_items as $path => $item): ?>
             <?php
