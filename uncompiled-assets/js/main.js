@@ -1,4 +1,3 @@
-debugger;
 /**
  * My Portfolio Website
  * Copyright (c) 2025 Michael Ragsdale
@@ -6,15 +5,19 @@ debugger;
  * This file contains the primary client-side JavaScript for the portfolio website.
  */
 
+console.log('[DEBUG] main.js script file has started executing.');
+
 document.addEventListener('DOMContentLoaded', function() {
 
+    console.log('[DEBUG] DOMContentLoaded event has fired. Initializing script sections.');
+
     // --- Mobile Navigation Toggle (FIX) ---
-    // This was the missing piece. It finds the hamburger button and the main menu.
-    // When the button is clicked, it toggles the 'is-open' class on the menu
-    // to show/hide it, and updates the ARIA attribute for accessibility.
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
     const mainMenu = document.getElementById('main-menu');
+    console.log('[DEBUG] mobileNavToggle found:', mobileNavToggle ? 'Yes' : 'No');
+    console.log('[DEBUG] mainMenu found:', mainMenu ? 'Yes' : 'No');
     if (mobileNavToggle && mainMenu) {
+        console.log('[DEBUG] Initializing Mobile Navigation Toggle.');
         mobileNavToggle.addEventListener('click', function() {
             mainMenu.classList.toggle('is-open');
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
@@ -24,9 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Email Obfuscation (NEW) ---
-    // This finds all links with the class 'email-obfuscate' and builds the
-    // clickable mailto: link from the data attributes, protecting it from spam bots.
+    console.log('[DEBUG] Initializing Email Obfuscation.');
     const emailLinks = document.querySelectorAll('.email-obfuscate');
+    console.log(`[DEBUG] Found ${emailLinks.length} email links to obfuscate.`);
     emailLinks.forEach(link => {
         const user = link.dataset.user;
         const domain = link.dataset.domain;
@@ -37,7 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Salary Checker ---
     const salaryForm = document.getElementById('salary-checker-form');
+    console.log('[DEBUG] salaryForm found:', salaryForm ? 'Yes' : 'No');
     if (salaryForm) {
+        console.log('[DEBUG] Initializing Salary Checker.');
         salaryForm.addEventListener('submit', function(event) {
             event.preventDefault(); 
 
@@ -84,7 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Location List ---
     const locationListContainer = document.getElementById('location-list-display');
+    console.log('[DEBUG] locationListContainer found:', locationListContainer ? 'Yes' : 'No');
     if (locationListContainer) {
+        console.log('[DEBUG] Initializing Location List.');
         fetch('/assets/json/locations.json')
             .then(response => response.json())
             .then(data => {
@@ -99,7 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Project Filter ---
     const projectFilter = document.getElementById('project-filter');
+    console.log('[DEBUG] projectFilter found:', projectFilter ? 'Yes' : 'No');
     if (projectFilter) {
+        console.log('[DEBUG] Initializing Project Filter.');
         const filterButtons = projectFilter.querySelectorAll('button');
         const projectList = document.getElementById('project-list');
         const projectItems = projectList ? projectList.querySelectorAll('.card') : [];
@@ -122,7 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // --- Clickable Cards ---
+    console.log('[DEBUG] Initializing Clickable Cards.');
     const clickableCards = document.querySelectorAll('.clickable-card');
+    console.log(`[DEBUG] Found ${clickableCards.length} clickable cards.`);
     clickableCards.forEach(card => {
         card.addEventListener('click', function() {
             const link = this.dataset.link;
@@ -136,5 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
+    
+    console.log('[DEBUG] main.js script has finished executing.');
 });
