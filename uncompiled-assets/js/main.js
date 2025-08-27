@@ -3,40 +3,14 @@
  * Copyright (c) 2025 Michael Ragsdale
  *
  * This file contains the primary client-side JavaScript for the portfolio website.
- * It handles theme switching, mobile navigation, and interactive components like
- * the salary checker and project/employment filters.
  */
 
-// ==========================================================================
-//    #Event Listener for DOMContentLoaded
-// ==========================================================================
-// This is the main fix. By wrapping all the code in this event listener,
-// we ensure that the JavaScript doesn't try to run until the entire HTML
-// document has been loaded and is ready to be interacted with. This prevents
-// "element not found" errors and ensures that all event listeners are
-// attached correctly.
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- Theme Switcher ---
-    const themeSwitcher = document.getElementById('theme-switcher');
-    if (themeSwitcher) {
-        themeSwitcher.addEventListener('change', function() {
-            const selectedTheme = this.value;
-            // Logic to apply the selected theme would go here.
-            // For now, it might just log to the console or store in localStorage.
-            console.log(`Theme changed to: ${selectedTheme}`);
-        });
-    }
-
-    // --- Email Link Obfuscation ---
-    const emailLink = document.getElementById('email-link');
-    if (emailLink) {
-        const user = emailLink.dataset.user;
-        const domain = emailLink.dataset.domain;
-        emailLink.href = 'mailto:' + user + '@' + domain;
-    }
-
-    // --- Mobile Navigation ---
+    // --- Mobile Navigation Toggle (FIX) ---
+    // This was the missing piece. It finds the hamburger button and the main menu.
+    // When the button is clicked, it toggles the 'is-open' class on the menu
+    // to show/hide it, and updates the ARIA attribute for accessibility.
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
     const mainMenu = document.getElementById('main-menu');
     if (mobileNavToggle && mainMenu) {
@@ -47,11 +21,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // --- Email Obfuscation (NEW) ---
+    // This finds all links with the class 'email-obfuscate' and builds the
+    // clickable mailto: link from the data attributes, protecting it from spam bots.
+    const emailLinks = document.querySelectorAll('.email-obfuscate');
+    emailLinks.forEach(link => {
+        const user = link.dataset.user;
+        const domain = link.dataset.domain;
+        if (user && domain) {
+            link.href = 'mailto:' + user + '@' + domain;
+        }
+    });
+
     // --- Salary Checker ---
     const salaryForm = document.getElementById('salary-checker-form');
     if (salaryForm) {
         salaryForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // This is the key line that was not being attached correctly.
+            event.preventDefault(); 
 
             const lowEndInput = document.getElementById('salary-low');
             const highEndInput = document.getElementById('salary-high');
@@ -95,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Location List ---
-    // Dynamically loads and displays locations on pages that need it.
     const locationListContainer = document.getElementById('location-list-display');
     if (locationListContainer) {
         fetch('/assets/json/locations.json')
@@ -135,7 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // --- Clickable Cards ---
-    // Makes cards with a data-link attribute behave like links.
     const clickableCards = document.querySelectorAll('.clickable-card');
     clickableCards.forEach(card => {
         card.addEventListener('click', function() {
@@ -144,7 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = link;
             }
         });
-        // Add keyboard accessibility
         card.addEventListener('keydown', function(event) {
             if (event.key === 'Enter' || event.key === ' ') {
                 this.click();
@@ -152,4 +135,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-}); // End of DOMContentLoaded listener
+});
