@@ -6,6 +6,7 @@
 /.idea/
 *.sublime-project
 *.sublime-workspace
+*.code-workspace
 
 # Environment Variables
 # Ignore all .env files...
@@ -30,7 +31,3 @@ yarn-debug.log*
 # Source files are in /uncompiled-assets/, so we ignore the public output directories. (except JSON)
 /public/assets/css/
 /public/assets/js/
-
-# VS Code Workspace Settings
-.vscode/
-*.code-workspace
